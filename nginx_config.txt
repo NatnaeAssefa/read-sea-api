@@ -1,33 +1,33 @@
-# Redirect HTTP to HTTPS for boingo.ai and api.boingo.ai
+# Redirect HTTP to HTTPS for Read-Sea.ai and api.Read-Sea.ai
 server {
     listen 80;
-    server_name boingo.ai www.boingo.ai api.boingo.ai;
+    server_name Read-Sea.ai www.Read-Sea.ai api.Read-Sea.ai;
 
     # Redirect all HTTP traffic to HTTPS
     return 301 https://$host$request_uri;
 }
 
-# Redirect www.boingo.ai to boingo.ai over HTTPS
+# Redirect www.Read-Sea.ai to Read-Sea.ai over HTTPS
 server {
     listen 443 ssl;
-    server_name www.boingo.ai;
+    server_name www.Read-Sea.ai;
 
-    # SSL certificate for boingo.ai
-    ssl_certificate /etc/letsencrypt/live/boingo.ai-0002/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/boingo.ai-0002/privkey.pem;
+    # SSL certificate for Read-Sea.ai
+    ssl_certificate /etc/letsencrypt/live/Read-Sea.ai-0002/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/Read-Sea.ai-0002/privkey.pem;
 
-    # Redirect www.boingo.ai to boingo.ai
-    return 301 https://boingo.ai$request_uri;
+    # Redirect www.Read-Sea.ai to Read-Sea.ai
+    return 301 https://Read-Sea.ai$request_uri;
 }
 
-# Handle HTTPS for boingo.ai (Frontend proxy to S3)
+# Handle HTTPS for Read-Sea.ai (Frontend proxy to S3)
 server {
     listen 443 ssl;
-    server_name boingo.ai;
+    server_name Read-Sea.ai;
 
-    # SSL certificate for boingo.ai
-    ssl_certificate /etc/letsencrypt/live/boingo.ai-0002/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/boingo.ai-0002/privkey.pem;
+    # SSL certificate for Read-Sea.ai
+    ssl_certificate /etc/letsencrypt/live/Read-Sea.ai-0002/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/Read-Sea.ai-0002/privkey.pem;
 
     # SSL settings
     ssl_protocols TLSv1.2 TLSv1.3;
@@ -45,21 +45,21 @@ server {
 
     # Proxy root path "/" to S3 bucket (frontend)
     location / {
-        proxy_pass http://boingo.ai.s3-website.us-east-2.amazonaws.com;
+        proxy_pass http://Read-Sea.ai.s3-website.us-east-2.amazonaws.com;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
 
 
-# Handle HTTPS for api.boingo.ai (Backend proxy to Docker)
+# Handle HTTPS for api.Read-Sea.ai (Backend proxy to Docker)
 server {
     listen 443 ssl;
-    server_name api.boingo.ai;
+    server_name api.Read-Sea.ai;
 
-    # SSL certificate for api.boingo.ai
-    ssl_certificate /etc/letsencrypt/live/boingo.ai-0002/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/boingo.ai-0002/privkey.pem;
+    # SSL certificate for api.Read-Sea.ai
+    ssl_certificate /etc/letsencrypt/live/Read-Sea.ai-0002/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/Read-Sea.ai-0002/privkey.pem;
 
     # SSL settings
     ssl_protocols TLSv1.2 TLSv1.3;

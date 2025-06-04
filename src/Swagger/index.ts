@@ -6,7 +6,7 @@ import LogService from "../services/Log/Log.service";
 const swaggerDefinition = {
   openapi: "3.0.0",
   info: {
-    title: "Boingo",
+    title: "Read-Sea",
     version: "0.1.0",
     description: "",
   },

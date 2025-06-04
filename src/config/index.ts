@@ -50,10 +50,10 @@ export const env: any = {
   RECOVERY_EXPIRY: process.env.RECOVERY_EXPIRY || 24, // Hours
 
   // Company
-  COMPANY_NAME: process.env.COMPANY_NAME || "Boingo AI",
-  COMPANY_EMAIL: process.env.SMTP_USER || "support@boingo.ai",
+  COMPANY_NAME: process.env.COMPANY_NAME || "Read-Sea AI",
+  COMPANY_EMAIL: process.env.SMTP_USER || "support@Read-Sea.ai",
 
-  ADMIN_EMAIL: process.env.ADMIN_EMAIL || "admin@boingo.ai",
+  ADMIN_EMAIL: process.env.ADMIN_EMAIL || "admin@Read-Sea.ai",
 
   ROOT_DIR: "",
 

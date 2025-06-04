@@ -176,7 +176,7 @@ export class EmailService {
         <div class="container">
           <h1>Listing Inquiry</h1>
           <p>
-            A user has submitted an inquiry for a listing on Boingo.ai. Below are
+            A user has submitted an inquiry for a listing on Read-Sea.ai. Below are
             the details:
           </p>
           <div class="details">
@@ -197,7 +197,7 @@ export class EmailService {
             <p><strong>Phone Number:</strong> ${lister.phone_number}</p>
           </div>
           <a href="${source_url}" class="btn">Listing Source</a>
-          <p>Thanks, <br />The Boingo.ai Team</p>
+          <p>Thanks, <br />The Read-Sea.ai Team</p>
         </div>
       </body>
     </html>

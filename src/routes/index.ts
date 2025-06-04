@@ -25,7 +25,7 @@ let routes = (app: Application) => {
   app.get("/", (req, res) => {
     res.status(200).json({
       status: 200,
-      data: { name: "Boingo API", version: "1.0.0" },
+      data: { name: "Read-Sea API", version: "1.0.0" },
       message: "Success",
     });
   });
