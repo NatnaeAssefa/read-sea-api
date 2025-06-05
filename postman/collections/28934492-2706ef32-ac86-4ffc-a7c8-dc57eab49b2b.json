@@ -2072,7 +2072,7 @@
 							"response": []
 						},
 						{
-							"name": "Update Copy",
+							"name": "Update",
 							"id": "28934492-ab532309-5872-4faa-80bc-43896098e746",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
