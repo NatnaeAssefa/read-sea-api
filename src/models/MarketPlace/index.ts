@@ -1,5 +1,6 @@
 import type { Sequelize } from "sequelize"
-import UserFactory, { User } from "../User"
+import { User } from "../User"
+import { File } from "../System"
 import AddressFactory, { Address } from "./Address"
 import PaymentMethodFactory, { PaymentMethod } from "./PaymentMethod"
 import ProductFactory, { Product } from "./Product"
@@ -74,6 +75,14 @@ const MarketPlaceModels = (sequelize: Sequelize) => {
 
   User.hasOne(AppSetting, { foreignKey: "user_id" })
   AppSetting.belongsTo(User, { foreignKey: "user_id" })
+
+  // File - UserProfile
+  File.hasOne(ProductImage, {
+    foreignKey: "file_id",
+  });
+  ProductImage.belongsTo(File, {
+    foreignKey: "file_id",
+  });
 }
 
 export default (sequelize: Sequelize) => {
