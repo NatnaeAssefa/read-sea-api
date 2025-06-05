@@ -1982,7 +1982,7 @@
 							"response": []
 						},
 						{
-							"name": "Get One Copy",
+							"name": "Get One",
 							"id": "28934492-f734dab5-4873-46fd-a1b1-c86d11735da4",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
