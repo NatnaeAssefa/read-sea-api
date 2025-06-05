@@ -1963,12 +1963,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/files",
+									"raw": "{{api_url}}/products",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"files"
+										"products"
 									],
 									"query": [
 										{
@@ -1991,12 +1991,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/roles/get",
+									"raw": "{{api_url}}/products/get",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"roles",
+										"products",
 										"get"
 									],
 									"query": [
