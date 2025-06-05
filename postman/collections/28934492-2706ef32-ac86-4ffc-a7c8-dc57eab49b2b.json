@@ -1946,6 +1946,333 @@
 				}
 			],
 			"id": "28934492-6ab45a79-2afc-4589-9aaa-0dc9ad1a083c"
+		},
+		{
+			"name": "System Copy",
+			"item": [
+				{
+					"name": "Config",
+					"item": [
+						{
+							"name": "Create",
+							"id": "28934492-25885036-c0e2-47ef-b7e5-99e507aa05be",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"key\": \"cancellation_reasons\",\r\n    \"object_type\": \"String\",\r\n    \"type\": \"string\",\r\n    \"value\": \"[\\\"Too expensive\\\", \\\"Not using the service enough\\\", \\\"Missing features\\\", \\\"Other reason\\\", \\\"Found alternative\\\", \\\"Technical issues\\\" ]\\n\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/configs",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"configs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"id": "28934492-da769444-9c09-4db1-8750-b6a249d11a9e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"\",\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/configs",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"configs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Id",
+							"id": "28934492-b3f1a3f6-cf24-4a75-b657-98de25136d41",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/configs",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"configs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All",
+							"id": "28934492-45dc5a86-8313-4f9d-8b7a-16f8821b9b2b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/configs",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"configs"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "28934492-bceb7295-3d46-40de-99f5-d449296f8c03"
+				},
+				{
+					"name": "Notification",
+					"item": [
+						{
+							"name": "Create",
+							"id": "28934492-7fd3bc3c-20d2-40d4-b371-d8c3ab9dff23",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"3ef7a016-f8be-47d2-b8d5-8ad861eab87e\",\r\n    \"notification_title\": \"Subscription Started\",\r\n    \"notification_body\": \"Your subscription for 3 listings is being processed. You will be charged $95.97 per month.\",\r\n    \"notification_type\": \"Success\",\r\n    \"is_read\": false,\r\n    \"notification_date\": \"2025-02-06T16:50:50.358Z\",\r\n    \"notification_url\": \"http://boingo.ai/subscriptions\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"id": "28934492-f144104a-fcf3-49d2-8f87-4567feca6f28",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"66dfe9c6-ab79-4a2f-a105-1dd5c4137036\",\r\n    \"createdAt\": \"2025-02-01T13:56:49.171Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Id",
+							"id": "28934492-5019679c-fe7f-430f-8c1d-76a52dff1059",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification/71b885bd-7e54-4ada-b499-c0fb575f4ac1",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification",
+										"71b885bd-7e54-4ada-b499-c0fb575f4ac1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All",
+							"id": "28934492-e9f7fb93-39fa-482e-8630-10f6f3a36f44",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter By Date",
+							"id": "28934492-aafc034f-503f-43be-b780-9cd95d9aaa48",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"is_read\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification/filter?query=offset%3D0%253An%26limit%3D5%253An%26order%255B0%255D%255Bkey%255D%3DcreatedAt%253As%26order%255B0%255D%255Bvalue%255D%3DDESC%253As",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification",
+										"filter"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset%3D0%253An%26limit%3D5%253An%26order%255B0%255D%255Bkey%255D%3DcreatedAt%253As%26order%255B0%255D%255Bvalue%255D%3DDESC%253As"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get My Notification",
+							"id": "28934492-98fddcc2-a597-4b4a-aea8-8e1fea0bdec6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification/my",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification",
+										"my"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "28934492-b91812ba-ba89-4bff-8992-e8f6c40e0f2a"
+				}
+			],
+			"id": "28934492-119675e9-58ac-40c7-b0da-0421f61f94b1"
 		}
 	]
 }
