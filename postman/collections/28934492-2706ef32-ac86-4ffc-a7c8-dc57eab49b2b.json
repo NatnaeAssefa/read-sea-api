@@ -2132,7 +2132,7 @@
 							"response": []
 						},
 						{
-							"name": "Restore Copy",
+							"name": "Restore",
 							"id": "28934492-3f3890f1-1ccb-40fc-9f70-c20a29ba815e",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
