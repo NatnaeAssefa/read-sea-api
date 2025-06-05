@@ -2102,7 +2102,7 @@
 							"response": []
 						},
 						{
-							"name": "Delete Copy",
+							"name": "Delete",
 							"id": "28934492-f371a988-5bcf-400f-bd35-241d9a939c06",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
