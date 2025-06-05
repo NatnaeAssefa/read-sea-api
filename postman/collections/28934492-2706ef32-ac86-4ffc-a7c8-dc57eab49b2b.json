@@ -1954,7 +1954,7 @@
 					"name": "Config",
 					"item": [
 						{
-							"name": "Get All Copy",
+							"name": "Get All",
 							"id": "28934492-16a0c5f0-c0e0-4409-80b1-6d37efa3bdf0",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
