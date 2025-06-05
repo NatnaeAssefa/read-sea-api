@@ -1,7 +1,7 @@
 import { Model } from "sequelize";
-import { AccessRule, ActionLog, Role, User } from "../../models/User";
+import { AccessRule, ActionLog, Role, User, UserProfile } from "../../models/User";
 
-import { File } from "../../models/System";
+import { File, Notification } from "../../models/System";
 
 // Define the user type for better type safety
 export interface FacebookUserProfile {
@@ -173,33 +173,19 @@ export const Currency = {
   ZWL: "Z$", // Zimbabwean Dollar
 };
 
-
-export const FeatureValueType = {
-  INTEGER: "INTEGER",
-  FLOAT: "FLOAT",
-  BOOLEAN: "BOOLEAN",
-  JSON: "JSON",
-  STRING: "STRING",
-};
-
-export const ListingStatus = {
-  AVAILABLE: "Available",
-  NOT_AVAILABLE: "Not Available",
-  PENDING: "Pending",
-  SOLD: "Sold",
-  UNDER_CONTRACT: "Under Contract",
-};
-
 export const AccessType = {
   SYSTEM: "System",
-  BROKER: "Broker",
+  ADMIN: "Admin",
   USER: "User",
+  OTHER: "Other",
 };
+
 
 export const UserType = {
   SYSTEM: "System",
-  BROKER: "Broker",
+  ADMIN: "Admin",
   USER: "User",
+  OTHER: "Other",
 };
 
 export const UserNotificationStatus = {
@@ -225,6 +211,8 @@ export const LogActions = {
   SOFT_DELETE: "Soft Delete",
   HARD_DELETE: "Hard Delete",
   RESTORE: "Restore",
+  FAILURE: "Failure",
+  FETCH: "Fetch",
 };
 
 export const LogTypes = {
@@ -242,38 +230,74 @@ export const UserStatus = {
   ARCHIVED: "Archived",
 };
 
-export const ScrapedListingStatus = {
-  UNCHANGED: "Unchanged",
-  CHANGED: "Changed",
-  APPLIED: "Applied",
-  IGNORED: "Ignored",
+export const PaymentMethod = {
+  STRIPE: "Stripe",
+  PAYPAL: "PayPal",
 };
 
-export const ScrapingStatus = {
-  WAITING: "Waiting",
-  INPROGRESS: "In Progress",
-  FAILED: "Failed",
-  FINISHED: "Finished",
+export const NotificationType = {
+  INFO: "Info",
+  WARNING: "Warning",
+  SUCCESS: "Success",
+  ALERT: "Alert",
 };
 
-export const ListingSourceStatus = {
-  ACTIVE: "Active",
-  INACTIVE: "Inactive",
-};
-
-export const ListingSourceGroupConfigType = {
+export const NotificationCategory = {
+  INFO: "Info",
+  SUBSCRIPTION: "Subscription",
+  AFFILIATE: "Affiliate",
+  WARNING: "Warning",
   LISTING: "Listing",
-  SITE: "Site",
 };
+
+export const PaymentStatus = {
+  PAID: "paid",
+  UNPAID: "unpaid",
+  FAILED: "failed",
+};
+
+export const EmailType = {
+  PASSWORD_RECOVERY: "passwordRecovery",
+  EMAIL_VERIFICATION: "verification"
+}
+
+export type EmailTypeValues = (typeof EmailType)[keyof typeof EmailType];
+
+export const ConfigNames = {
+  HEALTH_STATUS: "Health Status",
+}
+
+export const Gender = {
+  MALE: "male",
+  FEMALE: "female",
+  OTHER: "other"
+}
+
+export const EngagementMetricsType = {
+  IMPRESSION: "impression",
+  VIEW: "view"
+};
+
+export const PREFERRED_CONTACT_METHOD = {
+  WHATSAPP: "WhatsApp",
+  EMAIL: "Email",
+  PHONE_CALL: "Phone Call",
+  SMS: "SMS",
+  NO_PREFERENCE: "No Preference"
+}
 
 export const PasswordMessage =
   "Password must be at least 8 and at most 16 characters and must contain at least one lower case, one upper case, one special character and one number";
 export const PasswordRegex =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\\w\\s]).{8,16}$/;
-export const PhoneNumberRegex = /^\+?[1-9]\d{1,14}$/;
+export const PhoneNumberRegex = /^\+[1-9]\d{1,14}$/;
 export const EmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 export const LatitudeValueRegex = /^(\+|-)?(90(\.0+)?|[1-8]?\d(\.\d+)?)$/;
-export const LongtudeValueRegex = /^(\+|-)?(180(\.0+)?|1?[0-7]?\d(\.\d+)?|\d{1,2}(\.\d+)?)$/;
+export const LongtudeValueRegex =
+  /^(\+|-)?(180(\.0+)?|1?[0-7]?\d(\.\d+)?|\d{1,2}(\.\d+)?)$/;
+export const WebsiteUrlRegex =
+  /^https:\/\/(www\.)?[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})*([/?#][\w-.~!*'();:@&=+$,/?%#[\]]*)*$/;
+  
 
 const ModelType: Map<string, typeof Model> = new Map<string, typeof Model>();
 
@@ -282,5 +306,13 @@ ModelType.set("role", Role);
 ModelType.set("user", User);
 ModelType.set("access-rule", AccessRule);
 ModelType.set("action-log", ActionLog);
+ModelType.set("notification", Notification);
+ModelType.set("user_profile", UserProfile);
 
 export { ModelType };
+
+export enum AdminApproval {
+  PENDING = "Pending",
+  REJECTED = "Rejected",
+  APPROVED = "Approved"
+}

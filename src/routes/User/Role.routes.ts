@@ -14,6 +14,15 @@ const routes = () => {
   const router = express.Router();
 
   /**
+   * public roles
+   */
+
+  router.get(
+    "/selected-roles",
+    RoleController.findSelectedRole
+  );
+
+  /**
    * @swagger
    * /roles/get:
    *   get:
@@ -80,7 +89,7 @@ const routes = () => {
   router.get(
     "/",
     AuthenticateUser,
-    AuthorizeAccess(["read_role"]),
+    // AuthorizeAccess(["read_role"]),
     RoleController.findMany
   );
 

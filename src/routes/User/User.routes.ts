@@ -33,6 +33,8 @@ const routes = () => {
     UserController.findOne
   );
 
+
+
   /**
    * @swagger
    * /users/{id}:
@@ -147,7 +149,7 @@ const routes = () => {
   router.put(
     "/",
     AuthenticateUser,
-    AuthorizeAccess(["write_user"]),
+    // AuthorizeAccess(["write_user"]),
     UserController.update
   );
 
@@ -206,6 +208,14 @@ const routes = () => {
     AuthenticateUser,
     // AuthorizeAccess(["delete_user"]),
     UserController.toggleIsVerified
+  );
+
+
+  router.post(
+    "/filter",
+    AuthenticateUser,
+    // AuthorizeAccess(["delete_user"]),
+    UserController.filterUsers
   );
 
 

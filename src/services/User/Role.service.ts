@@ -17,18 +17,7 @@ const ModelName = "Role";
 
 class RoleService {
   static AuthOptions = (user: User, options: any, paranoid?: boolean) => {
-    let where = {
-      id: {
-        [Op.in]: [
-          sequelize.literal(`
-             (SELECT id FROM roles
-             WHERE company_id IN (
-               SELECT id FROM companies WHERE user_id = '${user.id}'
-             ))`),
-        ],
-      },
-    };
-    return GlobalAuthOptionsNew(user, options, null, where, paranoid);
+    return GlobalAuthOptionsNew(user, options, null, null, paranoid);
   };
 
   /**
@@ -163,6 +152,7 @@ class RoleService {
         });
     });
   };
+
 
   static findById = (
     user: User,

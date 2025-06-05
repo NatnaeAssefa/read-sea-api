@@ -1,6 +1,5 @@
 import nodemailer from "nodemailer";
 import { env } from "../../config";
-import { ListingInquery } from "../../models/Listing";
 import { User } from "../../models/User";
 
 interface EmailOptions {
@@ -114,7 +113,7 @@ export class EmailService {
     lister: User,
     listing_url: string,
     source_url: string,
-    inquery: ListingInquery
+    inquery: any
   ) {
     return `
     <!DOCTYPE html>

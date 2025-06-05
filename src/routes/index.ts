@@ -3,14 +3,14 @@ import { Application } from "express";
 import authRoutes from "./Auth";
 import systemRoutes from "./System";
 import userRoutes from "./User";
-import listingRoutes from "./Listing";
+import marketPlaceRoutes from "./MarketPlace";
 
 import { constants } from "../config";
 import { ConfigDAL } from "../dals/System";
 import { SystemService } from "../services/System";
 
 let routes = (app: Application) => {
-  app.use(listingRoutes());
+  app.use(marketPlaceRoutes());
   app.use(authRoutes());
   app.use(systemRoutes());
   app.use(userRoutes());

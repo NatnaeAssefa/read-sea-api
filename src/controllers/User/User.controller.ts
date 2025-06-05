@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserService } from "../../services/User";
+import { ActionLogService, UserService } from "../../services/User";
 import ServerResponse from "../../utilities/response/Response";
 import { ParseQuery } from "../../utilities/pagination/Pagination";
 import Joi from "joi";
@@ -11,9 +11,14 @@ import {
   UserType,
   UserStatus,
   UserNotificationStatus,
+  LogActions,
+  PREFERRED_CONTACT_METHOD,
 } from "../../utilities/constants/Constants";
 import { User } from "../../models/User";
-import { env } from "../../config";
+import { constants, env } from "../../config";
+import LogService from "../../services/Log/Log.service";
+import { Op } from "sequelize";
+import { isValid, parse } from "date-fns";
 
 const ModelName = "User";
 
@@ -112,52 +117,64 @@ class UserController {
     }
   }
 
-  static register(request: any, response: Response) {
-    const startTime = new Date();
-    const schema = Joi.object({
-      first_name: Joi.string().required().trim(),
-      last_name: Joi.string().required().trim(),
-      email: Joi.string()
-        .pattern(new RegExp(EmailRegex))
-        .message("Invalid Email Address")
-        .required(),
-      phone_number: Joi.string()
-        .pattern(new RegExp(PhoneNumberRegex))
-        .message("Invalid Phone Number")
-        .required(),
-      password: Joi.string()
-        .regex(PasswordRegex)
-        .message(PasswordMessage)
-        .required(),
-    });
+  static async register(request: any, response: Response) {
+    try {
+      const startTime = new Date();
+      const schema = Joi.object({
+        first_name: Joi.string().required().trim(),
+        last_name: Joi.string().required().trim(),
+        email: Joi.string()
+          .pattern(new RegExp(EmailRegex))
+          .message("Invalid Email Address")
+          .required(),
+        phone_number: Joi.string()
+          .pattern(/^\+[1-9]\d{7,14}$/)
+          .message("Invalid Phone Number")
+          .required(),
+        whatsapp_number: Joi.string()
+          .pattern(/^\+[1-9]\d{7,14}$/)
+          .message("Invalid Phone Number")
+          .optional(),
+        password: Joi.string()
+          .regex(PasswordRegex)
+          .message(PasswordMessage)
+          .required(),
+        code: Joi.string().optional(),
+        role_id: Joi.string().guid().optional(),
 
-    const { error } = schema.validate(request.body, { abortEarly: false });
+        preferred_contact_method: Joi.string().trim().valid(...Object.values(PREFERRED_CONTACT_METHOD)),
+      });
 
-    if (!error) {
+      const { error } = schema.validate(request.body, { abortEarly: false });
+
+      if (error) {
+        return ServerResponse(
+          request, response, 400,
+          { details: error.details },
+          "Input validation error",
+          startTime
+        );
+      }
+
       const data: any = request.body;
-      UserService.register(data)
-        .then((result) => {
-          ServerResponse(request, response, 201, result, "Success", startTime);
-        })
-        .catch((error) => {
-          ServerResponse(
-            request,
-            response,
-            error.statusCode,
-            error.payload,
-            "Error",
-            startTime
-          );
-        });
-    } else {
-      ServerResponse(
-        request,
-        response,
-        400,
-        { details: error.details },
-        "Input validation error",
-        startTime
-      );
+      const { code, ...rest } = data;
+
+      // Check if referral code exists in cookies
+      const referralCode = code;
+
+      try {
+
+        // Step 1: Register user
+        const result = await UserService.register(rest);
+
+        // Step 2: Send success response
+        ServerResponse(request, response, 201, result, "Success", startTime);
+      } catch (error) {
+        // Handle user registration failure
+        ServerResponse(request, response, 500, error, "Error", startTime);
+      }
+    } catch (error) {
+      ServerResponse(request, response, 500, error, "Error", new Date());
     }
   }
 
@@ -182,6 +199,7 @@ class UserController {
         .valid(...Object.values(UserType))
         .required(),
       role_id: Joi.string().guid().allow(null),
+      preferred_contact_method: Joi.string().trim().valid(...Object.values(PREFERRED_CONTACT_METHOD)),
     });
 
     const { error } = schema.validate(request.body, { abortEarly: false });
@@ -629,8 +647,12 @@ class UserController {
       first_name: Joi.string().trim(),
       last_name: Joi.string().trim(),
       phone_number: Joi.string()
-        .pattern(new RegExp(PhoneNumberRegex))
+        .pattern(/^\+[1-9]\d{7,14}$/)
         .message("Invalid Phone Number"),
+      whatsapp_number: Joi.string()
+        .pattern(/^\+[1-9]\d{7,14}$/)
+        .message("Invalid Phone Number")
+        .optional(),
       status: Joi.string()
         .valid(...Object.values(UserStatus))
         .allow(null),
@@ -638,6 +660,7 @@ class UserController {
       notification_status: Joi.string()
         .valid(...Object.values(UserNotificationStatus))
         .allow(null),
+      preferred_contact_method: Joi.string().valid(...Object.values(PREFERRED_CONTACT_METHOD)),
     });
 
     const { error } = schema.validate(request.body, { abortEarly: false });
@@ -678,11 +701,16 @@ class UserController {
       first_name: Joi.string().trim(),
       last_name: Joi.string().trim(),
       phone_number: Joi.string()
-        .pattern(new RegExp(PhoneNumberRegex))
+        .pattern(/^\+[1-9]\d{7,14}$/)
         .message("Invalid Phone Number"),
+      whatsapp_number: Joi.string()
+        .pattern(/^\+[1-9]\d{7,14}$/)
+        .message("Invalid Phone Number")
+        .optional(),
       notification_status: Joi.string()
         .valid(...Object.values(UserNotificationStatus))
         .allow(null),
+      preferred_contact_method: Joi.string().trim().valid(...Object.values(PREFERRED_CONTACT_METHOD)),
     });
 
     const { error } = schema.validate(request.body, { abortEarly: false });
@@ -830,6 +858,96 @@ class UserController {
       );
     }
   }
+
+
+  static async filterUsers(request: any, response: Response) {
+    const startTime = new Date();
+
+    // Joi schema for validation
+    const schema = Joi.object({
+      from: Joi.string().pattern(/^(\d{2} (\d{2}|\w+) \d{4})$/).optional(),
+      to: Joi.string().pattern(/^(\d{2} (\d{2}|\w+) \d{4})$/).optional(),
+      role_id: Joi.string().optional(), // Adjust roles as needed
+      status: Joi.string().valid(...Object.values(UserStatus)).optional(), // Adjust statuses as needed
+    });
+
+    const { error } = schema.validate(request.body, { abortEarly: false });
+    if (error) {
+      return ServerResponse(
+        request,
+        response,
+        400,
+        { details: error.details },
+        "Input validation error",
+        startTime
+      );
+    }
+
+    try {
+      const { from, to, role_id, status } = request.body;
+      const user: User = request.user;
+      let parsedQuery: any = ParseQuery(request.query);
+
+      // Function to parse date from different formats
+      const parseDate = (dateString: string) => {
+        const formats = ["dd MM yyyy", "dd MMMM yyyy"];
+        for (const format of formats) {
+          const parsedDate = parse(dateString, format, new Date());
+          if (isValid(parsedDate)) return parsedDate;
+        }
+        return null;
+      };
+
+      let whereClause: any = {};
+
+      const fromDate = from ? parseDate(from) : null;
+      const toDate = to ? parseDate(to) : null;
+
+      if ((from && !fromDate) || (to && !toDate)) {
+        return ServerResponse(
+          request,
+          response,
+          400,
+          {
+            message:
+              "Invalid date format. Use 'dd MM yyyy' (e.g., '17 12 2024') or 'dd MMMM yyyy' (e.g., '17 December 2024').",
+          },
+          "Date parsing error",
+          startTime
+        );
+      }
+
+      if (fromDate && toDate) {
+        whereClause.createdAt = { [Op.between]: [fromDate, toDate] };
+      } else if (fromDate) {
+        whereClause.createdAt = { [Op.gte]: fromDate };
+      } else if (toDate) {
+        whereClause.createdAt = { [Op.lte]: toDate };
+      }
+
+      if (role_id) whereClause.role_id = role_id;
+      if (status) whereClause.status = status;
+
+      parsedQuery.query.where = {
+        ...parsedQuery.query.where,
+        ...whereClause
+      }
+
+      const users = await UserService.findMany(user, parsedQuery.query, parsedQuery.paranoid);
+
+      return ServerResponse(request, response, 200, users, "", startTime);
+    } catch (error) {
+      return ServerResponse(
+        request,
+        response,
+        500,
+        { details: error },
+        "Internal Server Error!",
+        startTime
+      );
+    }
+  }
+
 
 }
 

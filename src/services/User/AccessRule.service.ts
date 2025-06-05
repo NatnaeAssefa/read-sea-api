@@ -19,7 +19,7 @@ const ModelName = "Access Rule";
 class AccessRuleService {
   static AuthOptions = (user: User, options: any, paranoid?: boolean) => {
     let where = {
-      type: AccessType.BROKER,
+      type: AccessType.ADMIN,
     };
     return GlobalAuthOptionsNew(user, options, null, where, paranoid);
   };

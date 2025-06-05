@@ -5,6 +5,7 @@ import { ParseQuery } from "../../utilities/pagination/Pagination";
 import Joi from "joi";
 import { User } from "../../models/User";
 import { AccessType, UserType } from "../../utilities/constants/Constants";
+import { Op } from "sequelize";
 
 const ModelName = "Role";
 
@@ -13,6 +14,31 @@ class RoleController {
     const startTime = new Date();
     let parsedQuery: any = ParseQuery(request.query);
 
+    RoleService.findMany(request.user, parsedQuery.query, parsedQuery.paranoid)
+      .then((result) => {
+        ServerResponse(request, response, 200, result, "", startTime);
+      })
+      .catch((error) => {
+        ServerResponse(
+          request,
+          response,
+          error.statusCode,
+          error.payload,
+          "Error",
+          startTime
+        );
+      });
+  }
+
+  static findSelectedRole(request: any, response: Response) {
+    const startTime = new Date();
+    let parsedQuery: any = ParseQuery(request.query);
+    const excludeRoles = ["Admin Role", "Super Admin Role"];
+    parsedQuery.query.where = {
+      ...parsedQuery.query.where,
+      name: { [Op.notIn]: excludeRoles },
+    };
+  
     RoleService.findMany(request.user, parsedQuery.query, parsedQuery.paranoid)
       .then((result) => {
         ServerResponse(request, response, 200, result, "", startTime);
@@ -62,6 +88,7 @@ class RoleController {
       let parsedQuery: any = ParseQuery(request.query, ["I", "P"]);
       RoleService.findById(
         request.user,
+        id,
         parsedQuery.query,
         parsedQuery.paranoid
       )

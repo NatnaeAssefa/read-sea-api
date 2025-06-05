@@ -11,7 +11,7 @@ import {
   UnauthorizedError,
 } from "../../errors/Errors";
 import { NullishPropertiesOf } from "sequelize/types/utils";
-import { RoleDAL, UserDAL } from "../../dals/User";
+import { RoleDAL, UserDAL, UserProfileDAL } from "../../dals/User";
 import {
   AccessType,
   EmailRegex,
@@ -533,56 +533,40 @@ class UserService {
               })
               .catch((error) => done(new InternalServerError(error)));
           },
-          // (transaction: Transaction, done: Function) => {
-          //   UserDAL.findOne({
-          //     where: {
-          //       phone_number: payload.phone_number,
-          //     },
-          //   })
-          //     .then((_user) => {
-          //       if (!_user) {
-          //         done(null, transaction);
-          //       } else {
-          //         done(
-          //           new BadRequestError([`Phone Number Already Registered`])
-          //         );
-          //       }
-          //     })
-          //     .catch((error) => done(new InternalServerError(error)));
-          // },
           (transaction: Transaction, done: Function) => {
-            RoleDAL.findOne({
-              where: {
-                name: constants.BASE_ROLE,
-                type: AccessType.SYSTEM,
-              },
-            })
-              .then((role) => {
-                if (role) {
-                  done(null, transaction, role);
-                } else {
-                  done(
-                    new BadRequestError([
-                      `Failed To Register! Please Contact System Administrators`,
-                    ])
-                  );
-                }
-              })
-              .catch((error) => done(new InternalServerError(error)));
-          },
-          (transaction: Transaction, role: Role, done: Function) => {
             bcrypt
               .hash(payload["password"], 10)
-              .then((hashed) => {
+              .then(async (hashed) => {
                 payload.email = payload.email.toLowerCase();
                 payload.password = hashed;
                 payload.last_used_key = randomUUID();
                 payload.verification_code = randomUUID();
                 payload.verification_time = new Date();
-
                 payload.status = UserStatus.PENDING;
-                payload.type = UserType.USER;
-                payload.role_id = role.id;
+
+                const forbiddenTypes = [UserType.SYSTEM, UserType.ADMIN];
+
+                if (typeof payload.role_id === "string") {
+                  // Find role by ID
+                  const role = await RoleDAL.findById(payload.role_id);
+                  if (!role) return done(new BadRequestError(["Invalid role"]));
+                  if (forbiddenTypes.includes(role.type)) {
+                    return done(new BadRequestError(["You are not allowed to use this role"]));
+                  }
+
+                  payload.role_id = role.id;
+                  payload.type = role.type; // Setting type based on the role
+                } else {
+                  const role = await RoleDAL.findById(payload.role_id);
+                  if (!role) return done(new BadRequestError(["Invalid role"]));
+
+                  if (forbiddenTypes.includes(role.name)) {
+                    return done(new BadRequestError(["You are not allowed to use this role"]));
+                  }
+
+                  payload.type = role.type; // Setting type based on the role
+                }
+
                 done(null, transaction);
               })
               .catch((error) =>
@@ -596,6 +580,26 @@ class UserService {
             UserDAL.create(payload, transaction)
               .then((result) => {
                 done(null, transaction, result);
+              })
+              .catch((error) =>
+                done(new InternalServerError(error), {
+                  obj: null,
+                  transaction: transaction,
+                })
+              );
+          },
+          (transaction: Transaction, user: User, done: Function) => {
+            UserProfileDAL.create({ user_id: user.id }, transaction)
+              .then((result) => {
+                if (result) {
+                  ActionLogService.handleCreate({
+                    action: LogActions.CREATE,
+                    object: "UserProfile",
+                    prev_data: {},
+                    new_data: result,
+                  });
+                }
+                done(null, transaction, user);
               })
               .catch((error) =>
                 done(new InternalServerError(error), {
@@ -933,7 +937,16 @@ class UserService {
     paranoid?: boolean
   ): Promise<{ rows: User[]; count: number }> => {
     return new Promise((resolve, reject) => {
-      let authOptions = UserService.AuthOptions(user, options, paranoid);
+      // let authOptions = UserService.AuthOptions(user, options, paranoid);
+      const authOptions = this.AuthOptions(user, {
+        ...options,
+        where: {
+          ...options.where,
+          email: {
+            [Symbol.for('notLike')]: '%@boingo.ai%',
+          },
+        },
+      }, paranoid);
       UserDAL.findMany(authOptions.options, authOptions.paranoid)
         .then((result) => {
           resolve(result);

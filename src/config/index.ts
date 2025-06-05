@@ -83,7 +83,7 @@ export const constants: any = {
   BASE_EMAIL: "bahrubedri@gmail.com",
   BASE_PASSWORD: "1q2w3e4r5t6y7u8i9o0p",
 
-  BROKER_ROLE: "Broker Role",
+  ADMIN_ROLE: "ADMIN Role",
 };
 
 export type AccessRules = {
@@ -117,15 +117,15 @@ export const access_rules: AccessRules[] = [
   {
     group: "File",
     rules: [
-      { name: "read_file", type: AccessType.BROKER },
-      { name: "write_file", type: AccessType.BROKER },
+      { name: "read_file", type: AccessType.ADMIN },
+      { name: "write_file", type: AccessType.ADMIN },
       { name: "delete_file", type: AccessType.SYSTEM },
     ],
   },
   {
     group: "Access Rule",
     rules: [
-      { name: "read_access_rule", type: AccessType.BROKER },
+      { name: "read_access_rule", type: AccessType.ADMIN },
       { name: "write_access_rule", type: AccessType.SYSTEM },
       { name: "delete_access_rule", type: AccessType.SYSTEM },
     ],
@@ -133,18 +133,18 @@ export const access_rules: AccessRules[] = [
   {
     group: "Role",
     rules: [
-      { name: "read_role", type: AccessType.BROKER },
-      { name: "write_role", type: AccessType.BROKER },
-      { name: "delete_role", type: AccessType.BROKER },
+      { name: "read_role", type: AccessType.ADMIN },
+      { name: "write_role", type: AccessType.ADMIN },
+      { name: "delete_role", type: AccessType.ADMIN },
     ],
   },
   {
     group: "User",
     rules: [
-      { name: "read_user", type: AccessType.BROKER },
+      { name: "read_user", type: AccessType.ADMIN },
       { name: "revoke_user_token", type: AccessType.SYSTEM },
       { name: "change_user_password", type: AccessType.SYSTEM },
-      { name: "write_user", type: AccessType.BROKER },
+      { name: "write_user", type: AccessType.ADMIN },
       { name: "delete_user", type: AccessType.SYSTEM },
     ],
   },
@@ -153,8 +153,8 @@ export const access_rules: AccessRules[] = [
     group: "Product",
     rules: [
       { name: "read_product", type: AccessType.USER },
-      { name: "write_product", type: AccessType.BROKER },
-      { name: "delete_product", type: AccessType.BROKER },
+      { name: "write_product", type: AccessType.ADMIN },
+      { name: "delete_product", type: AccessType.ADMIN },
       { name: "approve_product", type: AccessType.SYSTEM },
     ],
   },
@@ -163,8 +163,8 @@ export const access_rules: AccessRules[] = [
     rules: [
       { name: "read_order", type: AccessType.USER },
       { name: "write_order", type: AccessType.USER },
-      { name: "manage_order", type: AccessType.BROKER },
-      { name: "cancel_order", type: AccessType.BROKER },
+      { name: "manage_order", type: AccessType.ADMIN },
+      { name: "cancel_order", type: AccessType.ADMIN },
     ],
   },
   {
@@ -178,7 +178,7 @@ export const access_rules: AccessRules[] = [
   {
     group: "Analytics",
     rules: [
-      { name: "view_analytics", type: AccessType.BROKER },
+      { name: "view_analytics", type: AccessType.ADMIN },
       { name: "export_analytics", type: AccessType.SYSTEM },
     ],
   },

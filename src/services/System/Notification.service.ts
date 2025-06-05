@@ -9,7 +9,7 @@ import {
 } from "../../errors/Errors";
 import { NullishPropertiesOf } from "sequelize/types/utils";
 import { NotificationDAL } from "../../dals/System";
-import { LogActions, SubscriptionPlan, EmailType, EmailTypeValues } from "../../utilities/constants/Constants";
+import { LogActions, EmailType, EmailTypeValues } from "../../utilities/constants/Constants";
 import { ActionLogService } from "../User";
 import { User } from "../../models/User";
 import { EmailService } from "../../utilities/email/Email";
@@ -37,8 +37,8 @@ class NotificationService {
     payload: Omit<Notification, NullishPropertiesOf<Notification>>,
     sendEmail: boolean = false,
     notificationType?: EmailTypeValues,
-    oldPlan: string = SubscriptionPlan.BASIC,
-    newPlan: string = SubscriptionPlan.PRO,
+    oldPlan: string = "Basic",
+    newPlan: string = "Basic",
     url: string = env.WEBSITE_BASE_URL + "/account",
     refundAmount: string = "0"
   ): Promise<Notification> => {
@@ -63,12 +63,7 @@ class NotificationService {
                 if (user && sendEmail && notificationType) {
                   const emailOptions = NotificationService.getEmailOptions(
                     user,
-                    notificationType,
-                    oldPlan,
-                    newPlan,
-                    url,
-                    undefined,
-                    refundAmount
+                    notificationType
                   );
 
                   if (emailOptions) {
@@ -408,15 +403,15 @@ class NotificationService {
     });
   };
 
-  static sendDynamicEmail(userId: string, notificationType: string, oldPlan: string, newPlan: string, url: string, daysLeft: string) {
-    UserDAL.findById(userId)
+  static sendDynamicEmail(user_id: string, notificationType: string) {
+    UserDAL.findById(user_id)
       .then((user) => {
         if (!user) {
           LogService.LogError("User not found!", new Date());
           return;
         }
 
-        const emailOptions = NotificationService.getEmailOptions(user, notificationType, oldPlan, newPlan, url, daysLeft);
+        const emailOptions = NotificationService.getEmailOptions(user, notificationType);
         if (!emailOptions) {
           LogService.LogError("Invalid notification type!", new Date());
           return;
@@ -432,19 +427,8 @@ class NotificationService {
       .catch(() => LogService.LogError("User fetch failed!", new Date()));
   }
 
-  static getEmailOptions(user: User, notificationType: string, oldPlan: string, newPlan: string, url: string, daysLeft: string = "3", refundAmount: string = "0") {
+  static getEmailOptions(user: User, notificationType: string) {
     switch (notificationType) {
-      case EmailType.SUBSCRIPTION_CANCELLED:
-        return {
-          to: user.email,
-          from: env.COMPANY_EMAIL as string,
-          subject: "Subscription Canceled",
-          html: EmailService.subscriptionCancellationEmail(
-            user.first_name,
-            env.COMPANY_NAME as string,
-            env.ADMIN_EMAIL as string
-          ),
-        };
       case EmailType.PASSWORD_RECOVERY:
         return {
           to: user.email,
@@ -465,115 +449,6 @@ class NotificationService {
             user.first_name,
             `${env.FRONTEND_URL}/verify-email?token=someToken`,
             env.COMPANY_NAME as string
-          ),
-        };
-      case EmailType.SUBSCRIPTION_UPGRADE:
-        return {
-          to: user.email,
-          from: env.COMPANY_EMAIL as string,
-          subject: "Your Plan Is Upgraded!",
-          html: EmailService.subscriptionUpgradedEmail(
-            user.first_name,
-            env.COMPANY_NAME as string,
-            newPlan,
-            url
-          ),
-        };
-      case EmailType.SUBSCRIPTION_DOWNGRADE:
-        return {
-          to: user.email,
-          from: env.COMPANY_EMAIL as string,
-          subject: "Your Plan Is Downgraded!",
-          html: EmailService.subscriptionDowngradedEmail(
-            user.first_name,
-            env.COMPANY_NAME as string,
-            oldPlan,
-            newPlan,
-            url
-          ),
-        };
-      case EmailType.SUBSCRIPTION_CREATED:
-        return {
-          to: user.email,
-          from: env.COMPANY_EMAIL as string,
-          subject: "Subscription Created",
-          html: EmailService.subscriptionCreatedEmail(
-            user.first_name,
-            env.COMPANY_NAME as string,
-            url
-          ),
-        };
-      case EmailType.SUBSCRIPTION_EXPIRED:
-        return {
-          to: user.email,
-          from: env.COMPANY_EMAIL as string,
-          subject: "Subscription Expired",
-          html: EmailService.subscriptionExpiredEmail(
-            user.first_name,
-            env.COMPANY_NAME as string,
-            oldPlan,
-            url
-          ),
-        };
-      case EmailType.SUBSCRIPTION_EXPIRING:
-        return {
-          to: user.email,
-          from: env.COMPANY_EMAIL as string,
-          subject: "Subscription Expiring",
-          html: EmailService.subscriptionExpiringEmail(
-            user.first_name,
-            env.COMPANY_NAME as string,
-            oldPlan,
-            daysLeft,
-            url
-          ),
-        };
-      case EmailType.SUBSCRIPTION_RENEWED:
-        return {
-          to: user.email,
-          from: env.COMPANY_EMAIL as string,
-          subject: "Subscription Renewed",
-          html: EmailService.subscriptionRenewedEmail(
-            user.first_name,
-            env.COMPANY_NAME as string,
-            oldPlan,
-            url
-          ),
-        };
-      case EmailType.PAYOUT_APPROVED:
-        return {
-          to: user.email,
-          from: env.COMPANY_EMAIL as string,
-          subject: "Payout Approved",
-          html: EmailService.payoutApprovedEmail(
-            user.first_name,
-            undefined,
-            undefined,
-            url
-          ),
-        };
-      case EmailType.PAYOUT_REJECTED:
-        return {
-          to: user.email,
-          from: env.COMPANY_EMAIL as string,
-          subject: "Payout Rejected",
-          html: EmailService.payoutRejectedEmail(
-            user.first_name,
-            undefined,
-            undefined,
-            url
-          ),
-        };
-      case EmailType.REFUND_APPROVED:
-        return {
-          to: user.email,
-          from: env.COMPANY_EMAIL as string,
-          subject: "Refund Approved",
-          html: EmailService.refundApprovedEmail(
-            user.first_name,
-            env.COMPANY_EMAIL as string,
-            refundAmount,
-            url
           ),
         };
       default:

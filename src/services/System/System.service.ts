@@ -33,7 +33,7 @@ class SystemService {
                   let _access_rules: string[] = [];
                   access_rules.map((item) => {
                     for (let rule of item.rules) {
-                      if (rule.type === AccessType.BROKER) {
+                      if (rule.type === AccessType.ADMIN) {
                         _access_rules.push(rule.name);
                       }
                     }
@@ -41,7 +41,7 @@ class SystemService {
                   RoleDAL.create({
                     name: constants.BROKER_ROLE,
                     access_rules: _access_rules,
-                    type: AccessType.BROKER,
+                    type: AccessType.ADMIN,
                   })
                     .then(() => {
                       done(null);

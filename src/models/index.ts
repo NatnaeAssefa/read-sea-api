@@ -1,12 +1,11 @@
 import { Sequelize } from "sequelize";
 // import first
 import UserModels from "./User";
-
 import SystemModels from "./System";
-import ListingModels from "./Listing";
+import MarketPlaceModels from "./MarketPlace"
 
 export default (sequelize: Sequelize) => {
-  UserModels(sequelize);
   SystemModels(sequelize);
-  ListingModels(sequelize);
+  UserModels(sequelize);
+  MarketPlaceModels(sequelize);
 };
