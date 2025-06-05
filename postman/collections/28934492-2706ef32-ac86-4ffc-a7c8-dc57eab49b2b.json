@@ -2020,12 +2020,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/roles/akshdkjhaskjdhaksdhkjdhkasd",
+									"raw": "{{api_url}}/products/akshdkjhaskjdhaksdhkjdhkasd",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"roles",
+										"products",
 										"akshdkjhaskjdhaksdhkjdhkasd"
 									],
 									"query": [
@@ -2059,13 +2059,12 @@
 									]
 								},
 								"url": {
-									"raw": "{{api_url}}/files/single",
+									"raw": "{{api_url}}/products",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"files",
-										"single"
+										"products"
 									]
 								}
 							},
@@ -2090,12 +2089,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/roles",
+									"raw": "{{api_url}}/products",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"roles"
+										"products"
 									]
 								}
 							},
@@ -2120,12 +2119,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/roles",
+									"raw": "{{api_url}}/products",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"roles"
+										"products"
 									]
 								}
 							},
