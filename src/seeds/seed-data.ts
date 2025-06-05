@@ -1,6 +1,6 @@
 import sequelize from "../database/sequelize"
 import ModelSync from "../models/index"
-import { Category, Product } from "../models"
+import { Category, Product } from "../models/MarketPlace"
 
 async function seedDatabase() {
   console.log("Initializing models...")
