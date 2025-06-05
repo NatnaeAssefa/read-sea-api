@@ -1954,8 +1954,94 @@
 					"name": "Config",
 					"item": [
 						{
-							"name": "Create",
-							"id": "28934492-25885036-c0e2-47ef-b7e5-99e507aa05be",
+							"name": "Get All Copy",
+							"id": "28934492-16a0c5f0-c0e0-4409-80b1-6d37efa3bdf0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/files",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"files"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get One Copy",
+							"id": "28934492-f734dab5-4873-46fd-a1b1-c86d11735da4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/roles/get",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"roles",
+										"get"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "search%5Bkeys%5D%5B0%5D=name%26search%5Bvalue%5D=bEDRId",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By ID Copy",
+							"id": "28934492-266fdb5f-a3dc-4d17-8a56-2246668c5f73",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/roles/akshdkjhaskjdhaksdhkjdhkasd",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"roles",
+										"akshdkjhaskjdhaksdhkjdhkasd"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "include%5B0%5D%5Bmodel%5D=interest&include%5B1%5D%5Bmodel%5D=file&include%5B1%5D%5Balias%5D=profile",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Copy",
+							"id": "28934492-1684615f-a1ec-4ce6-a314-12724fc420c8",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1963,29 +2049,31 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"key\": \"cancellation_reasons\",\r\n    \"object_type\": \"String\",\r\n    \"type\": \"string\",\r\n    \"value\": \"[\\\"Too expensive\\\", \\\"Not using the service enough\\\", \\\"Missing features\\\", \\\"Other reason\\\", \\\"Found alternative\\\", \\\"Technical issues\\\" ]\\n\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
 										}
-									}
+									]
 								},
 								"url": {
-									"raw": "{{api_url}}/configs",
+									"raw": "{{api_url}}/files/single",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"configs"
+										"files",
+										"single"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Update",
-							"id": "28934492-da769444-9c09-4db1-8750-b6a249d11a9e",
+							"name": "Update Copy",
+							"id": "28934492-ab532309-5872-4faa-80bc-43896098e746",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1994,7 +2082,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"\",\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"raw": "{\r\n    \"id\": \"5fb3985b-8954-4396-9085-bc6001cd353a\",\r\n    \"access_rules\": [\r\n        \"read_access_rule\",\r\n        \"write_access_rule\",\r\n        \"read_role\",\r\n        \"write_role\",\r\n        \"read_user\",\r\n        \"write_user\",\r\n        \"read_destination\",\r\n        \"write_destination\",\r\n        \"read_vehicle\",\r\n        \"write_vehicle\",\r\n        \"read_association\",\r\n        \"write_association\",\r\n        \"read_level\",\r\n        \"write_level\",\r\n        \"read_plate_type\",\r\n        \"write_plate_type\",\r\n        \"read_seat_number\",\r\n        \"write_seat_number\",\r\n        \"read_station\",\r\n        \"write_station\",\r\n        \"read_trip\",\r\n        \"write_trip\",\r\n        \"read_route\",\r\n        \"write_route\",\r\n        \"read_config\",\r\n        \"write_config\",\r\n        \"read_action_log\",\r\n        \"write_action_log\",\r\n        \"sync_data\",\r\n        \"sync_trip\",\r\n        \"sync_vehicle\"\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2002,29 +2090,29 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/configs",
+									"raw": "{{api_url}}/roles",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"configs"
+										"roles"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Get By Id",
-							"id": "28934492-b3f1a3f6-cf24-4a75-b657-98de25136d41",
+							"name": "Delete Copy",
+							"id": "28934492-f371a988-5bcf-400f-bd35-241d9a939c06",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
+								"method": "DELETE",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2032,29 +2120,29 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/configs",
+									"raw": "{{api_url}}/roles",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"configs"
+										"roles"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Get All",
-							"id": "28934492-45dc5a86-8313-4f9d-8b7a-16f8821b9b2b",
+							"name": "Restore Copy",
+							"id": "28934492-3f3890f1-1ccb-40fc-9f70-c20a29ba815e",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
+								"method": "PATCH",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2062,12 +2150,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/configs",
+									"raw": "{{api_url}}/roles/restore",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"configs"
+										"roles",
+										"restore"
 									]
 								}
 							},
