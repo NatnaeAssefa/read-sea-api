@@ -1946,6 +1946,421 @@
 				}
 			],
 			"id": "28934492-6ab45a79-2afc-4589-9aaa-0dc9ad1a083c"
+		},
+		{
+			"name": "Marketplace",
+			"item": [
+				{
+					"name": "Config",
+					"item": [
+						{
+							"name": "Get All",
+							"id": "28934492-16a0c5f0-c0e0-4409-80b1-6d37efa3bdf0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/products",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get One",
+							"id": "28934492-f734dab5-4873-46fd-a1b1-c86d11735da4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/products/get",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products",
+										"get"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "search%5Bkeys%5D%5B0%5D=name%26search%5Bvalue%5D=bEDRId",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By ID",
+							"id": "28934492-266fdb5f-a3dc-4d17-8a56-2246668c5f73",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/products/akshdkjhaskjdhaksdhkjdhkasd",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products",
+										"akshdkjhaskjdhaksdhkjdhkasd"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "include%5B0%5D%5Bmodel%5D=interest&include%5B1%5D%5Bmodel%5D=file&include%5B1%5D%5Balias%5D=profile",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"id": "28934492-1684615f-a1ec-4ce6-a314-12724fc420c8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api_url}}/products",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"id": "28934492-ab532309-5872-4faa-80bc-43896098e746",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"5fb3985b-8954-4396-9085-bc6001cd353a\",\r\n    \"access_rules\": [\r\n        \"read_access_rule\",\r\n        \"write_access_rule\",\r\n        \"read_role\",\r\n        \"write_role\",\r\n        \"read_user\",\r\n        \"write_user\",\r\n        \"read_destination\",\r\n        \"write_destination\",\r\n        \"read_vehicle\",\r\n        \"write_vehicle\",\r\n        \"read_association\",\r\n        \"write_association\",\r\n        \"read_level\",\r\n        \"write_level\",\r\n        \"read_plate_type\",\r\n        \"write_plate_type\",\r\n        \"read_seat_number\",\r\n        \"write_seat_number\",\r\n        \"read_station\",\r\n        \"write_station\",\r\n        \"read_trip\",\r\n        \"write_trip\",\r\n        \"read_route\",\r\n        \"write_route\",\r\n        \"read_config\",\r\n        \"write_config\",\r\n        \"read_action_log\",\r\n        \"write_action_log\",\r\n        \"sync_data\",\r\n        \"sync_trip\",\r\n        \"sync_vehicle\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/products",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"id": "28934492-f371a988-5bcf-400f-bd35-241d9a939c06",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/products",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Restore",
+							"id": "28934492-3f3890f1-1ccb-40fc-9f70-c20a29ba815e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/products/restore",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products",
+										"restore"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "28934492-bceb7295-3d46-40de-99f5-d449296f8c03"
+				},
+				{
+					"name": "Notification",
+					"item": [
+						{
+							"name": "Create",
+							"id": "28934492-7fd3bc3c-20d2-40d4-b371-d8c3ab9dff23",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"3ef7a016-f8be-47d2-b8d5-8ad861eab87e\",\r\n    \"notification_title\": \"Subscription Started\",\r\n    \"notification_body\": \"Your subscription for 3 listings is being processed. You will be charged $95.97 per month.\",\r\n    \"notification_type\": \"Success\",\r\n    \"is_read\": false,\r\n    \"notification_date\": \"2025-02-06T16:50:50.358Z\",\r\n    \"notification_url\": \"http://boingo.ai/subscriptions\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"id": "28934492-f144104a-fcf3-49d2-8f87-4567feca6f28",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"66dfe9c6-ab79-4a2f-a105-1dd5c4137036\",\r\n    \"createdAt\": \"2025-02-01T13:56:49.171Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By Id",
+							"id": "28934492-5019679c-fe7f-430f-8c1d-76a52dff1059",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification/71b885bd-7e54-4ada-b499-c0fb575f4ac1",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification",
+										"71b885bd-7e54-4ada-b499-c0fb575f4ac1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All",
+							"id": "28934492-e9f7fb93-39fa-482e-8630-10f6f3a36f44",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter By Date",
+							"id": "28934492-aafc034f-503f-43be-b780-9cd95d9aaa48",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"is_read\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification/filter?query=offset%3D0%253An%26limit%3D5%253An%26order%255B0%255D%255Bkey%255D%3DcreatedAt%253As%26order%255B0%255D%255Bvalue%255D%3DDESC%253As",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification",
+										"filter"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset%3D0%253An%26limit%3D5%253An%26order%255B0%255D%255Bkey%255D%3DcreatedAt%253As%26order%255B0%255D%255Bvalue%255D%3DDESC%253As"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get My Notification",
+							"id": "28934492-98fddcc2-a597-4b4a-aea8-8e1fea0bdec6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"key\": \"Health Status\",\r\n    \"value\": \"Healthy\",\r\n    \"type\": \"String\",\r\n    \"object_type\": \"String\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/notification/my",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"notification",
+										"my"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "28934492-b91812ba-ba89-4bff-8992-e8f6c40e0f2a"
+				}
+			],
+			"id": "28934492-119675e9-58ac-40c7-b0da-0421f61f94b1"
 		}
 	]
 }
