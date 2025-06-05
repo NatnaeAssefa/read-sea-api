@@ -2150,12 +2150,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/roles/restore",
+									"raw": "{{api_url}}/products/restore",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"roles",
+										"products",
 										"restore"
 									]
 								}
