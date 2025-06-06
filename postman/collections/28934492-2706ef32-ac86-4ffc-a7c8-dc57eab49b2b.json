@@ -2205,12 +2205,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/orders/get",
+									"raw": "{{api_url}}/app-settings/get",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"orders",
+										"app-settings",
 										"get"
 									],
 									"query": [
