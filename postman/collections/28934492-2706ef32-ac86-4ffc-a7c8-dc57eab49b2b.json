@@ -2963,7 +2963,7 @@
 							"response": []
 						},
 						{
-							"name": "Get All Copy",
+							"name": "My Favorites",
 							"id": "28934492-53b44879-eebb-4229-8372-a29b02541809",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
