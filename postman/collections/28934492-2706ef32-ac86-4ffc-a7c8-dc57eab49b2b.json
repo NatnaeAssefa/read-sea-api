@@ -2476,22 +2476,21 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file",
-											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"sda7sjdhasidishdai8s\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/carts",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"carts"
 									]
 								}
 							},
