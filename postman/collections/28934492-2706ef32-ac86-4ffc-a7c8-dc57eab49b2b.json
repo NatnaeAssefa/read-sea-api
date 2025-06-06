@@ -1963,12 +1963,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/addresses",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"addresses"
 									],
 									"query": [
 										{
