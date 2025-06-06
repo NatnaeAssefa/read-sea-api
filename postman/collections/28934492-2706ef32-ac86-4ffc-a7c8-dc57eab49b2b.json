@@ -2177,12 +2177,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/orders",
+									"raw": "{{api_url}}/app-settings",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"orders"
+										"app-settings"
 									],
 									"query": [
 										{
@@ -2234,12 +2234,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/orders/akshdkjhaskjdhaksdhkjdhkasd",
+									"raw": "{{api_url}}/orapp-settingsders/akshdkjhaskjdhaksdhkjdhkasd",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"orders",
+										"orapp-settingsders",
 										"akshdkjhaskjdhaksdhkjdhkasd"
 									],
 									"query": [
