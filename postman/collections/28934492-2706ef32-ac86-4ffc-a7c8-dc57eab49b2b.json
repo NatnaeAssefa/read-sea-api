@@ -2878,7 +2878,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\"\r\n}",
+									"raw": "{\r\n    \"id\": \"02283c2d-799f-4b9d-8e75-429c74fa203c\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2944,12 +2944,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/orders",
+									"raw": "{{api_url}}/favorites",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"orders"
+										"favorites"
 									],
 									"query": [
 										{
