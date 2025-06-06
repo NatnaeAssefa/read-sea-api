@@ -2020,12 +2020,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/akshdkjhaskjdhaksdhkjdhkasd",
+									"raw": "{{api_url}}/addresses/akshdkjhaskjdhaksdhkjdhkasd",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products",
+										"addresses",
 										"akshdkjhaskjdhaksdhkjdhkasd"
 									],
 									"query": [
