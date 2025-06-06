@@ -2294,7 +2294,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"5fb3985b-8954-4396-9085-bc6001cd353a\",\r\n    \"order_number\": \"ORD001\",\r\n    \"status\": \"processing\",\r\n    \"address_id\": \"2312kk3j23k\",\r\n    \"payment_method_id\": \"kjsdhs6di8usidsdsu8ya87\",\r\n    \"subtotal\": 199.99,\r\n    \"shipping_fee\": 10,\r\n    \"tax\": 20,\r\n    \"total\": 229.99,\r\n    \"estimated_delivery\": \"new Date()\"\r\n}",
+									"raw": "{\r\n    \"id\": \"5fb3985b-8954-4396-9085-bc6001cd353a\",\r\n    \"user_id\": \"edf50692-1d5f-41b0-90bd-be712243df87\",\r\n    \"language\": \"en\",\r\n    \"theme\": \"light\",\r\n    \"notifications_enabled\": true,\r\n    \"email_notifications\": true,\r\n    \"push_notifications\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
