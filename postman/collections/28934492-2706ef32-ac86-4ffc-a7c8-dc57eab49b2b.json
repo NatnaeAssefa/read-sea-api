@@ -2234,12 +2234,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/akshdkjhaskjdhaksdhkjdhkasd",
+									"raw": "{{api_url}}/orders/akshdkjhaskjdhaksdhkjdhkasd",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products",
+										"orders",
 										"akshdkjhaskjdhaksdhkjdhkasd"
 									],
 									"query": [
