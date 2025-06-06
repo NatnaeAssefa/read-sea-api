@@ -2234,12 +2234,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/orapp-settingsders/akshdkjhaskjdhaksdhkjdhkasd",
+									"raw": "{{api_url}}/app-settings/akshdkjhaskjdhaksdhkjdhkasd",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"orapp-settingsders",
+										"app-settings",
 										"akshdkjhaskjdhaksdhkjdhkasd"
 									],
 									"query": [
