@@ -2477,7 +2477,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"user_id\": \"sda7sjdhasidishdai8s\r\n}",
+									"raw": "{\r\n    \"user_id\": \"sda7sjdhasidishdai8s\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
