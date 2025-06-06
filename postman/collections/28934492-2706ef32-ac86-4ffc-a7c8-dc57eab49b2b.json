@@ -3068,12 +3068,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/orders",
+									"raw": "{{api_url}}/favorites",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"orders"
+										"favorites"
 									]
 								}
 							},
