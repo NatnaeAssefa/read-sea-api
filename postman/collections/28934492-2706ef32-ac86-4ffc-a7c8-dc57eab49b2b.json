@@ -2787,12 +2787,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/akshdkjhaskjdhaksdhkjdhkasd",
+									"raw": "{{api_url}}/categories/akshdkjhaskjdhaksdhkjdhkasd",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products",
+										"categories",
 										"akshdkjhaskjdhaksdhkjdhkasd"
 									],
 									"query": [
@@ -2826,12 +2826,12 @@
 									]
 								},
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/categories",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"categories"
 									]
 								}
 							},
