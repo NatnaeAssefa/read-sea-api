@@ -2972,12 +2972,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/orders",
+									"raw": "{{api_url}}/favorites/my",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"orders"
+										"favorites",
+										"my"
 									],
 									"query": [
 										{
