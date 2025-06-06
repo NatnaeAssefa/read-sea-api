@@ -3499,12 +3499,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/notification",
+									"raw": "{{api_url}}/order-items",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"notification"
+										"order-items"
 									]
 								}
 							},
