@@ -2856,12 +2856,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/categories",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"categories"
 									]
 								}
 							},
@@ -2886,12 +2886,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/categories",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"categories"
 									]
 								}
 							},
