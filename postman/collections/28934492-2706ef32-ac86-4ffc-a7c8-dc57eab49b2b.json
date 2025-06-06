@@ -2758,12 +2758,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/get",
+									"raw": "{{api_url}}/categories/get",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products",
+										"categories",
 										"get"
 									],
 									"query": [
