@@ -3060,7 +3060,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"user_id\": \"121356tret5ter4\",\r\n    \"order_number\": \"ORD001\",\r\n    \"status\": \"processing\", \"address_id\": \"2312kk3j23k\",\r\n    \"payment_method_id\": \"kjsdhs6di8usidsdsu8ya87\",\r\n    \"subtotal\": 199.99,\r\n    \"shipping_fee\": 10,\r\n    \"tax\": 20,\r\n    \"total\": 229.99,\r\n    \"estimated_delivery\": \"new Date()\"\r\n}",
+									"raw": "{\r\n    \"user_id\": \"121356tret5ter4\",\r\n    \"produc_id\": \"sakyd7asd6s86dsuyd87as6d8a7\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
