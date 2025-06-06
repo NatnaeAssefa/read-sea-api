@@ -2119,12 +2119,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/addresses",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"addresses"
 									]
 								}
 							},
@@ -2149,12 +2149,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/products/restore",
+									"raw": "{{api_url}}/addresses/restore",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products",
+										"addresses",
 										"restore"
 									]
 								}
