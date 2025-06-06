@@ -2332,12 +2332,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/orders",
+									"raw": "{{api_url}}/app-settings",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"orders"
+										"app-settings"
 									]
 								}
 							},
