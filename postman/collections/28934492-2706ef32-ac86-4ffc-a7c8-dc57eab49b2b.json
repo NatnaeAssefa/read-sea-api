@@ -2362,12 +2362,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/orders/restore",
+									"raw": "{{api_url}}/app-settings/restore",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"orders",
+										"app-settings",
 										"restore"
 									]
 								}
