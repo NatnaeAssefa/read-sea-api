@@ -1991,12 +1991,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/get",
+									"raw": "{{api_url}}/addresses/get",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products",
+										"addresses",
 										"get"
 									],
 									"query": [
