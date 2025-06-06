@@ -2332,12 +2332,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/orders",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"orders"
 									]
 								}
 							},
