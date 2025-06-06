@@ -2390,12 +2390,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/carts",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"carts"
 									],
 									"query": [
 										{
