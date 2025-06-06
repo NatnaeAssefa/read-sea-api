@@ -2612,12 +2612,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/notification",
+									"raw": "{{api_url}}/cart-items",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"notification"
+										"cart-items"
 									]
 								}
 							},
