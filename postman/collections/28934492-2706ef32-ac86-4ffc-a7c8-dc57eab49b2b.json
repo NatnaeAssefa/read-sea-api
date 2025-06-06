@@ -2604,7 +2604,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"user_id\": \"3ef7a016-f8be-47d2-b8d5-8ad861eab87e\",\r\n    \"notification_title\": \"Subscription Started\",\r\n    \"notification_body\": \"Your subscription for 3 listings is being processed. You will be charged $95.97 per month.\",\r\n    \"notification_type\": \"Success\",\r\n    \"is_read\": false,\r\n    \"notification_date\": \"2025-02-06T16:50:50.358Z\",\r\n    \"notification_url\": \"http://boingo.ai/subscriptions\"\r\n}",
+									"raw": "{\r\n    \"cart_id\": \"carts[0].id\",\r\n    \"product_id\": \"products[0].id\",\r\n    \"quantity\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
