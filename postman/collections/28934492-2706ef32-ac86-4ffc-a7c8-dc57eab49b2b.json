@@ -20,7 +20,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"email\": \"bahrubedri@gmail.com\",\r\n    // \"email\": \"barokshewa2@gmail.com\",\r\n    \"password\": \"#Include29\",\r\n    // \"password\": \"1234qWER!!\"\r\n    // \"email\": \"kavejo2364@payposs.com\" // production email\r\n    // \"email\": \"pehaco7003@oziere.com\", // production email\r\n    // \"email\": \"pehaco7003@oz.com\" // dev email\r\n    // \"email\": \"megabit14@oz.com\" // dev email\r\n    // \"email\": \"azeb22@jehoaddan.com\" // dev email\r\n    // \"email\": \"amanuelmengestie@gmail.com\" // dev email\r\n    // \"email\": \"jimovem789@hikuhu.com\",\r\n    // \"password\": \"Samajesus7119@\"\r\n    // \"email\": \"yomov17359@gamebcs.com\",\r\n    // \"password\": \"Pass@123\"\r\n    // \"email\": \"natnael27assefa@gmail.com\"\r\n    // \"email\": \"natnael27assefa21@gmail.com\"\r\n    \"email\": \"tojas70336@dot.com\"\r\n}",
+							"raw": "{\r\n    \"password\": \"admin123\",\r\n    \"email\": \"admin@example.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
