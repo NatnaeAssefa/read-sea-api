@@ -20,7 +20,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\": \"admin123\",\r\n    \"email\": \"admin@example.com\"\r\n}",
+							"raw": "{\r\n    \"email\": \"wopejav590@lushosa.com\",\r\n    \"password\": \"#Include29\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -51,7 +51,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"wopejav590@lushosa.com\",\r\n    \"password\": \"#Include29\",\r\n    \"first_name\": \"Mikel\",\r\n    \"last_name\": \"Arteta\",\r\n    \"phone_number\": \"+251962886951\",\r\n    \"whatsapp_number\": \"+251962886951\",\r\n    \"role_id\": \"6bbf4856-8366-45ed-839d-edadadb31b5a\",\r\n    \"code\": \"DD0F9721\", // if there is affiliate\r\n    \"preferred_contact_method\": \"Email\"\r\n}",
+							"raw": "{\r\n    \"email\": \"wopejav590@lushosa.com\",\r\n    \"password\": \"#Include29\",\r\n    \"first_name\": \"Mikel\",\r\n    \"last_name\": \"Arteta\",\r\n    \"phone_number\": \"+251962886951\",\r\n    \"role_id\": \"3d2249d2-3400-4a37-b1be-e05f016c2b33\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
