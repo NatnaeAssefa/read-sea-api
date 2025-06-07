@@ -552,6 +552,34 @@
 							"response": []
 						},
 						{
+							"name": "Get All Copy",
+							"id": "28934492-d8a3e23a-a21b-4d9b-8df9-63a0310f170a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/roles",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"roles"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get One",
 							"id": "28934492-408c160b-2682-4016-9175-3bf0877f8416",
 							"protocolProfileBehavior": {
