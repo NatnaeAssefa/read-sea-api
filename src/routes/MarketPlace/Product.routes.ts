@@ -152,6 +152,18 @@ const routes = () => {
   /**
    * @swagger
    * /products:
+   *   post:
+   *     summary: Create Product
+   *     tags: [Product]
+   *     responses:
+   *       201:
+   *         description: Success
+   */
+  router.post("/register", AuthenticateUser, AuthorizeAccess(["write_product"]), ProductController.register)
+
+  /**
+   * @swagger
+   * /products:
    *   put:
    *     summary: Update Product
    *     tags: [Product]

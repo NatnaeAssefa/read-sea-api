@@ -283,7 +283,11 @@ class FileController {
     const startTime = new Date();
 
     let files: any = [];
-    for (let x in (request.files ?? []).length) {
+    // The issue is here - incorrect iteration through files array
+    // Change from:
+    // for (let x in (request.files ?? []).length) {
+    // To:
+    for (let x = 0; x < (request.files ?? []).length; x++) {
       let file = request.files[x];
       files.push({
         name: file?.originalname,

@@ -196,6 +196,37 @@ class ProductController {
       ServerResponse(request, response, 400, { details: error.details }, "Input validation error", startTime)
     }
   }
+
+  static register(request: any, response: Response) {
+    const startTime = new Date()
+    const schema = Joi.object({
+      product: Joi.object({
+        name: Joi.string().required(),
+        description: Joi.string().optional(),
+        price: Joi.number().required(),
+        stock: Joi.number().required(),
+        category_id: Joi.string().guid().required(),
+        featured: Joi.boolean().optional(),
+        trending: Joi.boolean().optional(),
+      }),
+      files: Joi.array().items(Joi.string().guid().required()).optional(),
+    })
+
+    const { error } = schema.validate(request.body, { abortEarly: false })
+
+    if (!error) {
+      const user: User = request.user
+      ProductService.createWithImages(user, request.body)
+        .then((result) => {
+          ServerResponse(request, response, 201, result, "Success", startTime)
+        })
+        .catch((error) => {
+          ServerResponse(request, response, error.statusCode, error.payload, "Error", startTime)
+        })
+    } else {
+      ServerResponse(request, response, 400, { details: error.details }, "Input validation error", startTime)
+    }
+  }
 }
 
 export default ProductController

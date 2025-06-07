@@ -198,7 +198,7 @@ class FileService {
   static createBulk = (
     user: User,
     payload: Omit<File, NullishPropertiesOf<File>>[]
-  ): Promise<File[]> => {
+  ): Promise<any[]> => {
     return new Promise((resolve, reject) => {
       async.waterfall(
         [
@@ -208,13 +208,14 @@ class FileService {
               .catch((error) => reject(new InternalServerError(error)));
           },
           (transaction: Transaction, done: Function) => {
-            let files: File[] = [];
+            let files: any[] = [];
             async.eachSeries(
               payload,
               (file: Partial<File>, callback) => {
                 FileDAL.create(file)
                   .then((file) => {
-                    files.push(file);
+                    // Convert Sequelize model to plain object to avoid circular references
+                    files.push(file.get({ plain: true }));
                     callback(null);
                   })
                   .catch((error) => callback(new InternalServerError(error)));

@@ -15,7 +15,7 @@ import { User } from "../../models/User";
 import { File } from "../../models/System";
 
 import { Op } from "sequelize"
-import { ProductDAL } from "../../dals/MarketPlace";
+import { ProductDAL, ProductImageDAL } from "../../dals/MarketPlace";
 
 const ModelName = "Product"
 
@@ -385,6 +385,103 @@ class ProductService {
       )
     })
   }
+
+  static createWithImages = (user: User, payload: any): Promise<Product> => {
+    return new Promise((resolve, reject) => {
+      let product: Product;
+      const productData = payload.product;
+      const fileIds = payload.files || [];
+
+      async.waterfall(
+        [
+          (done: Function) => {
+            createTransaction()
+              .then((transaction) => done(null, transaction))
+              .catch((error) => reject(new InternalServerError(error)))
+          },
+          (transaction: Transaction, done: Function) => {
+            ProductDAL.create(productData, transaction)
+              .then((result) => {
+                product = result;
+                done(null, result, transaction);
+              })
+              .catch((error) =>
+                done(new InternalServerError(error), {
+                  obj: null,
+                  transaction: transaction,
+                }),
+              )
+          },
+          (productObj: Product, transaction: Transaction, done: Function) => {
+            if (fileIds.length === 0) {
+              done(null, productObj, { obj: productObj, transaction });
+              return;
+            }
+
+            let productImages: ProductImage[] = [];
+            
+            async.eachSeries(
+              fileIds,
+              (fileId: string, callback) => {
+                const imageData = {
+                  product_id: productObj.id,
+                  file_id: fileId,
+                  is_primary: productImages.length === 0 // First image is primary
+                };
+                
+                ProductImageDAL.create(imageData, transaction)
+                  .then((image) => {
+                    productImages.push(image as ProductImage);
+                    callback(null);
+                  })
+                  .catch((error) => callback(new InternalServerError(error) as any));
+              },
+              (error) => {
+                if (error) {
+                  done(error, { obj: null, transaction });
+                } else {
+                  // Add images to product object for response
+                  const productWithImages = {
+                    ...productObj.toJSON(),
+                    product_image: productImages
+                  };
+                  done(null, productWithImages, { obj: productWithImages, transaction });
+                }
+              }
+            );
+          },
+          (obj: any, result: any, done: Function) => {
+            ActionLogService.handleCreate({
+              action: LogActions.CREATE,
+              object: ModelName,
+              prev_data: {},
+              new_data: obj,
+              user_id: user?.id,
+            })
+            done(null, result)
+          },
+        ],
+        (error, result: { obj: any; transaction: Transaction } | undefined) => {
+          if (!error) {
+            if (result && result.transaction) {
+              resolve(result.obj)
+              result.transaction.commit()
+            } else {
+              reject(new InternalServerError("Dead End"))
+            }
+          } else {
+            reject(error)
+            if (result && result.transaction) {
+              result.transaction.rollback()
+            } else {
+              reject(new InternalServerError("Dead End"))
+            }
+          }
+        },
+      )
+    })
+  }
 }
 
 export default ProductService
+
