@@ -2431,6 +2431,35 @@
 							"response": []
 						},
 						{
+							"name": "Get My",
+							"id": "28934492-0a2f711d-b445-41ee-819b-bb139d1640b1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/carts/my",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"carts",
+										"my"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get One",
 							"id": "28934492-0f9aa5e4-220b-4353-b72e-0c59c2225826",
 							"protocolProfileBehavior": {
