@@ -778,7 +778,7 @@
 									"query": [
 										{
 											"key": "query",
-											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"value": "",
 											"disabled": true
 										}
 									]
@@ -859,7 +859,7 @@
 										{
 											"key": "file",
 											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+											"src": "/C:/Users/HP/Downloads/Telegram Desktop/1742710897239.gif"
 										}
 									]
 								},
