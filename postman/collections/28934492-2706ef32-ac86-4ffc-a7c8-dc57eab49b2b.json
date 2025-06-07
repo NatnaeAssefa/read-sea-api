@@ -4067,22 +4067,22 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file",
-											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+									"mode": "raw",
+									"raw": "{\r\n    \"product\": {\r\n        \"name\": \"Wireless Bluetooth Mouse\",\r\n        \"description\": \"High-quality wireless mouse with smooth experience\",\r\n        \"price\": \"199.99\",\r\n        \"stock\": 50,\r\n        \"featured\": true,\r\n        \"trending\": true,\r\n        \"category_id\": \"392621c2-acf2-4f37-84ca-3796f57fe900\"\r\n    },\r\n    \"files\": [\r\n        \"69e2ed50-2ad5-4637-9deb-eb8684bf8acd\",\r\n        \"491378e2-733e-407c-bb95-b94f7c86f0d4\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/products/register",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"products",
+										"register"
 									]
 								}
 							},
