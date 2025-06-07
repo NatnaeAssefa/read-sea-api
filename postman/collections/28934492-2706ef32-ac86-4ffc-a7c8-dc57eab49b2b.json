@@ -561,19 +561,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/roles",
+									"raw": "{{api_url}}/roles/selected-roles",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"roles"
-									],
-									"query": [
-										{
-											"key": "query",
-											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
-											"disabled": true
-										}
+										"roles",
+										"selected-roles"
 									]
 								}
 							},
