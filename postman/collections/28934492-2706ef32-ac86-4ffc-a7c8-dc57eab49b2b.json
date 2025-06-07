@@ -642,7 +642,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Buyer/Potential Buyer\",\r\n    \"description\": \"The Buyer or The Potential Buyer\",\r\n    \"access_rules\": [\r\n        \"read_file\",\r\n        \"write_file\",\r\n        \"read_access_rule\",\r\n        \"read_role\",\r\n        \"write_role\",\r\n        \"delete_role\",\r\n        \"read_user\",\r\n        \"write_user\"\r\n    ]\r\n}",
+									"raw": "{\r\n    \"name\": \"Super Admin\",\r\n    \"description\": \"The absolute powerful admin role.\",\r\n    \"access_rules\": [\r\n        \"read_file\",\r\n        \"write_file\",\r\n        \"read_access_rule\",\r\n        \"read_role\",\r\n        \"write_role\",\r\n        \"delete_role\",\r\n        \"read_user\",\r\n        \"write_user\"\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -672,7 +672,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "// {\r\n//     \"id\": \"5fb3985b-8954-4396-9085-bc6001cd353a\",\r\n//     \"access_rules\": [\r\n//         \"read_access_rule\",\r\n//         \"write_access_rule\",\r\n//         \"read_role\",\r\n//         \"write_role\",\r\n//         \"read_user\",\r\n//         \"write_user\",\r\n//         \"read_destination\",\r\n//         \"write_destination\",\r\n//         \"read_vehicle\",\r\n//         \"write_vehicle\",\r\n//         \"read_association\",\r\n//         \"write_association\",\r\n//         \"read_level\",\r\n//         \"write_level\",\r\n//         \"read_plate_type\",\r\n//         \"write_plate_type\",\r\n//         \"read_seat_number\",\r\n//         \"write_seat_number\",\r\n//         \"read_station\",\r\n//         \"write_station\",\r\n//         \"read_trip\",\r\n//         \"write_trip\",\r\n//         \"read_route\",\r\n//         \"write_route\",\r\n//         \"read_config\",\r\n//         \"write_config\",\r\n//         \"read_action_log\",\r\n//         \"write_action_log\",\r\n//         \"sync_data\",\r\n//         \"sync_trip\",\r\n//         \"sync_vehicle\"\r\n//     ]\r\n// }\r\n{\r\n    \"access_rules\": [\r\n        \"read_file\",\r\n        \"write_file\",\r\n        \"read_access_rule\",\r\n        \"read_role\",\r\n        \"write_role\",\r\n        \"delete_role\",\r\n        \"read_user\",\r\n        \"write_user\",\r\n        \"delete_listing_favorite\",\r\n        \"write_listing_favorite\",\r\n        \"read_listing_favorite\",\r\n        \"read_payout\",\r\n        \"write_payout\",\r\n        \"read_refund\",\r\n        \"write_refund\",\r\n        \"read_config\"\r\n    ],\r\n    \"id\": \"6bbf4856-8366-45ed-839d-edadadb31b5a\"\r\n}",
+									"raw": "{\r\n    \"access_rules\": [\r\n        \"read_file\",\r\n        \"write_file\",\r\n        \"read_access_rule\",\r\n        \"read_role\",\r\n        \"write_role\",\r\n        \"delete_role\",\r\n        \"read_user\",\r\n        \"write_user\",\r\n        \"delete_listing_favorite\",\r\n        \"write_listing_favorite\",\r\n        \"read_listing_favorite\",\r\n        \"read_payout\",\r\n        \"write_payout\",\r\n        \"read_refund\",\r\n        \"write_refund\",\r\n        \"read_config\"\r\n    ],\r\n    \"id\": \"3d2249d2-3400-4a37-b1be-e05f016c2b33\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
