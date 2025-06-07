@@ -4026,6 +4026,37 @@
 							"response": []
 						},
 						{
+							"name": "Create Copy",
+							"id": "28934492-bd24b188-c7f0-46ac-afcf-14d14afdeaad",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api_url}}/products",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Update",
 							"id": "28934492-ab532309-5872-4faa-80bc-43896098e746",
 							"protocolProfileBehavior": {
