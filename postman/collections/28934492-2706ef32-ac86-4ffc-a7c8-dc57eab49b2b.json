@@ -877,7 +877,7 @@
 							"response": []
 						},
 						{
-							"name": "Create Copy",
+							"name": "Bulk Create",
 							"id": "28934492-db6dc9cb-42ad-4e8b-9755-99486e1ceea0",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
