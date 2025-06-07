@@ -4501,5 +4501,39 @@
 			],
 			"id": "28934492-119675e9-58ac-40c7-b0da-0421f61f94b1"
 		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0f6f6221-be9a-4d47-808a-394ed84d28fc",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "33bbe38d-7c73-4c65-b325-ee5bc01365e4",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
 	]
 }
