@@ -4026,7 +4026,7 @@
 							"response": []
 						},
 						{
-							"name": "Create Copy",
+							"name": "Register",
 							"id": "28934492-bd24b188-c7f0-46ac-afcf-14d14afdeaad",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
