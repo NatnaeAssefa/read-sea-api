@@ -66,7 +66,7 @@ const routes = () => {
    *       404:
    *         description: ProductImage Not Found
    */
-  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_ProductImage"]), ProductImageController.findById)
+  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_product_image"]), ProductImageController.findById)
 
   /**
    * @swagger
@@ -78,7 +78,7 @@ const routes = () => {
    *       201:
    *         description: Success
    */
-  router.post("/", AuthenticateUser, AuthorizeAccess(["write_ProductImage"]), ProductImageController.create)
+  router.post("/", AuthenticateUser, AuthorizeAccess(["write_product_image"]), ProductImageController.create)
 
   /**
    * @swagger
@@ -90,7 +90,7 @@ const routes = () => {
    *       200:
    *         description: Success
    */
-  router.put("/", AuthenticateUser, AuthorizeAccess(["write_ProductImage"]), ProductImageController.update)
+  router.put("/", AuthenticateUser, AuthorizeAccess(["write_product_image"]), ProductImageController.update)
 
   /**
    * @swagger
@@ -104,7 +104,7 @@ const routes = () => {
    *       404:
    *         description: ProductImage Not Found
    */
-  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_ProductImage"]), ProductImageController.delete)
+  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_product_image"]), ProductImageController.delete)
 
   return router
 }

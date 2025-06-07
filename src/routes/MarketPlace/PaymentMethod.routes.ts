@@ -66,7 +66,7 @@ const routes = () => {
    *       404:
    *         description: PaymentMethod Not Found
    */
-  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_PaymentMethod"]), PaymentMethodController.findById)
+  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_payment_method"]), PaymentMethodController.findById)
 
   /**
    * @swagger
@@ -78,7 +78,7 @@ const routes = () => {
    *       201:
    *         description: Success
    */
-  router.post("/", AuthenticateUser, AuthorizeAccess(["write_PaymentMethod"]), PaymentMethodController.create)
+  router.post("/", AuthenticateUser, AuthorizeAccess(["write_payment_method"]), PaymentMethodController.create)
 
   /**
    * @swagger
@@ -90,7 +90,7 @@ const routes = () => {
    *       200:
    *         description: Success
    */
-  router.put("/", AuthenticateUser, AuthorizeAccess(["write_PaymentMethod"]), PaymentMethodController.update)
+  router.put("/", AuthenticateUser, AuthorizeAccess(["write_payment_method"]), PaymentMethodController.update)
 
   /**
    * @swagger
@@ -104,7 +104,7 @@ const routes = () => {
    *       404:
    *         description: PaymentMethod Not Found
    */
-  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_PaymentMethod"]), PaymentMethodController.delete)
+  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_payment_method"]), PaymentMethodController.delete)
 
   return router
 }

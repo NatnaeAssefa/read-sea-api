@@ -66,7 +66,7 @@ const routes = () => {
    *       404:
    *         description: Order Not Found
    */
-  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_Order"]), OrderController.findById)
+  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_order"]), OrderController.findById)
 
   /**
    * @swagger
@@ -78,7 +78,7 @@ const routes = () => {
    *       201:
    *         description: Success
    */
-  router.post("/", AuthenticateUser, AuthorizeAccess(["write_Order"]), OrderController.create)
+  router.post("/", AuthenticateUser, AuthorizeAccess(["write_order"]), OrderController.create)
 
   /**
    * @swagger
@@ -90,7 +90,7 @@ const routes = () => {
    *       200:
    *         description: Success
    */
-  router.put("/", AuthenticateUser, AuthorizeAccess(["write_Order"]), OrderController.update)
+  router.put("/", AuthenticateUser, AuthorizeAccess(["write_order"]), OrderController.update)
 
   /**
    * @swagger
@@ -104,7 +104,7 @@ const routes = () => {
    *       404:
    *         description: Order Not Found
    */
-  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_Order"]), OrderController.delete)
+  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_order"]), OrderController.delete)
 
   return router
 }

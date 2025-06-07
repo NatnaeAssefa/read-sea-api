@@ -29,6 +29,22 @@ const routes = () => {
   router.get("/", FavoriteController.findMany)
 
   /**
+ * @swagger
+ * /favorites/my:
+ *   get:
+ *     summary: Fetch My Favorites
+ *     tags: [Favorite]
+ *     parameters:
+ *       - in: query
+ *         name: query
+ *         description: query
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+  router.get("/my", AuthenticateUser, FavoriteController.findMy)
+
+  /**
    * @swagger
    * /favorites/get:
    *   get:
@@ -66,7 +82,7 @@ const routes = () => {
    *       404:
    *         description: Favorite Not Found
    */
-  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_Favorite"]), FavoriteController.findById)
+  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_favorite"]), FavoriteController.findById)
 
   /**
    * @swagger
@@ -78,7 +94,7 @@ const routes = () => {
    *       201:
    *         description: Success
    */
-  router.post("/", AuthenticateUser, AuthorizeAccess(["write_Favorite"]), FavoriteController.create)
+  router.post("/", AuthenticateUser, AuthorizeAccess(["write_favorite"]), FavoriteController.create)
 
   /**
    * @swagger
@@ -90,7 +106,7 @@ const routes = () => {
    *       200:
    *         description: Success
    */
-  router.put("/", AuthenticateUser, AuthorizeAccess(["write_Favorite"]), FavoriteController.update)
+  router.put("/", AuthenticateUser, AuthorizeAccess(["write_favorite"]), FavoriteController.update)
 
   /**
    * @swagger
@@ -104,23 +120,7 @@ const routes = () => {
    *       404:
    *         description: Favorite Not Found
    */
-  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_Favorite"]), FavoriteController.delete)
-
-  /**
-   * @swagger
-   * /favorites/my:
-   *   get:
-   *     summary: Fetch My Favorites
-   *     tags: [Favorite]
-   *     parameters:
-   *       - in: query
-   *         name: query
-   *         description: query
-   *     responses:
-   *       200:
-   *         description: Success
-   */
-  router.get("/my", AuthenticateUser, FavoriteController.findMy)
+  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_favorite"]), FavoriteController.delete)
 
   return router
 }

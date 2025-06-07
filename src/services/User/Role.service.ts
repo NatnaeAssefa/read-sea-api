@@ -435,6 +435,150 @@ class RoleService {
       );
     });
   };
+
+  /**
+   * Creates a Super Admin role if it doesn't already exist
+   * 
+   * @static
+   * @param {User} user - The user creating the role (must have appropriate permissions)
+   * @param {string} name - The name for the Super Admin role
+   * @param {string} [description] - Optional description for the role
+   * @returns {Promise<Role>} - The created or existing Super Admin role
+   * @memberof RoleService
+   */
+  static createSuperAdminRole = (
+    name: string,
+    description?: string
+  ): Promise<Role> => {
+    return new Promise((resolve, reject) => {
+      async.waterfall(
+        [
+          (done: Function) => {
+            createTransaction()
+              .then((transaction) => done(null, transaction))
+              .catch((error) => reject(new InternalServerError(error)));
+          },
+          (transaction: Transaction, done: Function) => {
+            // Check if a role with this name already exists
+            RoleDAL.findOne({
+              where: { name }
+            })
+              .then((existingRole) => {
+                if (existingRole) {
+                  // If role exists and is already a Super Admin role, return it
+                  if (existingRole.type === AccessType.SUPER_ADMIN) {
+                    done(new Error("Role already created!"));
+                  } else {
+                    // If role exists but is not Super Admin, reject
+                    done(new BadRequestError([`Role "${name}" exists but is not a Super Admin role`]));
+                  }
+                } else {
+                  // Role doesn't exist, continue to create it
+                  done(null, transaction);
+                }
+              })
+              .catch((error) => 
+                done(new InternalServerError(error), {
+                  obj: null,
+                  transaction: transaction
+                })
+              );
+          },
+          (transaction: Transaction, done: Function) => {
+            // Import the Super Admin access rules
+            import("../../utilities/constants/SuperAdminAccessRules")
+              .then(({ default: superAdminAccessRules }) => {
+                // Verify all access rules exist
+                async.eachSeries(
+                  superAdminAccessRules,
+                  (rule, callback) => {
+                    AccessRuleDAL.findOne({
+                      where: { name: rule },
+                    })
+                      .then((_rule) => {
+                        if (_rule) {
+                          callback();
+                        } else {
+                          callback(
+                            new NotFoundError(`Access Rule '${rule}' not found`)
+                          );
+                        }
+                      })
+                      .catch((error) => callback(new InternalServerError(error)));
+                  },
+                  (error: any) => {
+                    if (error) {
+                      done(error, {
+                        obj: null,
+                        transaction: transaction,
+                      });
+                    } else {
+                      // All access rules exist, create the role
+                      const payload = {
+                        name,
+                        description: description || `Role with Super Admin permissions: ${name}`,
+                        access_rules: superAdminAccessRules,
+                        type: AccessType.SUPER_ADMIN
+                      };
+                      
+                      RoleDAL.create(payload, transaction)
+                        .then((result) => {
+                          done(null, result, { 
+                            obj: result, 
+                            transaction: transaction,
+                            isNew: true 
+                          });
+                        })
+                        .catch((error) =>
+                          done(new InternalServerError(error), {
+                            obj: null,
+                            transaction: transaction,
+                          })
+                        );
+                    }
+                  }
+                );
+              })
+              .catch((error) => 
+                done(new InternalServerError(`Failed to import SuperAdminAccessRules: ${error.message}`), {
+                  obj: null,
+                  transaction: transaction
+                })
+              );
+          },
+          (obj: Role, result: any, done: Function) => {
+            // if (result.isNew) {
+            //   ActionLogService.handleCreate({
+            //     action: LogActions.CREATE,
+            //     object: ModelName,
+            //     prev_data: {},
+            //     new_data: obj,
+            //     user_id: user.id,
+            //   });
+            // }
+            done(null, result);
+          },
+        ],
+        (error, result: { obj: Role; transaction: Transaction; isNew: boolean } | undefined) => {
+          if (!error) {
+            if (result && result.transaction) {
+              resolve(result.obj);
+              result.transaction.commit();
+            } else {
+              reject(new InternalServerError("Dead End"));
+            }
+          } else {
+            reject(error);
+            if (result && result.transaction) {
+              result.transaction.rollback();
+            } else {
+              reject(new InternalServerError("Dead End"));
+            }
+          }
+        }
+      );
+    });
+  };
 }
 
 export default RoleService;

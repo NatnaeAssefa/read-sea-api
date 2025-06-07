@@ -66,7 +66,7 @@ const routes = () => {
    *       404:
    *         description: OrderTracking Not Found
    */
-  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_OrderTracking"]), OrderTrackingController.findById)
+  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_order_tracking"]), OrderTrackingController.findById)
 
   /**
    * @swagger
@@ -78,7 +78,7 @@ const routes = () => {
    *       201:
    *         description: Success
    */
-  router.post("/", AuthenticateUser, AuthorizeAccess(["write_OrderTracking"]), OrderTrackingController.create)
+  router.post("/", AuthenticateUser, AuthorizeAccess(["write_order_tracking"]), OrderTrackingController.create)
 
   /**
    * @swagger
@@ -90,7 +90,7 @@ const routes = () => {
    *       200:
    *         description: Success
    */
-  router.put("/", AuthenticateUser, AuthorizeAccess(["write_OrderTracking"]), OrderTrackingController.update)
+  router.put("/", AuthenticateUser, AuthorizeAccess(["write_order_tracking"]), OrderTrackingController.update)
 
   /**
    * @swagger
@@ -104,7 +104,7 @@ const routes = () => {
    *       404:
    *         description: OrderTracking Not Found
    */
-  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_OrderTracking"]), OrderTrackingController.delete)
+  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_order_tracking"]), OrderTrackingController.delete)
 
   return router
 }

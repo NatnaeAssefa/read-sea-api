@@ -49,10 +49,16 @@ app.set("views", "./views");
 
 import ServerResponse from "./utilities/response/Response";
 import LogService from "./services/Log/Log.service";
-import { AccessRuleService } from "./services/User";
+import { AccessRuleService, RoleService } from "./services/User";
+import { UserType } from "./utilities/constants/Constants";
 
 initializeDB().then(() => {
   AccessRuleService.createIfNotExist(access_rules).then(() => {
+    RoleService.createSuperAdminRole(UserType.SUPER_ADMIN).then((r) => {
+      LogService.LogInfo(`Super Admin role creation done`);
+    }).catch((e) => {
+      LogService.LogInfo(`Super Admin role already exists! - ${e}`);
+    })
     LogService.LogInfo(`Access rules sync done`);
   });
 });

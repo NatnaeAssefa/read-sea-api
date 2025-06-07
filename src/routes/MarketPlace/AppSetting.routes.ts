@@ -66,7 +66,7 @@ const routes = () => {
    *       404:
    *         description: AppSetting Not Found
    */
-  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_AppSetting"]), AppSettingController.findById)
+  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_app_setting"]), AppSettingController.findById)
 
   /**
    * @swagger
@@ -78,7 +78,7 @@ const routes = () => {
    *       201:
    *         description: Success
    */
-  router.post("/", AuthenticateUser, AuthorizeAccess(["write_AppSetting"]), AppSettingController.create)
+  router.post("/", AuthenticateUser, AuthorizeAccess(["write_app_setting"]), AppSettingController.create)
 
   /**
    * @swagger
@@ -90,7 +90,7 @@ const routes = () => {
    *       200:
    *         description: Success
    */
-  router.put("/", AuthenticateUser, AuthorizeAccess(["write_AppSetting"]), AppSettingController.update)
+  router.put("/", AuthenticateUser, AuthorizeAccess(["write_app_setting"]), AppSettingController.update)
 
   /**
    * @swagger
@@ -104,7 +104,7 @@ const routes = () => {
    *       404:
    *         description: AppSetting Not Found
    */
-  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_AppSetting"]), AppSettingController.delete)
+  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_app_setting"]), AppSettingController.delete)
 
   return router
 }

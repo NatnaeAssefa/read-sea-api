@@ -66,7 +66,7 @@ const routes = () => {
    *       404:
    *         description: SearchHistory Not Found
    */
-  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_SearchHistory"]), SearchHistoryController.findById)
+  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_search_history"]), SearchHistoryController.findById)
 
   /**
    * @swagger
@@ -78,7 +78,7 @@ const routes = () => {
    *       201:
    *         description: Success
    */
-  router.post("/", AuthenticateUser, AuthorizeAccess(["write_SearchHistory"]), SearchHistoryController.create)
+  router.post("/", AuthenticateUser, AuthorizeAccess(["write_search_history"]), SearchHistoryController.create)
 
   /**
    * @swagger
@@ -90,7 +90,7 @@ const routes = () => {
    *       200:
    *         description: Success
    */
-  router.put("/", AuthenticateUser, AuthorizeAccess(["write_SearchHistory"]), SearchHistoryController.update)
+  router.put("/", AuthenticateUser, AuthorizeAccess(["write_search_history"]), SearchHistoryController.update)
 
   /**
    * @swagger
@@ -104,7 +104,7 @@ const routes = () => {
    *       404:
    *         description: SearchHistory Not Found
    */
-  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_SearchHistory"]), SearchHistoryController.delete)
+  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_search_history"]), SearchHistoryController.delete)
 
   return router
 }

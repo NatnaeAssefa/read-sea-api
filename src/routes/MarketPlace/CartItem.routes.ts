@@ -66,7 +66,7 @@ const routes = () => {
    *       404:
    *         description: CartItem Not Found
    */
-  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_CartItem"]), CartItemController.findById)
+  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_cart_item"]), CartItemController.findById)
 
   /**
    * @swagger
@@ -78,7 +78,7 @@ const routes = () => {
    *       201:
    *         description: Success
    */
-  router.post("/", AuthenticateUser, AuthorizeAccess(["write_CartItem"]), CartItemController.create)
+  router.post("/", AuthenticateUser, AuthorizeAccess(["write_cart_item"]), CartItemController.create)
 
   /**
    * @swagger
@@ -90,7 +90,7 @@ const routes = () => {
    *       200:
    *         description: Success
    */
-  router.put("/", AuthenticateUser, AuthorizeAccess(["write_CartItem"]), CartItemController.update)
+  router.put("/", AuthenticateUser, AuthorizeAccess(["write_cart_item"]), CartItemController.update)
 
   /**
    * @swagger
@@ -104,7 +104,7 @@ const routes = () => {
    *       404:
    *         description: CartItem Not Found
    */
-  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_CartItem"]), CartItemController.delete)
+  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_cart_item"]), CartItemController.delete)
 
   return router
 }

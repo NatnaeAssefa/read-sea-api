@@ -66,7 +66,7 @@ const routes = () => {
    *       404:
    *         description: Address Not Found
    */
-  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_Address"]), AddressController.findById)
+  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_address"]), AddressController.findById)
 
   /**
    * @swagger
@@ -78,7 +78,7 @@ const routes = () => {
    *       201:
    *         description: Success
    */
-  router.post("/", AuthenticateUser, AuthorizeAccess(["write_Address"]), AddressController.create)
+  router.post("/", AuthenticateUser, AuthorizeAccess(["write_address"]), AddressController.create)
 
   /**
    * @swagger
@@ -90,7 +90,7 @@ const routes = () => {
    *       200:
    *         description: Success
    */
-  router.put("/", AuthenticateUser, AuthorizeAccess(["write_Address"]), AddressController.update)
+  router.put("/", AuthenticateUser, AuthorizeAccess(["write_address"]), AddressController.update)
 
   /**
    * @swagger
@@ -104,7 +104,7 @@ const routes = () => {
    *       404:
    *         description: Address Not Found
    */
-  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_Address"]), AddressController.delete)
+  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_address"]), AddressController.delete)
 
   return router
 }

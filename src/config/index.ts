@@ -69,6 +69,10 @@ export const env: any = {
   
   WATER_MARK_IMAGE: process.env.WATER_MARK_IMAGE || "",
   WATER_MARK_IMAGE_DARK: process.env.WATER_MARK_IMAGE_DARK || "",
+
+  // Existing variables...
+  CHAPPA_SECRET_KEY: process.env.CHAPPA_SECRET_KEY || "",
+  CHAPPA_PUBLIC_KEY: process.env.CHAPPA_PUBLIC_KEY || "",
 };
 export const constants: any = {
   SYSTEM_CONFIG_KEY: "System Init",
@@ -79,7 +83,7 @@ export const constants: any = {
   BASE_PHONE_NUMBER: "251930538714",
   BASE_ROLE: "Super Admin",
   BASE_ROLE_ID: "e48f7ed1-db16-4511-be6a-87ef32aab99d",
-  BASE_TYPE: UserType.SYSTEM,
+  BASE_TYPE: UserType.SUPER_ADMIN,
   BASE_EMAIL: "bahrubedri@gmail.com",
   BASE_PASSWORD: "1q2w3e4r5t6y7u8i9o0p",
 
@@ -95,22 +99,22 @@ export const access_rules: AccessRules[] = [
   //  System
   {
     group: "Global",
-    rules: [{ name: "access_paranoid", type: AccessType.SYSTEM }],
+    rules: [{ name: "access_paranoid", type: AccessType.SUPER_ADMIN }],
   },
   {
     group: "Access Log",
     rules: [
-      { name: "read_action_log", type: AccessType.SYSTEM },
-      { name: "write_action_log", type: AccessType.SYSTEM },
-      { name: "delete_action_log", type: AccessType.SYSTEM },
+      { name: "read_action_log", type: AccessType.SUPER_ADMIN },
+      { name: "write_action_log", type: AccessType.SUPER_ADMIN },
+      { name: "delete_action_log", type: AccessType.SUPER_ADMIN },
     ],
   },
   {
     group: "Config",
     rules: [
-      { name: "read_config", type: AccessType.SYSTEM },
-      { name: "write_config", type: AccessType.SYSTEM },
-      { name: "delete_config", type: AccessType.SYSTEM },
+      { name: "read_config", type: AccessType.SUPER_ADMIN },
+      { name: "write_config", type: AccessType.SUPER_ADMIN },
+      { name: "delete_config", type: AccessType.SUPER_ADMIN },
     ],
   },
   // Shared
@@ -119,15 +123,15 @@ export const access_rules: AccessRules[] = [
     rules: [
       { name: "read_file", type: AccessType.ADMIN },
       { name: "write_file", type: AccessType.ADMIN },
-      { name: "delete_file", type: AccessType.SYSTEM },
+      { name: "delete_file", type: AccessType.SUPER_ADMIN },
     ],
   },
   {
     group: "Access Rule",
     rules: [
       { name: "read_access_rule", type: AccessType.ADMIN },
-      { name: "write_access_rule", type: AccessType.SYSTEM },
-      { name: "delete_access_rule", type: AccessType.SYSTEM },
+      { name: "write_access_rule", type: AccessType.SUPER_ADMIN },
+      { name: "delete_access_rule", type: AccessType.SUPER_ADMIN },
     ],
   },
   {
@@ -142,10 +146,10 @@ export const access_rules: AccessRules[] = [
     group: "User",
     rules: [
       { name: "read_user", type: AccessType.ADMIN },
-      { name: "revoke_user_token", type: AccessType.SYSTEM },
-      { name: "change_user_password", type: AccessType.SYSTEM },
+      { name: "revoke_user_token", type: AccessType.SUPER_ADMIN },
+      { name: "change_user_password", type: AccessType.SUPER_ADMIN },
       { name: "write_user", type: AccessType.ADMIN },
-      { name: "delete_user", type: AccessType.SYSTEM },
+      { name: "delete_user", type: AccessType.SUPER_ADMIN },
     ],
   },
   // Marketplace rules
@@ -155,7 +159,7 @@ export const access_rules: AccessRules[] = [
       { name: "read_product", type: AccessType.USER },
       { name: "write_product", type: AccessType.ADMIN },
       { name: "delete_product", type: AccessType.ADMIN },
-      { name: "approve_product", type: AccessType.SYSTEM },
+      { name: "approve_product", type: AccessType.SUPER_ADMIN },
     ],
   },
   {
@@ -171,15 +175,117 @@ export const access_rules: AccessRules[] = [
     group: "Category",
     rules: [
       { name: "read_category", type: AccessType.USER },
-      { name: "write_category", type: AccessType.SYSTEM },
-      { name: "delete_category", type: AccessType.SYSTEM },
+      { name: "write_category", type: AccessType.SUPER_ADMIN },
+      { name: "delete_category", type: AccessType.SUPER_ADMIN },
     ],
   },
   {
     group: "Analytics",
     rules: [
       { name: "view_analytics", type: AccessType.ADMIN },
-      { name: "export_analytics", type: AccessType.SYSTEM },
+      { name: "export_analytics", type: AccessType.SUPER_ADMIN },
+    ],
+  },
+  // Payment related rules
+  {
+    group: "Payment Method",
+    rules: [
+      { name: "read_payment_method", type: AccessType.USER },
+      { name: "write_payment_method", type: AccessType.USER },
+      { name: "delete_payment_method", type: AccessType.USER },
+      { name: "manage_payment_methods", type: AccessType.ADMIN },
+    ],
+  },
+  {
+    group: "Chappa Payment",
+    rules: [
+      { name: "read_chappa_payment", type: AccessType.USER },
+      { name: "initiate_chappa_payment", type: AccessType.USER },
+      { name: "verify_chappa_payment", type: AccessType.USER },
+      { name: "manage_chappa_payments", type: AccessType.ADMIN },
+      { name: "refund_chappa_payment", type: AccessType.SUPER_ADMIN },
+    ],
+  },
+  // Cart and favorites
+  {
+    group: "Cart",
+    rules: [
+      { name: "read_cart", type: AccessType.USER },
+      { name: "write_cart", type: AccessType.USER },
+      { name: "delete_cart", type: AccessType.USER },
+    ],
+  },
+  {
+    group: "Favorite",
+    rules: [
+      { name: "read_favorite", type: AccessType.USER },
+      { name: "write_favorite", type: AccessType.USER },
+      { name: "delete_favorite", type: AccessType.USER },
+    ],
+  },
+  // User profile and settings
+  {
+    group: "User Profile",
+    rules: [
+      { name: "read_user_profile", type: AccessType.USER },
+      { name: "write_user_profile", type: AccessType.USER },
+      { name: "manage_user_profiles", type: AccessType.ADMIN },
+    ],
+  },
+  {
+    group: "App Setting",
+    rules: [
+      { name: "read_app_setting", type: AccessType.USER },
+      { name: "write_app_setting", type: AccessType.USER },
+      { name: "manage_app_settings", type: AccessType.ADMIN },
+    ],
+  },
+  // Address management
+  {
+    group: "Address",
+    rules: [
+      { name: "read_address", type: AccessType.USER },
+      { name: "write_address", type: AccessType.USER },
+      { name: "delete_address", type: AccessType.USER },
+      { name: "manage_addresses", type: AccessType.ADMIN },
+    ],
+  },
+  // Notifications
+  {
+    group: "Notification",
+    rules: [
+      { name: "read_notification", type: AccessType.USER },
+      { name: "mark_notification_read", type: AccessType.USER },
+      { name: "delete_notification", type: AccessType.USER },
+      { name: "send_notification", type: AccessType.ADMIN },
+      { name: "manage_notifications", type: AccessType.SUPER_ADMIN },
+    ],
+  },
+  // Search and history
+  {
+    group: "Search History",
+    rules: [
+      { name: "read_search_history", type: AccessType.USER },
+      { name: "delete_search_history", type: AccessType.USER },
+      { name: "manage_search_history", type: AccessType.ADMIN },
+    ],
+  },
+  // Order tracking
+  {
+    group: "Order Tracking",
+    rules: [
+      { name: "read_order_tracking", type: AccessType.USER },
+      { name: "update_order_tracking", type: AccessType.ADMIN },
+      { name: "manage_order_tracking", type: AccessType.SUPER_ADMIN },
+    ],
+  },
+  // Product images
+  {
+    group: "Product Image",
+    rules: [
+      { name: "read_product_image", type: AccessType.USER },
+      { name: "write_product_image", type: AccessType.ADMIN },
+      { name: "delete_product_image", type: AccessType.ADMIN },
     ],
   },
 ];

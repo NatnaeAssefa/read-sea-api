@@ -66,7 +66,7 @@ const routes = () => {
    *       404:
    *         description: OrderItem Not Found
    */
-  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_OrderItem"]), OrderItemController.findById)
+  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_order_item"]), OrderItemController.findById)
 
   /**
    * @swagger
@@ -78,7 +78,7 @@ const routes = () => {
    *       201:
    *         description: Success
    */
-  router.post("/", AuthenticateUser, AuthorizeAccess(["write_OrderItem"]), OrderItemController.create)
+  router.post("/", AuthenticateUser, AuthorizeAccess(["write_order_item"]), OrderItemController.create)
 
   /**
    * @swagger
@@ -90,7 +90,7 @@ const routes = () => {
    *       200:
    *         description: Success
    */
-  router.put("/", AuthenticateUser, AuthorizeAccess(["write_OrderItem"]), OrderItemController.update)
+  router.put("/", AuthenticateUser, AuthorizeAccess(["write_order_item"]), OrderItemController.update)
 
   /**
    * @swagger
@@ -104,7 +104,7 @@ const routes = () => {
    *       404:
    *         description: OrderItem Not Found
    */
-  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_OrderItem"]), OrderItemController.delete)
+  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_order_item"]), OrderItemController.delete)
 
   return router
 }

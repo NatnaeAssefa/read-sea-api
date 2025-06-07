@@ -37,10 +37,6 @@ class NotificationService {
     payload: Omit<Notification, NullishPropertiesOf<Notification>>,
     sendEmail: boolean = false,
     notificationType?: EmailTypeValues,
-    oldPlan: string = "Basic",
-    newPlan: string = "Basic",
-    url: string = env.WEBSITE_BASE_URL + "/account",
-    refundAmount: string = "0"
   ): Promise<Notification> => {
     return new Promise((resolve, reject) => {
       async.waterfall(
