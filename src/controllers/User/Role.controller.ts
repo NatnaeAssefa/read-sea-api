@@ -33,7 +33,7 @@ class RoleController {
   static findSelectedRole(request: any, response: Response) {
     const startTime = new Date();
     let parsedQuery: any = ParseQuery(request.query);
-    const excludeRoles = ["Admin Role", "Super Admin Role"];
+    const excludeRoles = ["Admin", "Super Admin"];
     parsedQuery.query.where = {
       ...parsedQuery.query.where,
       name: { [Op.notIn]: excludeRoles },
@@ -139,7 +139,7 @@ class RoleController {
         .required(),
       access_rules: Joi.any().required(),
       company_id: Joi.alternatives().conditional("type", {
-        is: AccessType.SYSTEM,
+        is: AccessType.SUPER_ADMIN,
         then: Joi.string().required(),
       }),
     });

@@ -2,6 +2,7 @@ import { Model } from "sequelize";
 import { AccessRule, ActionLog, Role, User, UserProfile } from "../../models/User";
 
 import { File, Notification } from "../../models/System";
+import { Address, AppSetting, Cart, CartItem, Category, Favorite, Order, OrderItem, OrderTracking, PaymentMethod as PM, Product, ProductImage, SearchHistory } from "../../models/MarketPlace";
 
 // Define the user type for better type safety
 export interface FacebookUserProfile {
@@ -174,18 +175,18 @@ export const Currency = {
 };
 
 export const AccessType = {
-  SYSTEM: "System",
+  SUPER_ADMIN: "Super Admin",
   ADMIN: "Admin",
   USER: "User",
-  OTHER: "Other",
+  DELIVERY: "Delivery",
 };
 
 
 export const UserType = {
-  SYSTEM: "System",
+  SUPER_ADMIN: "Super Admin",
   ADMIN: "Admin",
   USER: "User",
-  OTHER: "Other",
+  DELIVERY: "Delivery",
 };
 
 export const UserNotificationStatus = {
@@ -308,6 +309,20 @@ ModelType.set("access-rule", AccessRule);
 ModelType.set("action-log", ActionLog);
 ModelType.set("notification", Notification);
 ModelType.set("user_profile", UserProfile);
+
+ModelType.set("cart", Cart);
+ModelType.set("cart_item", CartItem);
+ModelType.set("address", Address);
+ModelType.set("app_setting", AppSetting);
+ModelType.set("category", Category);
+ModelType.set("favorite", Favorite);
+ModelType.set("order", Order);
+ModelType.set("order_item", OrderItem);
+ModelType.set("order_tracking", OrderTracking);
+ModelType.set("payment_method", PM);
+ModelType.set("product", Product);
+ModelType.set("product_image", ProductImage);
+ModelType.set("search_history", SearchHistory);
 
 export { ModelType };
 

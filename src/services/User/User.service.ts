@@ -544,7 +544,7 @@ class UserService {
                 payload.verification_time = new Date();
                 payload.status = UserStatus.PENDING;
 
-                const forbiddenTypes = [UserType.SYSTEM, UserType.ADMIN];
+                const forbiddenTypes = [UserType.SUPER_ADMIN, UserType.ADMIN];
 
                 if (typeof payload.role_id === "string") {
                   // Find role by ID

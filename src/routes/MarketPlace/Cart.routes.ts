@@ -7,111 +7,104 @@ const routes = () => {
    * @swagger
    * tags:
    *   name: Cart
-   *   description: Shopping cart management APIs
+   *   description: Cart management APIs
    */
 
   const router = express.Router()
 
   /**
    * @swagger
-   * /cart:
+   * /categories:
    *   get:
-   *     summary: Get User Cart
+   *     summary: Fetch Categories
    *     tags: [Cart]
+   *     parameters:
+   *       - in: query
+   *         name: query
+   *         description: query
    *     responses:
    *       200:
    *         description: Success
    */
-  router.get("/", AuthenticateUser, CartController.getCart)
+  router.get("/", CartController.findMany)
 
   /**
    * @swagger
-   * /cart/add:
+   * /categories/get:
+   *   get:
+   *     summary: Fetch a Cart
+   *     tags: [Cart]
+   *     parameters:
+   *       - in: query
+   *         name: query
+   *         description: query
+   *     responses:
+   *       200:
+   *         description: Success
+   */
+  router.get("/get", CartController.findOne)
+
+  /**
+   * @swagger
+   * /categories/{id}:
+   *   get:
+   *     summary: Fetch Cart by ID
+   *     tags: [Cart]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         description: Cart ID
+   *       - in: query
+   *         name: query
+   *         description: query
+   *     responses:
+   *       200:
+   *         description: Success
+   *       400:
+   *         description: Input Validation Error
+   *       404:
+   *         description: Cart Not Found
+   */
+  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_Cart"]), CartController.findById)
+
+  /**
+   * @swagger
+   * /categories:
    *   post:
-   *     summary: Add Item to Cart
+   *     summary: Create Cart
    *     tags: [Cart]
-   *     requestBody:
-   *       required: true
-   *       content:
-   *         application/json:
-   *           schema:
-   *             type: object
-   *             properties:
-   *               productId:
-   *                 type: string
-   *                 format: uuid
-   *               quantity:
-   *                 type: number
-   *                 minimum: 1
    *     responses:
-   *       200:
+   *       201:
    *         description: Success
-   *       400:
-   *         description: Bad request
    */
-  router.post("/add", AuthenticateUser, CartController.addToCart)
+  router.post("/", AuthenticateUser, AuthorizeAccess(["write_Cart"]), CartController.create)
 
   /**
    * @swagger
-   * /cart/update/{id}:
+   * /categories:
    *   put:
-   *     summary: Update Cart Item
+   *     summary: Update Cart
    *     tags: [Cart]
-   *     parameters:
-   *       - in: path
-   *         name: id
-   *         required: true
-   *         description: Cart Item ID
-   *     requestBody:
-   *       required: true
-   *       content:
-   *         application/json:
-   *           schema:
-   *             type: object
-   *             properties:
-   *               quantity:
-   *                 type: number
-   *                 minimum: 0
    *     responses:
    *       200:
    *         description: Success
-   *       400:
-   *         description: Bad request
-   *       404:
-   *         description: Cart item not found
    */
-  router.put("/update/:id", AuthenticateUser, CartController.updateCartItem)
+  router.put("/", AuthenticateUser, AuthorizeAccess(["write_Cart"]), CartController.update)
 
   /**
    * @swagger
-   * /cart/remove/{id}:
+   * /categories:
    *   delete:
-   *     summary: Remove Item from Cart
+   *     summary: Delete Cart
    *     tags: [Cart]
-   *     parameters:
-   *       - in: path
-   *         name: id
-   *         required: true
-   *         description: Cart Item ID
    *     responses:
    *       200:
    *         description: Success
    *       404:
-   *         description: Cart item not found
+   *         description: Cart Not Found
    */
-  router.delete("/remove/:id", AuthenticateUser, CartController.removeFromCart)
-
-  /**
-   * @swagger
-   * /cart/clear:
-   *   delete:
-   *     summary: Clear Cart
-   *     tags: [Cart]
-   *     responses:
-   *       200:
-   *         description: Success
-   */
-  router.delete("/clear", AuthenticateUser, CartController.clearCart)
+  router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_Cart"]), CartController.delete)
 
   return router
 }

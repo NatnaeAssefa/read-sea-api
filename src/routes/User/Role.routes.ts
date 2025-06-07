@@ -45,6 +45,27 @@ const routes = () => {
 
   /**
    * @swagger
+   * /roles:
+   *   get:
+   *     summary: Fetch Roles
+   *     tags: [Role]
+   *     parameters:
+   *       - in: query
+   *         name: query
+   *         description: query
+   *     responses:
+   *       200:
+   *         description: Success
+   */
+  router.get(
+    "/",
+    AuthenticateUser,
+    // AuthorizeAccess(["read_role"]),
+    RoleController.findMany
+  );
+
+  /**
+   * @swagger
    * /roles/{id}:
    *   get:
    *     summary: Fetch Role by ID
@@ -72,26 +93,7 @@ const routes = () => {
     RoleController.findById
   );
 
-  /**
-   * @swagger
-   * /roles:
-   *   get:
-   *     summary: Fetch Roles
-   *     tags: [Role]
-   *     parameters:
-   *       - in: query
-   *         name: query
-   *         description: query
-   *     responses:
-   *       200:
-   *         description: Success
-   */
-  router.get(
-    "/",
-    AuthenticateUser,
-    // AuthorizeAccess(["read_role"]),
-    RoleController.findMany
-  );
+  
 
   /**
    * @swagger

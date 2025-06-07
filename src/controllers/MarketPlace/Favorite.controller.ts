@@ -138,6 +138,19 @@ class FavoriteController {
       ServerResponse(request, response, 400, { details: error.details }, "Input validation error", startTime)
     }
   }
+
+  static findMy(request: any, response: Response) {
+    const startTime = new Date()
+    const parsedQuery: any = ParseQuery(request.query)
+
+    FavoriteService.findMy(request.user, parsedQuery.query, parsedQuery.paranoid)
+      .then((result) => {
+        ServerResponse(request, response, 200, result, "", startTime)
+      })
+      .catch((error) => {
+        ServerResponse(request, response, error.statusCode, error.payload, "Error", startTime)
+      })
+  }
 }
 
 export default FavoriteController

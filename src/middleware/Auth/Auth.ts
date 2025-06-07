@@ -175,7 +175,7 @@ export const GlobalAuthOptions = (
   include: any,
   paranoid?: boolean
 ) => {
-  include = user.type !== UserType.SYSTEM ? include : null;
+  include = user.type !== UserType.SUPER_ADMIN ? include : null;
   if (include) {
     options.include = options.include
       ? [...options.include, include]
@@ -210,14 +210,14 @@ export const GlobalAuthOptionsNew = (
     return { options: options, paranoid: true };
   }
 
-  include = user.type !== UserType.SYSTEM ? include : null;
+  include = user.type !== UserType.SUPER_ADMIN ? include : null;
   if (include) {
     options.include = options.include
       ? [...options.include, include]
       : [include];
   }
 
-  where = user.type !== UserType.SYSTEM ? where : null;
+  where = user.type !== UserType.SUPER_ADMIN ? where : null;
   if (where) {
     options.where = options.where
       ? {

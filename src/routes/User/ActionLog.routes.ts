@@ -80,7 +80,7 @@ const routes = () => {
   router.get(
     "/",
     AuthenticateUser,
-    AuthorizeAccess(["read_action_log"]),
+    // AuthorizeAccess(["read_action_log"]),
     ActionLogController.findMany
   );
 

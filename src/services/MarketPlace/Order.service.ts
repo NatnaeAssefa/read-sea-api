@@ -73,7 +73,7 @@ class OrderService {
 
       const queryOptions = {
         ...options,
-        order: [["name", "ASC"]],
+        order: [["total", "ASC"]],
       }
 
       OrderDAL.findMany(queryOptions, paranoid)

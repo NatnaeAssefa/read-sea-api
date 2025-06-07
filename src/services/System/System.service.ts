@@ -70,7 +70,7 @@ class SystemService {
                   RoleDAL.create({
                     name: constants.BASE_ROLE,
                     access_rules: _access_rules,
-                    type: AccessType.SYSTEM,
+                    type: AccessType.SUPER_ADMIN,
                     id: constants.BASE_ROLE_ID,
                   })
                     .then((result) => {

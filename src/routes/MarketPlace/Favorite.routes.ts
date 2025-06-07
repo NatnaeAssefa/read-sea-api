@@ -14,9 +14,9 @@ const routes = () => {
 
   /**
    * @swagger
-   * /categories:
+   * /favorites:
    *   get:
-   *     summary: Fetch Categories
+   *     summary: Fetch Favorites
    *     tags: [Favorite]
    *     parameters:
    *       - in: query
@@ -30,7 +30,7 @@ const routes = () => {
 
   /**
    * @swagger
-   * /categories/get:
+   * /favorites/get:
    *   get:
    *     summary: Fetch a Favorite
    *     tags: [Favorite]
@@ -46,7 +46,7 @@ const routes = () => {
 
   /**
    * @swagger
-   * /categories/{id}:
+   * /favorites/{id}:
    *   get:
    *     summary: Fetch Favorite by ID
    *     tags: [Favorite]
@@ -70,7 +70,7 @@ const routes = () => {
 
   /**
    * @swagger
-   * /categories:
+   * /favorites:
    *   post:
    *     summary: Create Favorite
    *     tags: [Favorite]
@@ -82,7 +82,7 @@ const routes = () => {
 
   /**
    * @swagger
-   * /categories:
+   * /favorites:
    *   put:
    *     summary: Update Favorite
    *     tags: [Favorite]
@@ -94,7 +94,7 @@ const routes = () => {
 
   /**
    * @swagger
-   * /categories:
+   * /favorites:
    *   delete:
    *     summary: Delete Favorite
    *     tags: [Favorite]
@@ -105,6 +105,22 @@ const routes = () => {
    *         description: Favorite Not Found
    */
   router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_Favorite"]), FavoriteController.delete)
+
+  /**
+   * @swagger
+   * /favorites/my:
+   *   get:
+   *     summary: Fetch My Favorites
+   *     tags: [Favorite]
+   *     parameters:
+   *       - in: query
+   *         name: query
+   *         description: query
+   *     responses:
+   *       200:
+   *         description: Success
+   */
+  router.get("/my", AuthenticateUser, FavoriteController.findMy)
 
   return router
 }

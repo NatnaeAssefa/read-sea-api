@@ -1,5 +1,5 @@
 import type { Transaction } from "sequelize"
-import { type Favorite } from "../../models/MarketPlace"
+import { Product, type Favorite } from "../../models/MarketPlace"
 import async from "async"
 import { createTransaction } from "../../utilities/database/sequelize";
 import {
@@ -73,7 +73,9 @@ class FavoriteService {
 
       const queryOptions = {
         ...options,
-        Favorite: [["name", "ASC"]],
+        include: {
+          model: Product
+        }
       }
 
       FavoriteDAL.findMany(queryOptions, paranoid)
@@ -253,6 +255,29 @@ class FavoriteService {
           }
         },
       )
+    })
+  }
+
+  static findMy = (user: User, options: any, paranoid?: boolean): Promise<{ rows: Favorite[]; count: number }> => {
+    return new Promise((resolve, reject) => {
+
+      const queryOptions = {
+        ...options,
+        where: {
+          user_id: user.id
+        },
+        include: {
+          model: Product
+        }
+      }
+
+      FavoriteDAL.findMany(queryOptions, paranoid)
+        .then((result) => {
+          resolve(result)
+        })
+        .catch((error) => {
+          reject(new InternalServerError(error))
+        })
     })
   }
 }
