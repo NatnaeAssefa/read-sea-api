@@ -778,7 +778,7 @@
 									"query": [
 										{
 											"key": "query",
-											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"value": "",
 											"disabled": true
 										}
 									]
@@ -859,7 +859,7 @@
 										{
 											"key": "file",
 											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+											"src": "/C:/Users/HP/Downloads/Telegram Desktop/1742710897239.gif"
 										}
 									]
 								},
@@ -871,6 +871,43 @@
 									"path": [
 										"files",
 										"single"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bulk Create",
+							"id": "28934492-db6dc9cb-42ad-4e8b-9755-99486e1ceea0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "files",
+											"type": "file",
+											"src": [
+												"/C:/Users/HP/Downloads/Untitled design.png",
+												"/C:/Users/HP/Downloads/Screenshot (5).png",
+												"/C:/Users/HP/Downloads/Boingo API. - Affiliate.jpg",
+												"/C:/Users/HP/Downloads/image-20250103-071104.png"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api_url}}/files/multiple",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"files",
+										"multiple"
 									]
 								}
 							},
@@ -4020,6 +4057,37 @@
 									],
 									"path": [
 										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register",
+							"id": "28934492-bd24b188-c7f0-46ac-afcf-14d14afdeaad",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product\": {\r\n        \"name\": \"Wireless Bluetooth Mouse\",\r\n        \"description\": \"High-quality wireless mouse with smooth experience\",\r\n        \"price\": \"199.99\",\r\n        \"stock\": 50,\r\n        \"featured\": true,\r\n        \"trending\": true,\r\n        \"category_id\": \"392621c2-acf2-4f37-84ca-3796f57fe900\"\r\n    },\r\n    \"files\": [\r\n        \"69e2ed50-2ad5-4637-9deb-eb8684bf8acd\",\r\n        \"491378e2-733e-407c-bb95-b94f7c86f0d4\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/products/register",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products",
+										"register"
 									]
 								}
 							},
