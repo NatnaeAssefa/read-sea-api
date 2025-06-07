@@ -2431,7 +2431,7 @@
 							"response": []
 						},
 						{
-							"name": "Get All Copy",
+							"name": "Get My",
 							"id": "28934492-0a2f711d-b445-41ee-819b-bb139d1640b1",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
