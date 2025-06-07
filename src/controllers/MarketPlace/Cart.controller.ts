@@ -250,6 +250,19 @@ class CartController {
         ServerResponse(request, response, error.statusCode, error.payload, "Error", startTime)
       })
   }
+
+  static findMy(request: any, response: Response) {
+    const startTime = new Date()
+    const parsedQuery: any = ParseQuery(request.query, ["F", "I", "O", "P"])
+
+    CartService.findMy(request.user, parsedQuery.query, parsedQuery.paranoid)
+      .then((result) => {
+        ServerResponse(request, response, 200, result, "", startTime)
+      })
+      .catch((error) => {
+        ServerResponse(request, response, error.statusCode, error.payload, "Error", startTime)
+      })
+  }
 }
 
 export default CartController

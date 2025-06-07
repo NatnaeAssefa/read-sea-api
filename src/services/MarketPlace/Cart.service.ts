@@ -1,5 +1,5 @@
 import type { Transaction } from "sequelize"
-import { type Cart, Product, ProductImage } from "../../models/MarketPlace"
+import { type Cart, CartItem, Product, ProductImage } from "../../models/MarketPlace"
 import async from "async"
 import { createTransaction } from "../../utilities/database/sequelize";
 import {
@@ -697,6 +697,33 @@ class CartService {
     })
   }
 
+  static findMy = (user: User, options: any, paranoid?: boolean): Promise<{ rows: Cart[]; count: number }> => {
+    return new Promise((resolve, reject) => {
+
+      const queryOptions = {
+        ...options,
+        where: {
+          ...options?.where,
+          user_id: user.id
+        },
+        include: [
+          ...(options?.include || []),
+          {
+            model: CartItem
+          }
+        ]
+      }
+
+      CartDAL.findMany(queryOptions, paranoid)
+        .then((result) => {
+          resolve(result)
+        })
+        .catch((error) => {
+          reject(new InternalServerError(error))
+        })
+    })
+  }
 }
 
 export default CartService
+

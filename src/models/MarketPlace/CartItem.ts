@@ -36,7 +36,7 @@ export default (sequelize: Sequelize) => {
     {
       sequelize,
       paranoid: true,
-      modelName: "cartItem",
+      modelName: "cart_item",
       tableName: "cart_items",
     },
   )

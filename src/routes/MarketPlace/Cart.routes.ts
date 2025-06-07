@@ -26,7 +26,23 @@ const routes = () => {
    *       200:
    *         description: Success
    */
-  router.get("/", CartController.findMany)
+  router.get("/", AuthenticateUser, CartController.findMany)
+
+    /**
+   * @swagger
+   * /categories:
+   *   get:
+   *     summary: Fetch Categories
+   *     tags: [Cart]
+   *     parameters:
+   *       - in: query
+   *         name: query
+   *         description: query
+   *     responses:
+   *       200:
+   *         description: Success
+   */
+  router.get("/my", AuthenticateUser, CartController.findMy)
 
   /**
    * @swagger
