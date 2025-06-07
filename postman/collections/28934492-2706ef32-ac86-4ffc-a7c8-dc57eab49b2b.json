@@ -889,20 +889,25 @@
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "file",
+											"key": "files",
 											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+											"src": [
+												"/C:/Users/HP/Downloads/Untitled design.png",
+												"/C:/Users/HP/Downloads/Screenshot (5).png",
+												"/C:/Users/HP/Downloads/Boingo API. - Affiliate.jpg",
+												"/C:/Users/HP/Downloads/image-20250103-071104.png"
+											]
 										}
 									]
 								},
 								"url": {
-									"raw": "{{api_url}}/files/single",
+									"raw": "{{api_url}}/files/multiple",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"files",
-										"single"
+										"multiple"
 									]
 								}
 							},
