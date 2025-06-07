@@ -877,6 +877,38 @@
 							"response": []
 						},
 						{
+							"name": "Create Copy",
+							"id": "28934492-db6dc9cb-42ad-4e8b-9755-99486e1ceea0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api_url}}/files/single",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"files",
+										"single"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Update",
 							"id": "28934492-f4d2f985-f1b2-45f1-806d-e89d4b120061",
 							"protocolProfileBehavior": {
