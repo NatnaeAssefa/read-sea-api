@@ -3142,7 +3142,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\",\r\n    \"force\": false\r\n}",
+									"raw": "{\r\n    \"id\": \"65de75b1-a9d0-4a35-aa2b-2c5131fb4240\",\r\n    \"force\": false\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3150,12 +3150,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/orders",
+									"raw": "{{api_url}}/favorites",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"orders"
+										"favorites"
 									]
 								}
 							},
