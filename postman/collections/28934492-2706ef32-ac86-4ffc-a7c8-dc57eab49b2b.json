@@ -4315,7 +4315,7 @@
 							"response": []
 						},
 						{
-							"name": "Trending Copy",
+							"name": "Featured",
 							"id": "28934492-acfe5be8-ebdb-45e5-8f0f-871228e8c2cd",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -4324,13 +4324,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/trending",
+									"raw": "{{api_url}}/products/featured",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"products",
-										"trending"
+										"featured"
 									],
 									"query": [
 										{
