@@ -1081,13 +1081,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/users/f83486e6-7fd8-421a-898d-cb11ca967540",
+									"raw": "{{api_url}}/users/42f4b746-a3f5-49a0-ac08-57cbe91cc898",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"users",
-										"f83486e6-7fd8-421a-898d-cb11ca967540"
+										"42f4b746-a3f5-49a0-ac08-57cbe91cc898"
 									],
 									"query": [
 										{
