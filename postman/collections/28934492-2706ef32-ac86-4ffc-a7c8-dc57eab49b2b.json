@@ -4286,7 +4286,7 @@
 							"response": []
 						},
 						{
-							"name": "Get One Copy",
+							"name": "Trending",
 							"id": "28934492-8ee3d707-063e-4838-b60b-768e5e660e08",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
