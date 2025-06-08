@@ -14,6 +14,7 @@ import OrderTrackingFactory, { OrderTracking } from "./OrderTracking"
 import FavoriteFactory, { Favorite } from "./Favorite"
 import SearchHistoryFactory, { SearchHistory } from "./SearchHistory"
 import AppSettingsFactory, { AppSetting } from "./AppSetting"
+import ChappaPaymentFactory, { ChappaPayment } from "./ChappaPayment"
 
 // Import System models
 import SystemModels from "../System"
@@ -32,6 +33,7 @@ const MarketPlaceModels = (sequelize: Sequelize) => {
   FavoriteFactory(sequelize)
   SearchHistoryFactory(sequelize)
   AppSettingsFactory(sequelize)
+  ChappaPaymentFactory(sequelize)
 
   // Define associations
   User.hasMany(Address, { foreignKey: "user_id" })
@@ -83,6 +85,11 @@ const MarketPlaceModels = (sequelize: Sequelize) => {
   ProductImage.belongsTo(File, {
     foreignKey: "file_id",
   });
+
+  User.hasMany(ChappaPayment, { foreignKey: "user_id" })
+  ChappaPayment.belongsTo(User, { foreignKey: "user_id" })
+  ChappaPayment.belongsTo(PaymentMethod, { foreignKey: "payment_method_id" })
+  ChappaPayment.belongsTo(Order, { foreignKey: "order_id" })
 }
 
 export default (sequelize: Sequelize) => {
@@ -107,4 +114,6 @@ export {
   Favorite,
   SearchHistory,
   AppSetting,
+  ChappaPayment,
 }
+

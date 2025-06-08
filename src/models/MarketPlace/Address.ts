@@ -31,7 +31,7 @@ export default (sequelize: Sequelize) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       address_line1: {
         type: DataTypes.STRING,

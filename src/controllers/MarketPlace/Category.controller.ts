@@ -68,7 +68,6 @@ class CategoryController {
     const schema = Joi.object({
       name: Joi.string().required(),
       description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
     })
 
     const { error } = schema.validate(request.body, { abortEarly: false })
@@ -93,7 +92,6 @@ class CategoryController {
       id: Joi.string().guid().required(),
       name: Joi.string().optional(),
       description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
     })
 
     const { error } = schema.validate(request.body, { abortEarly: false })

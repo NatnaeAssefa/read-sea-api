@@ -66,10 +66,11 @@ class SearchHistoryController {
   static create(request: any, response: Response) {
     const startTime = new Date()
     const schema = Joi.object({
-      name: Joi.string().required(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      user_id: Joi.string().guid().required(),
+      query: Joi.string().required().max(255).trim(),
+      last_searched: Joi.date().default(Date.now),
+      search_count: Joi.number().integer().min(1).default(1)
+    });
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 

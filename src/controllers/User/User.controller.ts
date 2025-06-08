@@ -14,11 +14,13 @@ import {
   LogActions,
   PREFERRED_CONTACT_METHOD,
 } from "../../utilities/constants/Constants";
-import { User } from "../../models/User";
+import { Role, User } from "../../models/User";
 import { constants, env } from "../../config";
 import LogService from "../../services/Log/Log.service";
 import { Op } from "sequelize";
 import { isValid, parse } from "date-fns";
+import { UserDAL } from "../../dals/User";
+import { Cart } from "../../models/MarketPlace";
 
 const ModelName = "User";
 
@@ -233,9 +235,11 @@ class UserController {
     }
   }
 
-  static getMe(request: any, response: Response) {
+  static async getMe(request: any, response: Response) {
     const startTime = new Date();
-    ServerResponse(request, response, 200, request.user, "Success", startTime);
+    const user: User = request.user;
+    const fullUserData = await UserDAL.findById(user.id, { include: [ {model: Cart}, {model: Role}] });
+    ServerResponse(request, response, 200, fullUserData, "Success", startTime);
   }
 
   static googleAuth(request: any, response: Response) {

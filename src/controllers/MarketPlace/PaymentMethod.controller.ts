@@ -4,6 +4,7 @@ import { User } from "../../models/User";
 import { PaymentMethodService } from "../../services/MarketPlace";
 import { ParseQuery } from "../../utilities/pagination/Pagination";
 import ServerResponse from "../../utilities/response/Response";
+import { PaymentMethod } from "../../utilities/constants/Constants";
 
 
 const ModelName = "PaymentMethod"
@@ -65,11 +66,21 @@ class PaymentMethodController {
 
   static create(request: any, response: Response) {
     const startTime = new Date()
+
     const schema = Joi.object({
-      name: Joi.string().required(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      user_id: Joi.string().guid().required(),
+      type: Joi.string().valid(...Object.values(PaymentMethod)).required(),
+      provider: Joi.string().required().max(50),
+      account_number: Joi.string().required().pattern(/^\d{4}$/).message('Last 4 digits required'),
+      expiry_date: Joi.string()
+        .when('type', {
+          is: 'credit_card',
+          then: Joi.string().pattern(/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/).required(),
+          otherwise: Joi.string().allow(null)
+        }),
+      is_default: Joi.boolean().default(false),
+      address_id: Joi.string().guid().allow(null)
+    });
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 
@@ -89,12 +100,22 @@ class PaymentMethodController {
 
   static update(request: any, response: Response) {
     const startTime = new Date()
+
     const schema = Joi.object({
       id: Joi.string().guid().required(),
-      name: Joi.string().optional(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      user_id: Joi.string().guid().required(),
+      type: Joi.string().valid(...Object.values(PaymentMethod)).required(),
+      provider: Joi.string().required().max(50),
+      account_number: Joi.string().required().pattern(/^\d{4}$/).message('Last 4 digits required'),
+      expiry_date: Joi.string()
+        .when('type', {
+          is: 'credit_card',
+          then: Joi.string().pattern(/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/).required(),
+          otherwise: Joi.string().allow(null)
+        }),
+      is_default: Joi.boolean().default(false),
+      address_id: Joi.string().guid().allow(null)
+    });
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 

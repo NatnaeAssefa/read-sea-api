@@ -65,11 +65,26 @@ class OrderTrackingController {
 
   static create(request: any, response: Response) {
     const startTime = new Date()
+
     const schema = Joi.object({
-      name: Joi.string().required(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      order_id: Joi.string().guid().required(),
+      status: Joi.string().required().max(50),
+      description: Joi.string().max(500).allow(null, '').optional(),
+      location: Joi.string().max(100).allow(null, '').optional(),
+      latitude: Joi.number().min(-90).max(90).precision(8)
+        .when('longitude', {
+          is: Joi.exist(),
+          then: Joi.required(),
+          otherwise: Joi.allow(null)
+        }),
+      longitude: Joi.number().min(-180).max(180).precision(8)
+        .when('latitude', {
+          is: Joi.exist(),
+          then: Joi.required(),
+          otherwise: Joi.allow(null)
+        }),
+      timestamp: Joi.date().max('now').default(Date.now)
+    }).with('latitude', 'longitude');
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 
@@ -89,12 +104,25 @@ class OrderTrackingController {
 
   static update(request: any, response: Response) {
     const startTime = new Date()
+
     const schema = Joi.object({
       id: Joi.string().guid().required(),
-      name: Joi.string().optional(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      status: Joi.string().max(50).optional(),
+      description: Joi.string().max(500).allow(null, '').optional(),
+      location: Joi.string().max(100).allow(null, '').optional(),
+      latitude: Joi.number().min(-90).max(90).precision(8)
+        .when('longitude', {
+          is: Joi.exist(),
+          then: Joi.required(),
+          otherwise: Joi.allow(null)
+        }),
+      longitude: Joi.number().min(-180).max(180).precision(8)
+        .when('latitude', {
+          is: Joi.exist(),
+          then: Joi.required(),
+          otherwise: Joi.allow(null)
+        })
+    }).min(1).with('latitude', 'longitude');
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 

@@ -231,11 +231,6 @@ export const UserStatus = {
   ARCHIVED: "Archived",
 };
 
-export const PaymentMethod = {
-  STRIPE: "Stripe",
-  PAYPAL: "PayPal",
-};
-
 export const NotificationType = {
   INFO: "Info",
   WARNING: "Warning",
@@ -286,6 +281,16 @@ export const PREFERRED_CONTACT_METHOD = {
   SMS: "SMS",
   NO_PREFERENCE: "No Preference"
 }
+
+export const PaymentMethod = {
+  TELE_BIRR: 'tele_birr',
+  MPESA: 'mpesa',
+  AMOLE: 'Amole',
+  CBE_BIRR: 'CBEBirr',
+  COOPAY_EBIRR: 'Coopay-Ebirr',
+  AWASH_BIRR: 'AwashBirr',
+  OTHER: 'other'
+};
 
 export const PasswordMessage =
   "Password must be at least 8 and at most 16 characters and must contain at least one lower case, one upper case, one special character and one number";
