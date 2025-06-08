@@ -4283,6 +4283,35 @@
 							"response": []
 						},
 						{
+							"name": "Get By ID Copy",
+							"id": "28934492-b5ac66c8-7444-45b5-a1a3-01fb78fd4f54",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/products/akshdkjhaskjdhaksdhkjdhkasd",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products",
+										"akshdkjhaskjdhaksdhkjdhkasd"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "include%5B0%5D%5Bmodel%5D=interest&include%5B1%5D%5Bmodel%5D=file&include%5B1%5D%5Balias%5D=profile",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get By ID With Last View",
 							"id": "28934492-f3fff8c6-3472-4e9c-a93b-03e7fbd2ec59",
 							"protocolProfileBehavior": {
