@@ -4283,7 +4283,7 @@
 							"response": []
 						},
 						{
-							"name": "Get By ID Copy",
+							"name": "Get By ID With Last View",
 							"id": "28934492-f3fff8c6-3472-4e9c-a93b-03e7fbd2ec59",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
