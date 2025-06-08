@@ -3955,12 +3955,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/api/v1/chappa-payments",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"api",
+										"v1",
+										"chappa-payments"
 									],
 									"query": [
 										{
@@ -4074,22 +4076,24 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file",
-											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+									"mode": "raw",
+									"raw": "{\r\n    \"tx_ref\": \"tx-124ad9fd-3709-44dd-9bbe-4a8900fff521\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/api/v1/chappa-payments/verify",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"api",
+										"v1",
+										"chappa-payments",
+										"verify"
 									]
 								}
 							},
