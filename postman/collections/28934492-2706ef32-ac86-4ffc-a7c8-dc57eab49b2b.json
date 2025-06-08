@@ -4263,7 +4263,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/search?query=Headphone&limit=10",
+									"raw": "{{api_url}}/products/search?query=Wireless&limit=10",
 									"host": [
 										"{{api_url}}"
 									],
@@ -4274,12 +4274,11 @@
 									"query": [
 										{
 											"key": "query",
-											"value": "Headphone"
+											"value": "Wireless"
 										},
 										{
 											"key": "limit",
-											"value": "10",
-											"type": "text"
+											"value": "10"
 										}
 									]
 								}
