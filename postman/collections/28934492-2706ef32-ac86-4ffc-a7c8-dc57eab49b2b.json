@@ -4289,16 +4289,16 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/akshdkjhaskjdhaksdhkjdhkasd",
+									"raw": "{{api_url}}/products/268f197c-0b5a-469c-811a-9ecd773a4887",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"products",
-										"akshdkjhaskjdhaksdhkjdhkasd"
+										"268f197c-0b5a-469c-811a-9ecd773a4887"
 									],
 									"query": [
 										{
