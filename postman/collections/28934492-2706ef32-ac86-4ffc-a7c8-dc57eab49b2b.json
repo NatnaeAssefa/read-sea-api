@@ -4263,19 +4263,23 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/get",
+									"raw": "{{api_url}}/products/search?query=Headphone&limit=10",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"products",
-										"get"
+										"search"
 									],
 									"query": [
 										{
 											"key": "query",
-											"value": "search%5Bkeys%5D%5B0%5D=name%26search%5Bvalue%5D=bEDRId",
-											"disabled": true
+											"value": "Headphone"
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"type": "text"
 										}
 									]
 								}
