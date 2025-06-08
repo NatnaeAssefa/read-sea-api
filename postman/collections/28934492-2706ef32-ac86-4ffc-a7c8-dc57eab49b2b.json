@@ -4295,13 +4295,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/get",
+									"raw": "{{api_url}}/products/trending",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"products",
-										"get"
+										"trending"
 									],
 									"query": [
 										{
