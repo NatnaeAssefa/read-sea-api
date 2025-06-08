@@ -3943,6 +3943,220 @@
 					"id": "28934492-2dd3eb0f-3d7c-49e4-aa0c-08282876dc56"
 				},
 				{
+					"name": "Payment Method Copy",
+					"item": [
+						{
+							"name": "Get All",
+							"id": "28934492-81870ac7-7aa3-4698-be2b-3e3ec0146784",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/products",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get One",
+							"id": "28934492-2a01db55-8396-42fe-86f3-74b174d79e8a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/products/get",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products",
+										"get"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "search%5Bkeys%5D%5B0%5D=name%26search%5Bvalue%5D=bEDRId",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By ID",
+							"id": "28934492-8dc44b01-2bac-498f-a6a4-f824e5df2230",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/products/akshdkjhaskjdhaksdhkjdhkasd",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products",
+										"akshdkjhaskjdhaksdhkjdhkasd"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "include%5B0%5D%5Bmodel%5D=interest&include%5B1%5D%5Bmodel%5D=file&include%5B1%5D%5Balias%5D=profile",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"id": "28934492-02140832-3d0c-4721-b153-21502f2fc5fa",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api_url}}/products",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"id": "28934492-1bf74fc2-97a6-4897-affe-0d055fa09f35",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"5fb3985b-8954-4396-9085-bc6001cd353a\",\r\n    \"access_rules\": [\r\n        \"read_access_rule\",\r\n        \"write_access_rule\",\r\n        \"read_role\",\r\n        \"write_role\",\r\n        \"read_user\",\r\n        \"write_user\",\r\n        \"read_destination\",\r\n        \"write_destination\",\r\n        \"read_vehicle\",\r\n        \"write_vehicle\",\r\n        \"read_association\",\r\n        \"write_association\",\r\n        \"read_level\",\r\n        \"write_level\",\r\n        \"read_plate_type\",\r\n        \"write_plate_type\",\r\n        \"read_seat_number\",\r\n        \"write_seat_number\",\r\n        \"read_station\",\r\n        \"write_station\",\r\n        \"read_trip\",\r\n        \"write_trip\",\r\n        \"read_route\",\r\n        \"write_route\",\r\n        \"read_config\",\r\n        \"write_config\",\r\n        \"read_action_log\",\r\n        \"write_action_log\",\r\n        \"sync_data\",\r\n        \"sync_trip\",\r\n        \"sync_vehicle\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/products",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"id": "28934492-2187ec5e-8339-4dd6-9ea3-c836091a6350",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/products",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Restore",
+							"id": "28934492-e9afaccf-e328-4410-b90a-af1b8b8ba560",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/products/restore",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"products",
+										"restore"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "28934492-7cd0a927-1689-4ea4-892a-d54f71898b71"
+				},
+				{
 					"name": "Product",
 					"item": [
 						{
