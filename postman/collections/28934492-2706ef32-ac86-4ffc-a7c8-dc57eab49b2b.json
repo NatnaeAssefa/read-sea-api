@@ -4041,22 +4041,24 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file",
-											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+									"mode": "raw",
+									"raw": "{\r\n    \"order_id\": \"66f2adf2-e522-4bce-8511-cdc73355a84d\",\r\n    \"payment_method_id\": \"e2e859a0-f6d6-4da8-bff1-47c7261751b5\",\r\n    \"amount\": 100,\r\n    \"callback_url\": \"http://localhost:5000\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/api/v1/chappa-payments/initiate",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"api",
+										"v1",
+										"chappa-payments",
+										"initiate"
 									]
 								}
 							},
