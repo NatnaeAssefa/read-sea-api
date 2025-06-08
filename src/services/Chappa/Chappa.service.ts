@@ -21,11 +21,13 @@ interface ChappaVerifyPaymentOptions {
 }
 
 class ChappaService {
-  private static baseUrl = "https://api.chappa.co";
+  private static baseUrl = env.CHAPPA_BASE_URL || "https://api.chapa.co";
   private static secretKey = env.CHAPPA_SECRET_KEY as string;
   
   static initializePayment = async (options: ChappaInitializePaymentOptions) => {
     try {
+      console.log(`Attempting to connect to Chappa API at: ${this.baseUrl}`);
+      
       const response = await axios.post(
         `${this.baseUrl}/v1/transaction/initialize`, 
         options,
@@ -33,13 +35,24 @@ class ChappaService {
           headers: {
             "Authorization": `Bearer ${this.secretKey}`,
             "Content-Type": "application/json"
-          }
+          },
+          timeout: 10000 // Add a timeout of 10 seconds
         }
       );
       
       return response.data;
-    } catch (error) {
+    } catch (error: any) {
       console.error("Chappa initialize payment error:", error);
+      
+      // More detailed error logging
+      if (error.code === 'ENOTFOUND') {
+        console.error(`DNS resolution failed for ${this.baseUrl}. Please check if the API endpoint is correct.`);
+      } else if (error.code === 'ECONNREFUSED') {
+        console.error(`Connection refused to ${this.baseUrl}. The server might be down.`);
+      } else if (error.response) {
+        console.error(`Chappa API responded with status ${error.response.status}:`, error.response.data);
+      }
+      
       throw error;
     }
   }
@@ -107,3 +120,5 @@ class ChappaService {
 }
 
 export default ChappaService
+
+

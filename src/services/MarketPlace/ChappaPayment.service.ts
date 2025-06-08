@@ -204,7 +204,7 @@ class ChappaPaymentService {
         tx_ref: txRef,
         callback_url: callbackUrl,
         customization: {
-          title: "Red-Sea Marketplace Payment",
+          title: "Red-Sea Pay", // Shortened to comply with 16-char limit
           description: "Payment for your order",
         }
       })
@@ -405,3 +405,4 @@ class ChappaPaymentService {
 }
 
 export default ChappaPaymentService
+
