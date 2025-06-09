@@ -3,7 +3,7 @@ import ModelSync from "../models/index"
 import { Category, Product } from "../models/MarketPlace"
 import { User, Role, UserProfile, AccessRule, ActionLog } from "../models/User";
 import { File, Notification, Config } from "../models/System";
-import { Address, PaymentMethod, ProductImage, Cart, CartItem, Order, OrderItem, OrderTracking, Favorite, SearchHistory, AppSetting, ChappaPayment } from "../models/MarketPlace";
+import { Address, PaymentMethod, ProductImage, Cart, CartItem, Order, OrderItem, OrderTracking, Favorite, SearchHistory, AppSetting } from "../models/MarketPlace";
 import { NotificationCategory, NotificationType, UserType } from "../utilities/constants/Constants";
 
 async function seedDatabase() {

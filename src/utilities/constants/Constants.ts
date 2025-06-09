@@ -175,18 +175,20 @@ export const Currency = {
 };
 
 export const AccessType = {
-  SUPER_ADMIN: "Super Admin",
-  ADMIN: "Admin",
-  USER: "User",
-  DELIVERY: "Delivery",
+  SUPER_ADMIN: "super_admin",
+  ADMIN: "admin",
+  USER: "user",
+  DELIVERY: "delivery",
+  SYSTEM: "system"
 };
 
 
 export const UserType = {
-  SUPER_ADMIN: "Super Admin",
-  ADMIN: "Admin",
-  USER: "User",
-  DELIVERY: "Delivery",
+  SUPER_ADMIN: "super_admin",
+  ADMIN: "admin",
+  USER: "user",
+  DELIVERY: "delivery",
+  SYSTEM: "system"
 };
 
 export const UserNotificationStatus = {
