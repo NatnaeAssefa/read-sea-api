@@ -11,6 +11,7 @@ import OrderTrackingDAL from "./OrderTracking.dal";
 import PaymentMethodDAL from "./PaymentMethod.dal";
 import ProductImageDAL from "./ProductImage.dal";
 import SearchHistoryDAL from "./SearchHistory.dal";
+import UserProductViewDAL from "./UserProductView.dal";
 
 export {
     CartDAL,
@@ -25,5 +26,6 @@ export {
     OrderTrackingDAL,
     PaymentMethodDAL,
     ProductImageDAL,
-    SearchHistoryDAL
+    SearchHistoryDAL,
+    UserProductViewDAL
 };

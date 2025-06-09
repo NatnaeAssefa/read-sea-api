@@ -114,6 +114,24 @@ const routes = () => {
   router.get("/get", ProductController.findOne)
 
   /**
+ * @swagger
+ * /products/recently-viewed:
+ *   get:
+ *     summary: Fetch User's Recently Viewed Products
+ *     tags: [Product]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: limit
+ *         description: Number of products to return
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+  router.get("/recently-viewed", AuthenticateUser, ProductController.getUserRecentlyViewedProducts)
+
+  /**
    * @swagger
    * /products/{id}:
    *   get:
@@ -135,7 +153,7 @@ const routes = () => {
    *       404:
    *         description: Product Not Found
    */
-  router.get("/:id", ProductController.findById)
+  router.get("/:id", AuthenticateUser, ProductController.findById)
 
   /**
    * @swagger
@@ -187,7 +205,29 @@ const routes = () => {
    */
   router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_product"]), ProductController.delete)
 
+
+  /**
+   * @swagger
+   * /products/{id}/view:
+   *   post:
+   *     summary: Record product view for current user
+   *     tags: [Product]
+   *     security:
+   *       - bearerAuth: []
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         description: Product ID
+   *     responses:
+   *       200:
+   *         description: Success
+   */
+  router.post("/:id/view", AuthenticateUser, ProductController.recordProductView)
+
   return router
 }
 
 export default routes
+
+

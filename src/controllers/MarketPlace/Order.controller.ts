@@ -66,10 +66,15 @@ class OrderController {
   static create(request: any, response: Response) {
     const startTime = new Date()
     const schema = Joi.object({
-      name: Joi.string().required(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      user_id: Joi.string().guid().required(),
+      address_id: Joi.string().guid().required(),
+      payment_method_id: Joi.string().guid().required(),
+      subtotal: Joi.number().positive().precision(2).required(),
+      shipping_fee: Joi.number().min(0).precision(2).default(0.0),
+      tax: Joi.number().min(0).precision(2).default(0.0),
+      total: Joi.number().positive().precision(2).required(),
+      estimated_delivery: Joi.date().greater('now').allow(null).optional()
+    });
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 
@@ -89,12 +94,18 @@ class OrderController {
 
   static update(request: any, response: Response) {
     const startTime = new Date()
+
     const schema = Joi.object({
       id: Joi.string().guid().required(),
-      name: Joi.string().optional(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      user_id: Joi.string().guid().required(),
+      address_id: Joi.string().guid().required(),
+      payment_method_id: Joi.string().guid().required(),
+      subtotal: Joi.number().positive().precision(2).required(),
+      shipping_fee: Joi.number().min(0).precision(2).default(0.0),
+      tax: Joi.number().min(0).precision(2).default(0.0),
+      total: Joi.number().positive().precision(2).required(),
+      estimated_delivery: Joi.date().greater('now').allow(null).optional()
+    });
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 

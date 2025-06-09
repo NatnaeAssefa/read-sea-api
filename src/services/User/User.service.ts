@@ -27,6 +27,7 @@ import { randomUUID } from "crypto";
 import { GlobalAuthOptionsNew } from "../../middleware/Auth/Auth";
 import { EmailService } from "../../utilities/email/Email";
 import { verifyCode } from "../../utilities/auth/googleAuth";
+import { Cart } from "../../models/MarketPlace";
 
 const ModelName = "User";
 
@@ -965,7 +966,7 @@ class UserService {
   ): Promise<User | null> => {
     return new Promise((resolve, reject) => {
       let authOptions = UserService.AuthOptions(user, options, paranoid);
-      UserDAL.findById(id, authOptions.options, authOptions.paranoid)
+      UserDAL.findById(id, {...authOptions.options, include: [{model: Cart}]}, authOptions.paranoid)
         .then((result) => {
           resolve(result);
         })

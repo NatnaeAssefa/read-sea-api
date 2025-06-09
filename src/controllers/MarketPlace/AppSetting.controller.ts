@@ -66,10 +66,13 @@ class AppSettingController {
   static create(request: any, response: Response) {
     const startTime = new Date()
     const schema = Joi.object({
-      name: Joi.string().required(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      user_id: Joi.string().guid().required(),
+      language: Joi.string().optional().default('en'),
+      theme: Joi.string().optional().default('light'),
+      notifications_enabled: Joi.boolean().optional().default(true),
+      email_notifications: Joi.boolean().optional().default(true),
+      push_notifications: Joi.boolean().optional().default(true)
+    });
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 
@@ -89,12 +92,14 @@ class AppSettingController {
 
   static update(request: any, response: Response) {
     const startTime = new Date()
+
     const schema = Joi.object({
-      id: Joi.string().guid().required(),
-      name: Joi.string().optional(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      language: Joi.string().optional(),
+      theme: Joi.string().optional(),
+      notifications_enabled: Joi.boolean().optional(),
+      email_notifications: Joi.boolean().optional(),
+      push_notifications: Joi.boolean().optional()
+    }).min(1);  // require at least one field to update
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 

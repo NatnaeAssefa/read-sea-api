@@ -66,9 +66,8 @@ class FavoriteController {
   static create(request: any, response: Response) {
     const startTime = new Date()
     const schema = Joi.object({
-      name: Joi.string().required(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
+      user_id: Joi.string().guid().required(),
+      product_id: Joi.string().guid().required(),
     })
 
     const { error } = schema.validate(request.body, { abortEarly: false })

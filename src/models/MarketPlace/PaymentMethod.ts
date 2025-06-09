@@ -1,4 +1,5 @@
 import { DataTypes, Model, type Sequelize } from "sequelize"
+import { PaymentMethod as PM } from "../../utilities/constants/Constants"
 
 export class PaymentMethod extends Model {
   public id!: string
@@ -28,7 +29,7 @@ export default (sequelize: Sequelize) => {
         allowNull: false,
       },
       type: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM(...Object.values(PM)),
         allowNull: false,
       },
       provider: {

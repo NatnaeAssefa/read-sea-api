@@ -1,5 +1,5 @@
 import type { Transaction } from "sequelize"
-import { type Product, Category, ProductImage, } from "../../models/MarketPlace"
+import { Category, Product, ProductImage, } from "../../models/MarketPlace"
 import async from "async"
 import { createTransaction } from "../../utilities/database/sequelize";
 import {
@@ -13,11 +13,18 @@ import { LogActions } from "../../utilities/constants/Constants";
 import { ActionLogService } from "../User";
 import { User } from "../../models/User";
 import { File } from "../../models/System";
+import UserProductViewDAL from "../../dals/MarketPlace/UserProductView.dal"
+import { UserProductView } from "../../models/MarketPlace/UserProductView"
 
 import { Op } from "sequelize"
 import { ProductDAL, ProductImageDAL } from "../../dals/MarketPlace";
 
 const ModelName = "Product"
+
+interface CreateProductWithImagesPayload {
+  product: Omit<Product, NullishPropertiesOf<Product>>;
+  files?: string[];
+}
 
 class ProductService {
   static create = (user: User, payload: Omit<Product, NullishPropertiesOf<Product>>): Promise<Product> => {
@@ -61,11 +68,12 @@ class ProductService {
               reject(new InternalServerError("Dead End"))
             }
           } else {
-            reject(error)
+            // Fix: Don't reject twice
             if (result && result.transaction) {
               result.transaction.rollback()
+              reject(error)
             } else {
-              reject(new InternalServerError("Dead End"))
+              reject(error || new InternalServerError("Dead End"))
             }
           }
         },
@@ -201,7 +209,7 @@ class ProductService {
             ],
           },
         ],
-        order: [["reviewCount", "DESC"]],
+        order: [["review_count", "DESC"]],
       }
 
       ProductDAL.findMany(options)
@@ -307,11 +315,12 @@ class ProductService {
               reject(new InternalServerError("Dead End"))
             }
           } else {
-            reject(error)
+            // Fix: Don't reject twice
             if (result && result.transaction) {
               result.transaction.rollback()
+              reject(error)
             } else {
-              reject(new InternalServerError("Dead End"))
+              reject(error || new InternalServerError("Dead End"))
             }
           }
         },
@@ -340,7 +349,12 @@ class ProductService {
                   })
                 }
               })
-              .catch((error) => done(new InternalServerError(error)))
+              .catch((error) => 
+                done(new InternalServerError(error), {
+                  obj: null,
+                  transaction: transaction,
+                })
+              )
           },
           (transaction: Transaction, product: Product, done: Function) => {
             ProductDAL.delete({ id: product.id }, transaction, force)
@@ -374,11 +388,12 @@ class ProductService {
               reject(new InternalServerError("Dead End"))
             }
           } else {
-            reject(error)
+            // Fix: Don't reject twice
             if (result && result.transaction) {
               result.transaction.rollback()
+              reject(error)
             } else {
-              reject(new InternalServerError("Dead End"))
+              reject(error || new InternalServerError("Dead End"))
             }
           }
         },
@@ -386,7 +401,7 @@ class ProductService {
     })
   }
 
-  static createWithImages = (user: User, payload: any): Promise<Product> => {
+  static createWithImages = (user: User, payload: CreateProductWithImagesPayload): Promise<Product> => {
     return new Promise((resolve, reject) => {
       let product: Product;
       const productData = payload.product;
@@ -431,6 +446,11 @@ class ProductService {
                 
                 ProductImageDAL.create(imageData, transaction)
                   .then((image) => {
+                    if (!image) {
+                      // Fix: Handle case where image creation fails but doesn't throw
+                      callback(new InternalServerError("Failed to create product image") as any);
+                      return;
+                    }
                     productImages.push(image as ProductImage);
                     callback(null);
                   })
@@ -470,18 +490,120 @@ class ProductService {
               reject(new InternalServerError("Dead End"))
             }
           } else {
-            reject(error)
+            // Fix: Don't reject twice
             if (result && result.transaction) {
               result.transaction.rollback()
+              reject(error)
             } else {
-              reject(new InternalServerError("Dead End"))
+              reject(error || new InternalServerError("Dead End"))
             }
           }
         },
       )
     })
   }
+
+  static recordUserView = (userId: string, productId: string): Promise<UserProductView> => {
+    return new Promise((resolve, reject) => {
+      // Add transaction for consistency with other methods
+      createTransaction()
+        .then((transaction) => {
+          UserProductViewDAL.findOne({
+            where: { user_id: userId, product_id: productId }
+          })
+            .then((existingView) => {
+              if (existingView) {
+                return UserProductViewDAL.update(
+                  existingView,
+                  { 
+                    view_count: existingView.view_count + 1,
+                    last_viewed: new Date()
+                  },
+                  transaction
+                ).then(() => UserProductViewDAL.findById(existingView.id))
+              } else {
+                return UserProductViewDAL.create({
+                  user_id: userId,
+                  product_id: productId,
+                  view_count: 1,
+                  last_viewed: new Date()
+                }, transaction)
+              }
+            })
+            .then((result) => {
+              if (result) {
+                resolve(result)
+                transaction.commit()
+              }
+            })
+            .catch((error) => {
+              transaction.rollback()
+              reject(new InternalServerError(error))
+            })
+        })
+        .catch((error) => reject(new InternalServerError(error)))
+    })
+  }
+
+  static getUserRecentlyViewedProducts = (userId: string, limit = 4): Promise<Product[]> => {
+    return new Promise((resolve, reject) => {
+      // Fix: Restructure query to be more efficient
+      const options = {
+        where: { user_id: userId },
+        order: [["last_viewed", "DESC"]],
+        limit,
+        include: [
+          {
+            model: Product,
+            include: [
+              {
+                model: Category,
+                attributes: ["id", "name"],
+              },
+              {
+                model: ProductImage,
+                include: [
+                  {
+                    model: File,
+                    attributes: ["id", "path"],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      }
+
+      UserProductViewDAL.findMany(options)
+        .then((result) => {
+          if (!result.rows || result.rows.length === 0) {
+            resolve([])
+            return
+          }
+          
+          // Fix: Add null check and proper type handling
+          const products = result.rows
+            .filter(view => view.product) // Filter out any null products
+            .map(view => view.product)
+          resolve(products)
+        })
+        .catch((error) => {
+          reject(new InternalServerError(error))
+        })
+    })
+  }
 }
 
 export default ProductService
+
+
+
+
+
+
+
+
+
+
+
 

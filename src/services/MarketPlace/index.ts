@@ -11,6 +11,7 @@ import OrderTrackingService from "./OrderTracking.service";
 import PaymentMethodService from "./PaymentMethod.service";
 import ProductImageService from "./ProductImage.service";
 import SearchHistoryService from "./SearchHistory.service";
+import ChappaPaymentService from "./ChappaPayment.service";
 
 export {
     CartService,
@@ -25,5 +26,6 @@ export {
     OrderTrackingService,
     PaymentMethodService,
     ProductImageService,
-    SearchHistoryService
+    SearchHistoryService,
+    ChappaPaymentService
 };

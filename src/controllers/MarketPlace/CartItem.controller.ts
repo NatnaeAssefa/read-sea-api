@@ -65,11 +65,12 @@ class CartItemController {
 
   static create(request: any, response: Response) {
     const startTime = new Date()
+
     const schema = Joi.object({
-      name: Joi.string().required(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      cart_id: Joi.string().guid().required(),
+      product_id: Joi.string().guid().required(),
+      quantity: Joi.number().integer().min(1).default(1)
+    });
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 
@@ -89,12 +90,11 @@ class CartItemController {
 
   static update(request: any, response: Response) {
     const startTime = new Date()
+    
     const schema = Joi.object({
       id: Joi.string().guid().required(),
-      name: Joi.string().optional(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      quantity: Joi.number().integer().min(1).required()
+    });
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 

@@ -66,10 +66,16 @@ class AddressController {
   static create(request: any, response: Response) {
     const startTime = new Date()
     const schema = Joi.object({
-      name: Joi.string().required(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      user_id: Joi.string().guid().required(),
+      name: Joi.string().optional().max(100),
+      address_line1: Joi.string().required().max(255),
+      address_line2: Joi.string().allow(null, '').optional().max(255),
+      city: Joi.string().required().max(100),
+      state: Joi.string().required().max(100),
+      postal_code: Joi.string().required().max(20),
+      country: Joi.string().required().max(100),
+      is_default: Joi.boolean().default(false)
+    });
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 
@@ -89,12 +95,18 @@ class AddressController {
 
   static update(request: any, response: Response) {
     const startTime = new Date()
+
     const schema = Joi.object({
       id: Joi.string().guid().required(),
-      name: Joi.string().optional(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
-    })
+      name: Joi.string().optional().max(100),
+      address_line1: Joi.string().optional().max(255),
+      address_line2: Joi.string().allow(null, '').optional().max(255),
+      city: Joi.string().optional().max(100),
+      state: Joi.string().optional().max(100),
+      postal_code: Joi.string().optional().max(20),
+      country: Joi.string().optional().max(100),
+      is_default: Joi.boolean().optional()
+    }).min(1);  // require at least one field to update
 
     const { error } = schema.validate(request.body, { abortEarly: false })
 

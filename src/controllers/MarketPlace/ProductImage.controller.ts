@@ -66,9 +66,8 @@ class ProductImageController {
   static create(request: any, response: Response) {
     const startTime = new Date()
     const schema = Joi.object({
-      name: Joi.string().required(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
+      file_id: Joi.string().guid().required(),
+      product_id: Joi.string().guid().required(),
     })
 
     const { error } = schema.validate(request.body, { abortEarly: false })
@@ -89,11 +88,11 @@ class ProductImageController {
 
   static update(request: any, response: Response) {
     const startTime = new Date()
+
     const schema = Joi.object({
       id: Joi.string().guid().required(),
-      name: Joi.string().optional(),
-      description: Joi.string().optional(),
-      file_id: Joi.string().guid().optional(),
+      file_id: Joi.string().guid().required(),
+      product_id: Joi.string().guid().required(),
     })
 
     const { error } = schema.validate(request.body, { abortEarly: false })

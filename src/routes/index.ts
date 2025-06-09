@@ -4,6 +4,7 @@ import authRoutes from "./Auth";
 import systemRoutes from "./System";
 import userRoutes from "./User";
 import marketPlaceRoutes from "./MarketPlace";
+import ChappaPaymentRoutes from "./MarketPlace/ChappaPayment.routes";
 
 import { constants } from "../config";
 import { ConfigDAL } from "../dals/System";
@@ -14,6 +15,7 @@ let routes = (app: Application) => {
   app.use(authRoutes());
   app.use(systemRoutes());
   app.use(userRoutes());
+  app.use("/api/v1/chappa-payments", ChappaPaymentRoutes());
 
   /**
    * @swagger

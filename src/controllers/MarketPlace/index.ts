@@ -11,6 +11,7 @@ import OrderTrackingController from "./OrderTracking.controller";
 import PaymentMethodController from "./PaymentMethod.controller";
 import ProductImageController from "./ProductImage.controller";
 import SearchHistoryController from "./SearchHistory.controller";
+import ChappaPaymentController from "./ChappaPayment.controller";
 
 export {
     CartController,
@@ -25,5 +26,6 @@ export {
     OrderTrackingController,
     PaymentMethodController,
     ProductImageController,
-    SearchHistoryController
+    SearchHistoryController,
+    ChappaPaymentController
 };

@@ -34,7 +34,7 @@ class ProductController {
       })
   }
 
-  static findById(request: Request, response: Response) {
+  static findById(request: any, response: Response) {
     const startTime = new Date()
     const schema = Joi.object({
       id: Joi.string().guid().required(),
@@ -45,6 +45,13 @@ class ProductController {
     if (!error) {
       const id: string = request.params.id
       const parsedQuery: any = ParseQuery(request.query, ["I", "P"])
+      
+      // Record product view if user is authenticated
+      if (request.user) {
+        ProductService.recordUserView(request.user.id, id)
+          .catch((error) => console.error("Failed to record product view:", error))
+      }
+      
       ProductService.findById(id, parsedQuery.query, parsedQuery.paranoid)
         .then((result) => {
           if (result) {
@@ -227,6 +234,46 @@ class ProductController {
       ServerResponse(request, response, 400, { details: error.details }, "Input validation error", startTime)
     }
   }
+
+  static recordProductView(request: any, response: Response) {
+    console.log("recordProductView")
+    const startTime = new Date()
+    const schema = Joi.object({
+      id: Joi.string().guid().required(),
+    })
+
+    const { error } = schema.validate(request.params)
+
+    if (!error) {
+      const user: User = request.user
+      const productId: string = request.params.id
+      
+      ProductService.recordUserView(user.id, productId)
+        .then((result) => {
+          ServerResponse(request, response, 200, result, "Success", startTime)
+        })
+        .catch((error) => {
+          ServerResponse(request, response, error.statusCode, error.payload, "Error", startTime)
+        })
+    } else {
+      ServerResponse(request, response, 400, { details: error.details }, "Input validation error", startTime)
+    }
+  }
+
+  static getUserRecentlyViewedProducts(request: any, response: Response) {
+    const startTime = new Date()
+    const limit = Number.parseInt(request.query.limit as string) || 4
+    const user: User = request.user
+
+    ProductService.getUserRecentlyViewedProducts(user.id, limit)
+      .then((result) => {
+        ServerResponse(request, response, 200, result, "", startTime)
+      })
+      .catch((error) => {
+        ServerResponse(request, response, error.statusCode, error.payload, "Error", startTime)
+      })
+  }
 }
 
 export default ProductController
+
