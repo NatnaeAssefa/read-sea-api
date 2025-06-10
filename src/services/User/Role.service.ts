@@ -15,7 +15,7 @@ import { GlobalAuthOptionsNew } from "../../middleware/Auth/Auth";
 
 const ModelName = "Role";
 
-class RoleService {
+export class RoleService {
   static AuthOptions = (user: User, options: any, paranoid?: boolean) => {
     return GlobalAuthOptionsNew(user, options, null, null, paranoid);
   };
@@ -579,6 +579,91 @@ class RoleService {
       );
     });
   };
+
+  // Add a function to update the User role with necessary permissions
+  static updateUserRoleWithDefaultPermissions = async () => {
+    try {
+      const userRole = await RoleDAL.findOne({
+        where: { name: "User" }
+      });
+      
+      if (userRole) {
+        // Get current permissions
+        const currentPermissions = userRole.access_rules || [];
+        
+        // Add cart item permissions if they don't exist
+        const cartItemPermissions = [
+          "read_cart_item", "write_cart_item", "delete_cart_item"
+        ];
+        
+        // Combine existing permissions with new ones, avoiding duplicates
+        const updatedPermissions = [
+          ...new Set([
+            ...currentPermissions,
+            ...cartItemPermissions,
+            // Include other basic permissions to ensure they're all there
+            "read_cart", "write_cart", "delete_cart",
+            "read_favorite", "write_favorite", "delete_favorite",
+            "read_user_profile", "write_user_profile",
+            "read_product", "read_category",
+            "read_order", "write_order",
+            "read_app_setting", "write_app_setting",
+            "read_address", "write_address", "delete_address"
+          ])
+        ];
+        
+        await userRole.update({ access_rules: updatedPermissions });
+        return userRole;
+      }
+      return null;
+    } catch (error) {
+      throw new InternalServerError(error instanceof Error ? error.message : String(error));
+    }
+  }
+
+  /**
+   * Update Admin role with default permissions
+   * @returns Promise with the updated role
+   */
+  static updateAdminRoleWithDefaultPermissions = async () => {
+    try {
+      const userRole = await RoleDAL.findOne({
+        where: { name: "Admin" }
+      });
+      
+      if (userRole) {
+        // Get current permissions
+        const currentPermissions = userRole.access_rules || [];
+        
+        // Add cart item permissions if they don't exist
+        const cartItemPermissions = [
+          "read_cart_item", "write_cart_item", "delete_cart_item"
+        ];
+        
+        // Combine existing permissions with new ones, avoiding duplicates
+        const updatedPermissions = [
+          ...new Set([
+            ...currentPermissions,
+            ...cartItemPermissions,
+            // Include other basic permissions to ensure they're all there
+            "read_cart", "write_cart", "delete_cart",
+            "read_favorite", "write_favorite", "delete_favorite",
+            "read_user_profile", "write_user_profile",
+            "read_product", "read_category",
+            "read_order", "write_order",
+            "read_app_setting", "write_app_setting",
+            "read_address", "write_address", "delete_address","read_product_image", "write_product_image", "delete_product_image"
+          ])
+        ];
+        
+        await userRole.update({ access_rules: updatedPermissions });
+        return userRole;
+      }
+      return null;
+    } catch (error) {
+      throw new InternalServerError(error instanceof Error ? error.message : String(error));
+    }
+  }
 }
 
-export default RoleService;
+export { RoleService as default };

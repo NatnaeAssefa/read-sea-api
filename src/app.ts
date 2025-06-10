@@ -51,14 +51,30 @@ import ServerResponse from "./utilities/response/Response";
 import LogService from "./services/Log/Log.service";
 import { AccessRuleService, RoleService } from "./services/User";
 import { UserType } from "./utilities/constants/Constants";
+import { Role } from "./models/User";
 
 initializeDB().then(() => {
   AccessRuleService.createIfNotExist(access_rules).then(() => {
-    RoleService.createSuperAdminRole(UserType.SUPER_ADMIN).then((r) => {
+    RoleService.createSuperAdminRole(UserType.SUPER_ADMIN).then((r: any) => {
       LogService.LogInfo(`Super Admin role creation done`);
-    }).catch((e) => {
+    }).catch((e: Error) => {
       LogService.LogInfo(`Super Admin role already exists! - ${e}`);
-    })
+    });
+    
+    // Update User role with default permissions
+    RoleService.updateUserRoleWithDefaultPermissions().then(() => {
+      LogService.LogInfo(`User role permissions updated`);
+    }).catch((e: Error) => {
+      LogService.LogError(`Failed to update User role permissions: ${e}`);
+    });
+    
+    // Update Admin role with default permissions
+    RoleService.updateAdminRoleWithDefaultPermissions().then(() => {
+      LogService.LogInfo(`Admin role permissions updated`);
+    }).catch((e: Error) => {
+      LogService.LogError(`Failed to update Admin role permissions: ${e}`);
+    });
+    
     LogService.LogInfo(`Access rules sync done`);
   });
 });

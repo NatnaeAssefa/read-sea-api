@@ -6,6 +6,8 @@ import Joi from "joi";
 import { User } from "../../models/User";
 import { AccessType, UserType } from "../../utilities/constants/Constants";
 import { Op } from "sequelize";
+import { RoleDAL } from "../../dals/User";
+import { NotFoundError } from "../../errors/Errors";
 
 const ModelName = "Role";
 
@@ -290,6 +292,90 @@ class RoleController {
         startTime
       );
     }
+  }
+
+  static updateUserRolePermissions(request: any, response: Response) {
+    const startTime = new Date();
+    
+    RoleService.updateUserRoleWithDefaultPermissions()
+      .then((result) => {
+        ServerResponse(request, response, 200, result, "User role updated successfully", startTime);
+      })
+      .catch((error) => {
+        ServerResponse(
+          request,
+          response,
+          error.statusCode || 500,
+          error.payload || error,
+          "Error updating user role",
+          startTime
+        );
+      });
+  }
+
+  static updateAdminPermissions(request: any, response: Response) {
+    const startTime = new Date();
+    const user: User = request.user;
+  
+    RoleService.updateAdminRoleWithDefaultPermissions()
+      .then((result) => {
+        ServerResponse(request, response, 200, result, "Admin permissions updated successfully", startTime);
+      })
+      .catch((error) => {
+        ServerResponse(
+          request,
+          response,
+          error.statusCode || 500,
+          error.payload || error,
+          "Error updating admin permissions",
+          startTime
+        );
+      });
+  }
+
+  static addProductImageAccess(request: any, response: Response) {
+    const startTime = new Date();
+    
+    // Find the Admin role
+    RoleDAL.findOne({
+      where: { 
+        name: "Admin",
+        type: "System"
+      }
+    })
+      .then((adminRole: any) => {
+        if (!adminRole) {
+          throw new NotFoundError("Admin role not found");
+        }
+        
+        // Get current permissions
+        const currentPermissions = adminRole.access_rules || [];
+        
+        // Add the permission if it doesn't exist
+        if (!currentPermissions.includes("write_product_image")) {
+          const updatedPermissions = [...currentPermissions, "write_product_image"];
+          
+          // Update the role
+          return RoleDAL.update(adminRole, {
+            access_rules: updatedPermissions
+          });
+        }
+        
+        return adminRole;
+      })
+      .then((result: any) => {
+        ServerResponse(request, response, 200, result, "Product image access added to Admin role", startTime);
+      })
+      .catch((error: any) => {
+        ServerResponse(
+          request,
+          response,
+          error.statusCode || 500,
+          error.payload || error,
+          "Error adding product image access",
+          startTime
+        );
+      });
   }
 }
 

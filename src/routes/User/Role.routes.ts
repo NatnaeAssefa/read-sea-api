@@ -167,6 +167,47 @@ const routes = () => {
     RoleController.delete
   );
 
+  router.post(
+    "/update-user-role",
+    AuthenticateUser,
+    AuthorizeAccess(["write_role"]),
+    RoleController.updateUserRolePermissions
+  );
+
+  /**
+   * @swagger
+   * /roles/update-admin-permissions:
+   *   post:
+   *     summary: Update Admin role permissions
+   *     tags: [Role]
+   *     responses:
+   *       200:
+   *         description: Success
+   */
+  router.post(
+    "/update-admin-permissions",
+    AuthenticateUser,
+    AuthorizeAccess(["write_role"]),
+    RoleController.updateAdminPermissions
+  );
+
+  /**
+   * @swagger
+   * /roles/add-product-image-access:
+   *   post:
+   *     summary: Add product image access to Admin role
+   *     tags: [Role]
+   *     responses:
+   *       200:
+   *         description: Success
+   */
+  router.post(
+    "/add-product-image-access",
+    AuthenticateUser,
+    AuthorizeAccess(["write_role"]),
+    RoleController.addProductImageAccess
+  );
+
   return router;
 };
 

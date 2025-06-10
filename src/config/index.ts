@@ -284,8 +284,16 @@ export const access_rules: AccessRules[] = [
     group: "Product Image",
     rules: [
       { name: "read_product_image", type: AccessType.USER },
-      { name: "write_product_image", type: AccessType.ADMIN },
+      { name: "write_product_image", type: AccessType.USER }, // Changed to USER to allow both users and admins
       { name: "delete_product_image", type: AccessType.ADMIN },
+    ],
+  },
+  {
+    group: "Cart Item",
+    rules: [
+      { name: "read_cart_item", type: AccessType.USER },
+      { name: "write_cart_item", type: AccessType.USER },
+      { name: "delete_cart_item", type: AccessType.USER },
     ],
   },
 ];
