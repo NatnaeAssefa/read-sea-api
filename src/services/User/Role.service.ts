@@ -648,6 +648,7 @@ export class RoleService {
             // Include other basic permissions to ensure they're all there
             "read_cart", "write_cart", "delete_cart",
             "read_favorite", "write_favorite", "delete_favorite",
+            "write_product",
             "read_user_profile", "write_user_profile",
             "read_product", "read_category",
             "read_order", "write_order",
