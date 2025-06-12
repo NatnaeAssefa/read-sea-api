@@ -2,6 +2,7 @@ import { DataTypes, Model, type Sequelize } from "sequelize"
 
 export class Address extends Model {
   public id!: string
+  public location!: object
   public user_id!: string
   public name!: string
   public address_line1!: string
@@ -10,6 +11,8 @@ export class Address extends Model {
   public state!: string
   public postal_code!: string
   public country!: string
+  public lat!: number
+  public lng!: number
   public is_default!: boolean
 
   public readonly createdAt!: Date
@@ -24,6 +27,10 @@ export default (sequelize: Sequelize) => {
         primaryKey: true,
         allowNull: false,
         defaultValue: DataTypes.UUIDV4,
+      },
+      location: {
+        type: DataTypes.GEOGRAPHY("POINT"),
+        allowNull: false,
       },
       user_id: {
         type: DataTypes.UUID,
@@ -55,6 +62,14 @@ export default (sequelize: Sequelize) => {
       },
       country: {
         type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lat: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+      },
+      lng: {
+        type: DataTypes.DOUBLE,
         allowNull: false,
       },
       is_default: {

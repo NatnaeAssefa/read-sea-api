@@ -69,7 +69,7 @@ SMTP_PASS=your_smtp_password
 CREATE EXTENSION postgis;
 
 # Create spatial index
-CREATE INDEX idx_location_geography ON properties USING GIST(location);
+CREATE INDEX idx_location_geography ON address USING GIST(location);
 ```
 
 5. Start the development server

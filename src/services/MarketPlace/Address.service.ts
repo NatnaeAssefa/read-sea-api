@@ -11,10 +11,16 @@ import { LogActions } from "../../utilities/constants/Constants";
 import { ActionLogService } from "../User";
 import { User } from "../../models/User";
 import { AddressDAL } from "../../dals/MarketPlace";
+import { GlobalAuthOptionsNew } from "../../middleware/Auth/Auth";
+import sequelize, { Op } from "sequelize";
 
 const ModelName = "Address"
 
 class AddressService {
+  static AuthOptions = (user: User, options: any, paranoid?: boolean) => {
+    return GlobalAuthOptionsNew(user, options, null, null, paranoid);
+  };
+  
   static create = (user: User, payload: Omit<Address, NullishPropertiesOf<Address>>): Promise<Address> => {
     return new Promise((resolve, reject) => {
       async.waterfall(
@@ -25,16 +31,22 @@ class AddressService {
               .catch((error) => reject(new InternalServerError(error)))
           },
           (transaction: Transaction, done: Function) => {
-            AddressDAL.create(payload, transaction)
-              .then((result) => {
-                done(null, result, { obj: result, transaction: transaction })
-              })
-              .catch((error) =>
-                done(new InternalServerError(error), {
-                  obj: null,
-                  transaction: transaction,
-                }),
-              )
+            payload.user_id = user.id
+            payload.location = {
+              type: "Point",
+              coordinates: [payload.lng, payload.lat],
+            },
+
+              AddressDAL.create(payload, transaction)
+                .then((result) => {
+                  done(null, result, { obj: result, transaction: transaction })
+                })
+                .catch((error) =>
+                  done(new InternalServerError(error), {
+                    obj: null,
+                    transaction: transaction,
+                  }),
+                )
           },
           (obj: any, result: any, done: Function) => {
             ActionLogService.handleCreate({
@@ -255,6 +267,57 @@ class AddressService {
       )
     })
   }
+
+  static findByCoordinate = (
+    user: User,
+    options: any,
+    lat: number,
+    lng: number,
+    radius: number,
+    paranoid?: boolean
+  ): Promise<{ rows: Address[]; count: number }> => {
+    return new Promise((resolve, reject) => {
+      let authOptions = AddressService.AuthOptions(user, options, paranoid);
+
+      // Add PostGIS spatial query in the where clause using Sequelize's raw SQL
+      authOptions.options.where = {
+        ...authOptions.options.where,
+        [Op.and]: sequelize.literal(`
+          ST_DWithin(
+            location::geography,
+            ST_SetSRID(ST_MakePoint(${lng}, ${lat}), 4326)::geography,
+            ${radius}
+          )
+        `),
+      };
+
+      // Add the ST_Distance calculation in the attributes
+      authOptions.options.attributes = {
+        include: [
+          [
+            sequelize.literal(`
+          ST_Distance(
+            location::geography,
+            ST_SetSRID(ST_MakePoint(${lng}, ${lat}), 4326)::geography
+          )
+        `),
+            "distance",
+          ],
+        ],
+      };
+
+      // Sort by the calculated distance
+      authOptions.options.order = [[sequelize.literal('distance'), 'ASC']];
+
+      AddressDAL.findMany(authOptions.options, authOptions.paranoid)
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((error) => {
+          reject(new InternalServerError(error));
+        });
+    });
+  };
 }
 
 export default AddressService
