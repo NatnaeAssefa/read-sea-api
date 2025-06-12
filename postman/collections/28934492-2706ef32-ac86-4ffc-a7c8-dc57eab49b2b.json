@@ -2013,6 +2013,44 @@
 					"name": "Address",
 					"item": [
 						{
+							"name": "Get All Coordinates Copy",
+							"id": "28934492-4067ec44-08cc-4035-b24b-8b73a573c918",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "  {\r\n    \"lat\": 20.6295586,\r\n    \"lng\": -87.0738851,\r\n    \"radius\": 1000000\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/properties/coordinates",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"properties",
+										"coordinates"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset%3D0%253An%26limit%3D4%253An%26include%255B0%255D%255Bmodel%255D%3Dlisting%253As%26include%255B0%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dlisting-feature%253As%26include%255B0%255D%255Binclude%255D%255B0%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dfeature%253As%26include%255B0%255D%255Binclude%255D%255B1%255D%255Bmodel%255D%3Dcategory%253As%26include%255B0%255D%255Binclude%255D%255B2%255D%255Bmodel%255D%3Dlisting-type%253As%26include%255B0%255D%255Binclude%255D%255B2%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dtype%253As%26include%255B0%255D%255Binclude%255D%255B3%255D%255Bmodel%255D%3Dlisting-media%253As%26include%255B0%255D%255Binclude%255D%255B3%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dfile%253As\n",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get All",
 							"id": "28934492-487f9a3d-ded9-42ca-bb97-1a119fb3e8a0",
 							"protocolProfileBehavior": {
