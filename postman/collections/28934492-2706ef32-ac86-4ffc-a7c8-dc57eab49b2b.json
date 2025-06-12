@@ -2108,14 +2108,13 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file",
-											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"42f4b746-a3f5-49a0-ac08-57cbe91cc898\",\r\n    \"name\": \"Home\",\r\n    \"address_line1\": \"123 Admin St\",\r\n    \"address_line2\": null,\r\n    \"city\": \"Addis Abeba\",\r\n    \"state\": \"Koye Feche\",\r\n    \"postal_code\": \"12345\",\r\n    \"country\": \"Ethiopia\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
 									"raw": "{{api_url}}/addresses",
