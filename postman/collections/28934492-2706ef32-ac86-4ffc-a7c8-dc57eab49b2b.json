@@ -2013,6 +2013,44 @@
 					"name": "Address",
 					"item": [
 						{
+							"name": "Get By Coordinates",
+							"id": "28934492-4067ec44-08cc-4035-b24b-8b73a573c918",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "  {\r\n    \"lat\": \"20.6295586\",\r\n    \"lng\": \"-87.0738851\",\r\n    \"radius\": 1000000\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/addresses/coordinates",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"addresses",
+										"coordinates"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset%3D0%253An%26limit%3D4%253An%26include%255B0%255D%255Bmodel%255D%3Dlisting%253As%26include%255B0%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dlisting-feature%253As%26include%255B0%255D%255Binclude%255D%255B0%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dfeature%253As%26include%255B0%255D%255Binclude%255D%255B1%255D%255Bmodel%255D%3Dcategory%253As%26include%255B0%255D%255Binclude%255D%255B2%255D%255Bmodel%255D%3Dlisting-type%253As%26include%255B0%255D%255Binclude%255D%255B2%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dtype%253As%26include%255B0%255D%255Binclude%255D%255B3%255D%255Bmodel%255D%3Dlisting-media%253As%26include%255B0%255D%255Binclude%255D%255B3%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dfile%253As\n",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get All",
 							"id": "28934492-487f9a3d-ded9-42ca-bb97-1a119fb3e8a0",
 							"protocolProfileBehavior": {
@@ -2108,14 +2146,13 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file",
-											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"42f4b746-a3f5-49a0-ac08-57cbe91cc898\",\r\n    \"name\": \"Home\",\r\n    \"address_line1\": \"123 Admin St\",\r\n    \"address_line2\": null,\r\n    \"city\": \"Addis Abeba\",\r\n    \"state\": \"Koye Feche\",\r\n    \"postal_code\": \"12345\",\r\n    \"country\": \"Ethiopia\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
 									"raw": "{{api_url}}/addresses",
@@ -3827,22 +3864,21 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file",
-											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"42f4b746-a3f5-49a0-ac08-57cbe91cc898\",\r\n    \"type\": \"tele_birr\",\r\n    \"provider\": \"ethio tel\",\r\n    \"account_number\": \"5678\",\r\n    \"expiry_date\": \"12/25\",\r\n    \"address_id\": \"93e7d4ee-bb59-47c1-8422-4e512e312e15\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/payment-method",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"payment-method"
 									]
 								}
 							},
