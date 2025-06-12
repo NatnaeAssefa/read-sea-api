@@ -3827,14 +3827,13 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file",
-											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"\",\r\n    \"type\": \"credit_card\",\r\n    \"provider\": \"Mastercard\",\r\n    \"account_number\": \"5678\",\r\n    \"expiry_date\": \"12/25\",\r\n    \"is_default\": true,\r\n    \"address_id\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
 									"raw": "{{api_url}}/products",
