@@ -3827,7 +3827,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"user_id\": \"\",\r\n    \"type\": \"credit_card\",\r\n    \"provider\": \"Mastercard\",\r\n    \"account_number\": \"5678\",\r\n    \"expiry_date\": \"12/25\",\r\n    \"is_default\": true,\r\n    \"address_id\": \"\"\r\n}",
+									"raw": "{\r\n    \"user_id\": \"42f4b746-a3f5-49a0-ac08-57cbe91cc898\",\r\n    \"type\": \"credit_card\",\r\n    \"provider\": \"Mastercard\",\r\n    \"account_number\": \"5678\",\r\n    \"expiry_date\": \"12/25\",\r\n    \"is_default\": true,\r\n    \"address_id\": \"93e7d4ee-bb59-47c1-8422-4e512e312e15\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
