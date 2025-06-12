@@ -2031,12 +2031,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/address/coordinates",
+									"raw": "{{api_url}}/addresses/coordinates",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"address",
+										"addresses",
 										"coordinates"
 									],
 									"query": [
