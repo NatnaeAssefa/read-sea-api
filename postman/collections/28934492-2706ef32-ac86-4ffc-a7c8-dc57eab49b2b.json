@@ -2023,7 +2023,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "  {\r\n    \"lat\": 20.6295586,\r\n    \"lng\": -87.0738851,\r\n    \"radius\": 1000000\r\n}\r\n",
+									"raw": "  {\r\n    \"lat\": \"20.6295586\",\r\n    \"lng\": \"-87.0738851\",\r\n    \"radius\": 1000000\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
