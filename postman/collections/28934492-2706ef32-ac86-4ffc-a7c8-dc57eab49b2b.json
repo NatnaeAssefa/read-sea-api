@@ -2013,7 +2013,7 @@
 					"name": "Address",
 					"item": [
 						{
-							"name": "Get All Coordinates Copy",
+							"name": "Get By Coordinates",
 							"id": "28934492-4067ec44-08cc-4035-b24b-8b73a573c918",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
