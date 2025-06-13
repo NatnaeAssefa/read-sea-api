@@ -2022,12 +2022,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/promo-code",
+									"raw": "{{api_url}}/promo-codes",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"promo-code"
+										"promo-codes"
 									],
 									"query": [
 										{
