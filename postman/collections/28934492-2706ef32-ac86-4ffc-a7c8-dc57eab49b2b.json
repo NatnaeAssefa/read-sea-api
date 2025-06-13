@@ -2108,13 +2108,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/promo-code/d25b9502-45ae-436a-85d1-e1cc4de7a8b5/100",
+									"raw": "{{api_url}}/promo-code/d25b9502-45ae-436a-85d1-e1cc4de7a8b5/calculate/100",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"promo-code",
 										"d25b9502-45ae-436a-85d1-e1cc4de7a8b5",
+										"calculate",
 										"100"
 									],
 									"query": [
