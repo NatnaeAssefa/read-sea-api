@@ -2099,7 +2099,7 @@
 							"response": []
 						},
 						{
-							"name": "Get By ID Copy",
+							"name": "Calculate Amount",
 							"id": "28934492-099d7fc1-13b1-4b59-931c-298c834b7c37",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
