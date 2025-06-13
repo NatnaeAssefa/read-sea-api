@@ -12,6 +12,7 @@ import PaymentMethodController from "./PaymentMethod.controller";
 import ProductImageController from "./ProductImage.controller";
 import SearchHistoryController from "./SearchHistory.controller";
 import ChappaPaymentController from "./ChappaPayment.controller";
+import PromoCodeController from "./PromoCode.controller";
 
 export {
     CartController,
@@ -27,5 +28,6 @@ export {
     PaymentMethodController,
     ProductImageController,
     SearchHistoryController,
-    ChappaPaymentController
+    ChappaPaymentController,
+    PromoCodeController
 };

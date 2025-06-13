@@ -2,7 +2,7 @@ import { Model } from "sequelize";
 import { AccessRule, ActionLog, Role, User, UserProfile } from "../../models/User";
 
 import { File, Notification } from "../../models/System";
-import { Address, AppSetting, Cart, CartItem, Category, Favorite, Order, OrderItem, OrderTracking, PaymentMethod as PM, Product, ProductImage, SearchHistory } from "../../models/MarketPlace";
+import { Address, AppSetting, Cart, CartItem, Category, Favorite, Order, OrderItem, OrderTracking, PaymentMethod as PM, Product, ProductImage, PromoCode, SearchHistory } from "../../models/MarketPlace";
 
 // Define the user type for better type safety
 export interface FacebookUserProfile {
@@ -174,6 +174,14 @@ export const Currency = {
   ZWL: "Z$", // Zimbabwean Dollar
 };
 
+export const GeneralStatus = {
+  ACTIVE: "Active",
+  INACTIVE: "Inactive",
+  PENDING: "Pending",
+  BLOCKED: "Blocked",
+  ARCHIVED: "Archived",
+}
+
 export const AccessType = {
   SUPER_ADMIN: "Super Admin",
   ADMIN: "Admin",
@@ -247,10 +255,19 @@ export const NotificationCategory = {
 };
 
 export const PaymentStatus = {
-  PAID: "paid",
-  UNPAID: "unpaid",
+  PENDING: "pending",
+  COMPLETED: "completed",
+  REFUNDED: "refunded",
   FAILED: "failed",
 };
+
+export const OrderStatus = {
+  PROCESSING: "processing",
+  PAID: "paid",
+  SHIPPED: "shipped",
+  DELIVERED: "delivered",
+  CANCELLED: "cancelled"
+}
 
 export const EmailType = {
   PASSWORD_RECOVERY: "passwordRecovery",
@@ -328,6 +345,7 @@ ModelType.set("payment_method", PM);
 ModelType.set("product", Product);
 ModelType.set("product_image", ProductImage);
 ModelType.set("search_history", SearchHistory);
+ModelType.set("promo_code", PromoCode);
 
 export { ModelType };
 

@@ -16,6 +16,7 @@ import SearchHistoryFactory, { SearchHistory } from "./SearchHistory"
 import AppSettingsFactory, { AppSetting } from "./AppSetting"
 import ChappaPaymentFactory, { ChappaPayment } from "./ChappaPayment"
 import UserProductViewFactory, { UserProductView } from "./UserProductView";
+import PromoCodeFactory, { PromoCode } from "./PromoCode";
 
 
 // Import System models
@@ -37,6 +38,7 @@ const MarketPlaceModels = (sequelize: Sequelize) => {
   AppSettingsFactory(sequelize)
   ChappaPaymentFactory(sequelize)
   UserProductViewFactory(sequelize)
+  PromoCodeFactory(sequelize)
 
   // Define associations
   User.hasMany(Address, { foreignKey: "user_id" })
@@ -100,6 +102,9 @@ const MarketPlaceModels = (sequelize: Sequelize) => {
 
   Product.hasMany(UserProductView, { foreignKey: "product_id" });
   UserProductView.belongsTo(Product, { foreignKey: "product_id" });
+
+  Order.belongsTo(PromoCode, { foreignKey: "promo_code_id" })
+  PromoCode.hasMany(Order, { foreignKey: "promo_code_id" })
 }
 
 export default (sequelize: Sequelize) => {
@@ -125,6 +130,7 @@ export {
   SearchHistory,
   AppSetting,
   ChappaPayment,
-  UserProductView
+  UserProductView,
+  PromoCode
 }
 

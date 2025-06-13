@@ -288,6 +288,14 @@ export const access_rules: AccessRules[] = [
       { name: "delete_product_image", type: AccessType.ADMIN },
     ],
   },
+  {
+    group: "Promo Code",
+    rules: [
+      { name: "read_promo_code", type: AccessType.USER },
+      { name: "write_promo_code", type: AccessType.ADMIN },
+      { name: "delete_promo_code", type: AccessType.ADMIN },
+    ],
+  },
 ];
 
 export default { env, constants, access_rules };

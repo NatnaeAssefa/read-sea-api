@@ -12,6 +12,7 @@ import PaymentMethodService from "./PaymentMethod.service";
 import ProductImageService from "./ProductImage.service";
 import SearchHistoryService from "./SearchHistory.service";
 import ChappaPaymentService from "./ChappaPayment.service";
+import PromoCodeService from "./PromoCode.service";
 
 export {
     CartService,
@@ -27,5 +28,6 @@ export {
     PaymentMethodService,
     ProductImageService,
     SearchHistoryService,
-    ChappaPaymentService
+    ChappaPaymentService,
+    PromoCodeService
 };
