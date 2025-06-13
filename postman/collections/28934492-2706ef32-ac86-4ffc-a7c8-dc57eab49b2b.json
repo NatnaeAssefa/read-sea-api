@@ -2010,6 +2010,220 @@
 			"name": "Marketplace",
 			"item": [
 				{
+					"name": "Coupon Copy",
+					"item": [
+						{
+							"name": "Get All",
+							"id": "28934492-7303f0ab-64fe-4e2e-b14c-ef22a92810ca",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/promo-code",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get One",
+							"id": "28934492-5568864a-258b-4e10-b29f-4fc6bf962cf4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/promo-code/get",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code",
+										"get"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "search%5Bkeys%5D%5B0%5D=name%26search%5Bvalue%5D=bEDRId",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By ID",
+							"id": "28934492-3a871438-87dd-44d0-ab6e-32a3775fca36",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/promo-code/d25b9502-45ae-436a-85d1-e1cc4de7a8b5",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code",
+										"d25b9502-45ae-436a-85d1-e1cc4de7a8b5"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "include%5B0%5D%5Bmodel%5D=interest&include%5B1%5D%5Bmodel%5D=file&include%5B1%5D%5Balias%5D=profile",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"id": "28934492-f495ce9e-c03c-4a1a-91e0-302c1282497d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"Best-Offer-35\",\r\n    \"discount_percentage\": 35\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/promo-code",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"id": "28934492-e72af796-8995-4248-bddc-f7d32a2c794a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"088ea6ea-fc2d-4883-a746-ffd11eb22242\",\r\n    \"status\": \"Inactive\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/promo-code",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"id": "28934492-d1eae970-132e-4f0c-ad67-19a41c8e1b80",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"16e79028-fd2c-41e5-aaf4-6a1867ecb3b6\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/promo-code",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Restore",
+							"id": "28934492-e40931b9-b956-4ee4-a042-e10f76f98ce4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"c92c4350-6420-4c05-810b-56fd125570b7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/promo-code/restore",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code",
+										"restore"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "28934492-6f9dde8a-dde3-48d4-9cd0-2130236f02bb",
+					"description": "Creating a referral link system and tracking clicks, sign-ins store user info and subscription information in every affiliate registry."
+				},
+				{
 					"name": "Address",
 					"item": [
 						{
