@@ -2099,6 +2099,35 @@
 							"response": []
 						},
 						{
+							"name": "Get By ID Copy",
+							"id": "28934492-099d7fc1-13b1-4b59-931c-298c834b7c37",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/promo-code/d25b9502-45ae-436a-85d1-e1cc4de7a8b5",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code",
+										"d25b9502-45ae-436a-85d1-e1cc4de7a8b5"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "include%5B0%5D%5Bmodel%5D=interest&include%5B1%5D%5Bmodel%5D=file&include%5B1%5D%5Balias%5D=profile",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Create",
 							"id": "28934492-f495ce9e-c03c-4a1a-91e0-302c1282497d",
 							"protocolProfileBehavior": {
