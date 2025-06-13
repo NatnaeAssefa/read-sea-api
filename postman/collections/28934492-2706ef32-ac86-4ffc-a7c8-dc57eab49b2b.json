@@ -2108,7 +2108,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/promo-codes/ae2c3ae1-df76-4b00-95b1-aba48386bf34/calculate/100",
+									"raw": "{{api_url}}/promo-codes/ae2c3ae1-df76-4b00-95b1-aba48386bf34/calculate/900",
 									"host": [
 										"{{api_url}}"
 									],
@@ -2116,7 +2116,7 @@
 										"promo-codes",
 										"ae2c3ae1-df76-4b00-95b1-aba48386bf34",
 										"calculate",
-										"100"
+										"900"
 									],
 									"query": [
 										{
