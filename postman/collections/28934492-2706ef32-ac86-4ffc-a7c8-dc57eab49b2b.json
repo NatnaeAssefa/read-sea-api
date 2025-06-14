@@ -2108,13 +2108,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/promo-codes/ae2c3ae1-df76-4b00-95b1-aba48386bf34",
+									"raw": "{{api_url}}/promo-codes/code/Best-Offer-35",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"promo-codes",
-										"ae2c3ae1-df76-4b00-95b1-aba48386bf34"
+										"code",
+										"Best-Offer-35"
 									],
 									"query": [
 										{
