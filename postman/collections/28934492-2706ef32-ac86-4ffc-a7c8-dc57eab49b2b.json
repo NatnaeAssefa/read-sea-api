@@ -2099,7 +2099,7 @@
 							"response": []
 						},
 						{
-							"name": "Get By ID Copy",
+							"name": "Get By Code",
 							"id": "28934492-ec675cad-17ee-41d3-9456-e320e672c717",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
