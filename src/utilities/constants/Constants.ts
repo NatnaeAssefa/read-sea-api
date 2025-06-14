@@ -122,6 +122,7 @@ export const Currency = {
   PAB: "B/.", // Panamanian Balboa
   PEN: "S/.", // Peruvian Sol
   PGK: "K", // Papua New Guinean Kina
+
   PHP: "₱", // Philippine Peso
   PKR: "₨", // Pakistani Rupee
   PLN: "zł", // Polish Złoty
@@ -175,20 +176,18 @@ export const Currency = {
 };
 
 export const AccessType = {
-  SUPER_ADMIN: "super_admin",
-  ADMIN: "admin",
-  USER: "user",
-  DELIVERY: "delivery",
-  SYSTEM: "system"
+  SUPER_ADMIN: "Super Admin",
+  ADMIN: "Admin",
+  USER: "User",
+  DELIVERY: "Delivery",
 };
 
 
 export const UserType = {
-  SUPER_ADMIN: "super_admin",
-  ADMIN: "admin",
-  USER: "user",
-  DELIVERY: "delivery",
-  SYSTEM: "system"
+  SUPER_ADMIN: "Super Admin",
+  ADMIN: "Admin",
+  USER: "User",
+  DELIVERY: "Delivery",
 };
 
 export const UserNotificationStatus = {
@@ -293,6 +292,7 @@ export const PaymentMethod = {
   AWASH_BIRR: 'AwashBirr',
   OTHER: 'other'
 };
+
 
 export const PasswordMessage =
   "Password must be at least 8 and at most 16 characters and must contain at least one lower case, one upper case, one special character and one number";

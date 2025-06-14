@@ -418,10 +418,11 @@ class ProductService {
             ProductDAL.create(productData, transaction)
               .then((result) => {
                 product = result;
+              
                 done(null, result, transaction);
               })
               .catch((error) =>
-                done(new InternalServerError(error), {
+                done(new InternalServerError('error creating product'), {
                   obj: null,
                   transaction: transaction,
                 }),

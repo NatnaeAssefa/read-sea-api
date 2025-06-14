@@ -3,7 +3,7 @@ import ModelSync from "../models/index"
 import { Category, Product } from "../models/MarketPlace"
 import { User, Role, UserProfile, AccessRule, ActionLog } from "../models/User";
 import { File, Notification, Config } from "../models/System";
-import { Address, PaymentMethod, ProductImage, Cart, CartItem, Order, OrderItem, OrderTracking, Favorite, SearchHistory, AppSetting } from "../models/MarketPlace";
+import { Address, PaymentMethod, ProductImage, Cart, CartItem, Order, OrderItem, OrderTracking, Favorite, SearchHistory, AppSetting, ChappaPayment } from "../models/MarketPlace";
 import { NotificationCategory, NotificationType, UserType } from "../utilities/constants/Constants";
 
 async function seedDatabase() {
@@ -114,9 +114,10 @@ async function seedDatabase() {
   
   // Seed Role
   const roles = await Role.bulkCreate([
-    { name: "Admin", description: "Administrator role", type: "System", access_rules: [] },
+    { name: "Admin", description: "Administrator role", type: "Super Admin", access_rules: [] },
     { name: "User", description: "Regular user role", type: "User", access_rules: [] }
   ]);
+
 
   // Seed User
   const users = await User.bulkCreate([
@@ -134,9 +135,9 @@ async function seedDatabase() {
 
   // Seed AccessRule
   await AccessRule.bulkCreate([
-    { name: "create_user", description: "Can create users", group: "user", type: "System" },
+    { name: "create_user", description: "Can create users", group: "user", type: "Super Admin" },
     { name: "edit_user", description: "Can edit users", group: "user", type: "User" },
-    { name: "delete_user", description: "Can delete users", group: "user", type: "System" }
+    { name: "delete_user", description: "Can delete users", group: "user", type: "Super Admin" }
   ]);
 
   // Seed ActionLog
@@ -169,10 +170,11 @@ async function seedDatabase() {
     { user_id: users[1].id, name: "Home", address_line1: "123 User St", city: "User City", state: "User State", postal_code: "54321", country: "User Country", is_default: true }
   ]);
 
+
   // Seed PaymentMethod
   const paymentMethods = await PaymentMethod.bulkCreate([
-    { user_id: users[0].id, type: "credit_card", provider: "Visa", account_number: "1234", expiry_date: "12/25", is_default: true, address_id: addresses[0].id },
-    { user_id: users[1].id, type: "credit_card", provider: "Mastercard", account_number: "5678", expiry_date: "12/25", is_default: true, address_id: addresses[1].id }
+    { user_id: users[0].id, type: "tele_birr", provider: "Visa", account_number: "1234", expiry_date: "12/25", is_default: true, address_id: addresses[0].id },
+    { user_id: users[1].id, type: "tele_birr", provider: "Mastercard", account_number: "5678", expiry_date: "12/25", is_default: true, address_id: addresses[1].id }
   ]);
 
   // Seed ProductImage
