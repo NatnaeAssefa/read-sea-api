@@ -146,17 +146,17 @@ class PromoCodeController {
   static calculateDiscount(request: Request, response: Response) {
     const startTime = new Date()
     const schema = Joi.object({
-      id: Joi.string().guid().required(),
+      code: Joi.string().required(),
       amount: Joi.number().positive().required()
     })
 
     const { error } = schema.validate(request.params)
 
     if (!error) {
-      const id: string = request.params.id
+      const code: string = request.params.code
       const amount: number = parseFloat(request.params.amount)
       
-      PromoCodeService.findById(id, {}, true)
+      PromoCodeService.findByCode(code, {}, true)
         .then((promoCode) => {
           if (promoCode) {
             const discountPercentage = promoCode.discount_percentage
@@ -167,6 +167,32 @@ class PromoCodeController {
               discount_percentage: discountPercentage,
               discounted_amount: discountedAmount
             }, "Success", startTime)
+          } else {
+            ServerResponse(request, response, 404, null, `${ModelName} Not Found`, startTime)
+          }
+        })
+        .catch((error) => {
+          ServerResponse(request, response, error.statusCode, error.payload, "Error", startTime)
+        })
+    } else {
+      ServerResponse(request, response, 400, { details: error.details }, "Input validation error", startTime)
+    }
+  }
+
+  static findByCode(request: Request, response: Response) {
+    const startTime = new Date()
+    const schema = Joi.object({
+      code: Joi.string().required(),
+    })
+
+    const { error } = schema.validate(request.params)
+
+    if (!error) {
+      const code: string = request.params.code
+      PromoCodeService.findByCode(code, {}, true)
+        .then((result) => {
+          if (result) {
+            ServerResponse(request, response, 200, result, "", startTime)
           } else {
             ServerResponse(request, response, 404, null, `${ModelName} Not Found`, startTime)
           }
