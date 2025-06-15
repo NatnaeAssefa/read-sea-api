@@ -254,6 +254,23 @@ class PromoCodeService {
       )
     })
   }
+
+  static findByCode = (code: string, options: any, paranoid?: boolean): Promise<PromoCode | null> => {
+    const queryOptions = {
+      ...options,
+      where: {
+        ...options.where,
+        code
+      }
+    }
+    return new Promise((resolve, reject) => {
+      PromoCodeDAL.findOne(queryOptions, paranoid)
+        .then((result) => {
+          resolve(result)
+        })
+        .catch((error) => reject(new InternalServerError(error)))
+    })
+  }
 }
 
 export default PromoCodeService

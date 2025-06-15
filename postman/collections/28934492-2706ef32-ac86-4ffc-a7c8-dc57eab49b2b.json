@@ -2099,6 +2099,36 @@
 							"response": []
 						},
 						{
+							"name": "Get By Code",
+							"id": "28934492-ec675cad-17ee-41d3-9456-e320e672c717",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/promo-codes/code/Best-Offer-35",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-codes",
+										"code",
+										"Best-Offer-35"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "include%5B0%5D%5Bmodel%5D=interest&include%5B1%5D%5Bmodel%5D=file&include%5B1%5D%5Balias%5D=profile",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Calculate Amount",
 							"id": "28934492-099d7fc1-13b1-4b59-931c-298c834b7c37",
 							"protocolProfileBehavior": {
@@ -2108,13 +2138,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/promo-codes/ae2c3ae1-df76-4b00-95b1-aba48386bf34/calculate/900",
+									"raw": "{{api_url}}/promo-codes/Best-Offer-35/calculate/900",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"promo-codes",
-										"ae2c3ae1-df76-4b00-95b1-aba48386bf34",
+										"Best-Offer-35",
 										"calculate",
 										"900"
 									],

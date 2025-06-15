@@ -67,7 +67,7 @@ const routes = () => {
    *       404:
    *         description: PromoCode Not Found
    */
-  router.get("/:id/calculate/:amount", AuthenticateUser, AuthorizeAccess(["read_promo_code"]), PromoCodeController.calculateDiscount)
+  router.get("/:code/calculate/:amount", AuthenticateUser, AuthorizeAccess(["read_promo_code"]), PromoCodeController.calculateDiscount)
 
 
   /**
@@ -131,6 +131,22 @@ const routes = () => {
    *         description: PromoCode Not Found
    */
   router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_promo_code"]), PromoCodeController.delete)
+
+    /**
+   * @swagger
+   * /promo_codes/get:
+   *   get:
+   *     summary: Fetch a PromoCode
+   *     tags: [PromoCode]
+   *     parameters:
+   *       - in: query
+   *         name: query
+   *         description: query
+   *     responses:
+   *       200:
+   *         description: Success
+   */
+  router.get("/code/:code", AuthenticateUser, AuthorizeAccess(["read_promo_code"]), PromoCodeController.findByCode)
 
   return router
 }
