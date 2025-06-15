@@ -1,4 +1,5 @@
 import { DataTypes, Model, type Sequelize } from "sequelize"
+import { PaymentStatus } from "../../utilities/constants/Constants";
 
 export class ChappaPayment extends Model {
   public id!: string
@@ -51,9 +52,9 @@ export default (sequelize: Sequelize) => {
         defaultValue: 'ETB',
       },
       status: {
-        type: DataTypes.ENUM('pending', 'completed', 'failed', 'refunded'),
+        type: DataTypes.ENUM(...Object.values(PaymentStatus)),
         allowNull: false,
-        defaultValue: 'pending',
+        defaultValue: PaymentStatus.PENDING,
       },
       payment_date: {
         type: DataTypes.DATE,

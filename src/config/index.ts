@@ -293,9 +293,17 @@ export const access_rules: AccessRules[] = [
     rules: [
       { name: "read_cart_item", type: AccessType.USER },
       { name: "write_cart_item", type: AccessType.USER },
-      { name: "delete_cart_item", type: AccessType.USER },
-    ],
+      { name: "delete_cart_item", type: AccessType.USER }
+    ]
   },
+  {
+    group: "Promo Code",
+    rules: [
+      { name: "read_promo_code", type: AccessType.USER },
+      { name: "write_promo_code", type: AccessType.ADMIN },
+      { name: "delete_promo_code", type: AccessType.ADMIN },
+    ],
+  }
 ];
 
 export default { env, constants, access_rules };

@@ -69,9 +69,9 @@ class OrderController {
       user_id: Joi.string().guid().required(),
       address_id: Joi.string().guid().required(),
       payment_method_id: Joi.string().guid().required(),
-      subtotal: Joi.number().positive().precision(2).required(),
+      subtotal: Joi.number().positive().precision(2).optional(),
       shipping_fee: Joi.number().min(0).precision(2).default(0.0),
-      tax: Joi.number().min(0).precision(2).default(0.0),
+      tax: Joi.number().min(0).precision(2).default(0.0).optional(),
       total: Joi.number().positive().precision(2).required(),
       estimated_delivery: Joi.date().greater('now').allow(null).optional()
     });

@@ -12,6 +12,7 @@ import orderTrackingRoutes from "./OrderTracking.routes";
 import paymentMethodRoutes from "./PaymentMethod.routes";
 import productImageRoutes from "./ProductImage.routes";
 import searchHistoryRoutes from "./SearchHistory.routes";
+import promoCodeRoutes from "./PromoCode.routes";
 
 
 const routes = () => {
@@ -31,6 +32,7 @@ router.use("/order-tracking", orderTrackingRoutes())
 router.use("/payment-method", paymentMethodRoutes())
 router.use("/product-images", productImageRoutes())
 router.use("/search-histories", searchHistoryRoutes())
+router.use("/promo-codes", promoCodeRoutes())
 
 
   return router;

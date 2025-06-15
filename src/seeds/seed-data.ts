@@ -166,8 +166,10 @@ async function seedDatabase() {
 
   // Seed Address
   const addresses = await Address.bulkCreate([
-    { user_id: users[0].id, name: "Home", address_line1: "123 Admin St", city: "Admin City", state: "Admin State", postal_code: "12345", country: "Admin Country", is_default: true },
-    { user_id: users[1].id, name: "Home", address_line1: "123 User St", city: "User City", state: "User State", postal_code: "54321", country: "User Country", is_default: true }
+    { user_id: users[0].id, name: "Home", address_line1: "123 Admin St", city: "Admin City",lat: "lat",
+      lng: "lng", state: "Admin State", postal_code: "12345", country: "Admin Country", is_default: true },
+    { user_id: users[1].id, name: "Home", address_line1: "123 User St", city: "User City", state: "User State",lat: "lat",
+      lng: "lng", postal_code: "54321", country: "User Country", is_default: true }
   ]);
 
 

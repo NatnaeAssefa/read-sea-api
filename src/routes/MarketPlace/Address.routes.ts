@@ -106,6 +106,25 @@ const routes = () => {
    */
   router.delete("/", AuthenticateUser, AuthorizeAccess(["delete_address"]), AddressController.delete)
 
+  /**
+   * @swagger
+   * /properties:
+   *   get:
+   *     summary: Fetch Properties By Coordinate
+   *     tags: [Property]
+   *     parameters:
+   *       - in: query
+   *         name: query
+   *         description: query
+   *     responses:
+   *       200:
+   *         description: Success
+   */
+  router.post(
+    "/coordinates",
+    AddressController.findByCoordinate
+  );
+
   return router
 }
 

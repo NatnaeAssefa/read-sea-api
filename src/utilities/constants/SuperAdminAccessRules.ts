@@ -115,7 +115,12 @@ export const superAdminAccessRules = [
   // Product Image
   "read_product_image",
   "write_product_image",
-  "delete_product_image"
+  "delete_product_image",
+
+  // Promo Code
+  "read_promo_code",
+  "write_promo_code",
+  "delete_promo_code",
 ];
 
 export default superAdminAccessRules;

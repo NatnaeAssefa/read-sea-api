@@ -437,13 +437,12 @@ export class RoleService {
   };
 
   /**
-   * Creates a Super Admin role if it doesn't already exist
+   * Creates or updates a Super Admin role with all available Super Admin permissions
    * 
    * @static
-   * @param {User} user - The user creating the role (must have appropriate permissions)
    * @param {string} name - The name for the Super Admin role
    * @param {string} [description] - Optional description for the role
-   * @returns {Promise<Role>} - The created or existing Super Admin role
+   * @returns {Promise<Role>} - The created or updated Super Admin role
    * @memberof RoleService
    */
   static createSuperAdminRole = (
@@ -459,61 +458,63 @@ export class RoleService {
               .catch((error) => reject(new InternalServerError(error)));
           },
           (transaction: Transaction, done: Function) => {
-            // Check if a role with this name already exists
-            RoleDAL.findOne({
-              where: { name }
-            })
-              .then((existingRole) => {
-                if (existingRole) {
-                  // If role exists and is already a Super Admin role, return it
-                  if (existingRole.type === AccessType.SUPER_ADMIN) {
-                    done(new Error("Role already created!"));
-                  } else {
-                    // If role exists but is not Super Admin, reject
-                    done(new BadRequestError([`Role "${name}" exists but is not a Super Admin role`]));
-                  }
-                } else {
-                  // Role doesn't exist, continue to create it
-                  done(null, transaction);
-                }
-              })
-              .catch((error) => 
-                done(new InternalServerError(error), {
-                  obj: null,
-                  transaction: transaction
-                })
-              );
-          },
-          (transaction: Transaction, done: Function) => {
             // Import the Super Admin access rules
             import("../../utilities/constants/SuperAdminAccessRules")
               .then(({ default: superAdminAccessRules }) => {
-                // Verify all access rules exist
-                async.eachSeries(
-                  superAdminAccessRules,
-                  (rule, callback) => {
-                    AccessRuleDAL.findOne({
-                      where: { name: rule },
-                    })
-                      .then((_rule) => {
-                        if (_rule) {
-                          callback();
+                // Check if a role with this name already exists
+                RoleDAL.findOne({
+                  where: { name }
+                })
+                  .then((existingRole) => {
+                    if (existingRole) {
+                      // If role exists and is already a Super Admin role, check for new rules
+                      if (existingRole.type === AccessType.SUPER_ADMIN) {
+                        // Find new rules that aren't in the existing role
+                        const existingRules = existingRole.access_rules || [];
+                        const newRules = superAdminAccessRules.filter(rule => !existingRules.includes(rule));
+                        
+                        if (newRules.length > 0) {
+                          console.log(`Found ${newRules.length} new access rules to add to Super Admin role`);
+                          // Update the role with all rules if new ones were found
+                          const updatedRules = [...existingRules, ...newRules];
+                          
+                          // Update the role directly here instead of passing to next step
+                          const payload = {
+                            access_rules: updatedRules
+                          };
+                          
+                          RoleDAL.update(existingRole, payload, transaction)
+                            .then((updatedRole) => {
+                              console.log(`Updated Super Admin role with new permissions`);
+                              done(null, updatedRole, { 
+                                obj: updatedRole, 
+                                transaction: transaction,
+                                isNew: false,
+                                isUpdated: true
+                              });
+                            })
+                            .catch((error) => {
+                              done(new InternalServerError(`Error updating role with new permissions: ${error.message}`), {
+                                obj: null,
+                                transaction: transaction
+                              });
+                            });
                         } else {
-                          callback(
-                            new NotFoundError(`Access Rule '${rule}' not found`)
-                          );
+                          // No new rules, return existing role
+                          console.log(`Super Admin role already has all required permissions`);
+                          done(null, existingRole, { 
+                            obj: existingRole, 
+                            transaction: transaction,
+                            isNew: false,
+                            isUpdated: false
+                          });
                         }
-                      })
-                      .catch((error) => callback(new InternalServerError(error)));
-                  },
-                  (error: any) => {
-                    if (error) {
-                      done(error, {
-                        obj: null,
-                        transaction: transaction,
-                      });
+                      } else {
+                        // If role exists but is not Super Admin, reject
+                        done(new BadRequestError([`Role "${name}" exists but is not a Super Admin role. Please use a different name.`]));
+                      }
                     } else {
-                      // All access rules exist, create the role
+                      // Role doesn't exist, create it
                       const payload = {
                         name,
                         description: description || `Role with Super Admin permissions: ${name}`,
@@ -522,22 +523,29 @@ export class RoleService {
                       };
                       
                       RoleDAL.create(payload, transaction)
-                        .then((result) => {
-                          done(null, result, { 
-                            obj: result, 
+                        .then((newRole) => {
+                          console.log(`Created new Super Admin role: ${name}`);
+                          done(null, newRole, { 
+                            obj: newRole, 
                             transaction: transaction,
-                            isNew: true 
+                            isNew: true,
+                            isUpdated: false
                           });
                         })
-                        .catch((error) =>
-                          done(new InternalServerError(error), {
+                        .catch((error) => {
+                          done(new InternalServerError(`Error creating new Super Admin role: ${error.message}`), {
                             obj: null,
-                            transaction: transaction,
-                          })
-                        );
+                            transaction: transaction
+                          });
+                        });
                     }
-                  }
-                );
+                  })
+                  .catch((error) => 
+                    done(new InternalServerError(`Error finding existing role: ${error.message}`), {
+                      obj: null,
+                      transaction: transaction
+                    })
+                  );
               })
               .catch((error) => 
                 done(new InternalServerError(`Failed to import SuperAdminAccessRules: ${error.message}`), {
@@ -545,34 +553,24 @@ export class RoleService {
                   transaction: transaction
                 })
               );
-          },
-          (obj: Role, result: any, done: Function) => {
-            // if (result.isNew) {
-            //   ActionLogService.handleCreate({
-            //     action: LogActions.CREATE,
-            //     object: ModelName,
-            //     prev_data: {},
-            //     new_data: obj,
-            //     user_id: user.id,
-            //   });
-            // }
-            done(null, result);
-          },
+          }
         ],
-        (error, result: { obj: Role; transaction: Transaction; isNew: boolean } | undefined) => {
+        (error, result?: Role, info?: { obj: Role; transaction: Transaction; isNew: boolean; isUpdated: boolean }) => {
           if (!error) {
-            if (result && result.transaction) {
-              resolve(result.obj);
-              result.transaction.commit();
+            if (info && info.transaction) {
+              const status = info.isNew ? "created" : (info.isUpdated ? "updated with new permissions" : "already up-to-date");
+              console.log(`Super Admin role '${name}' ${status}`);
+              resolve(result!);
+              info.transaction.commit();
             } else {
-              reject(new InternalServerError("Dead End"));
+              reject(new InternalServerError("Transaction or result object is missing"));
             }
           } else {
             reject(error);
-            if (result && result.transaction) {
-              result.transaction.rollback();
+            if (info && info.transaction) {
+              info.transaction.rollback();
             } else {
-              reject(new InternalServerError("Dead End"));
+              console.error("Failed to rollback transaction: Transaction object is missing");
             }
           }
         }
@@ -646,10 +644,57 @@ export class RoleService {
             ...currentPermissions,
             ...cartItemPermissions,
             // Include other basic permissions to ensure they're all there
+            'read_promo_code','write_promo_code','delete_promo_code',
             "read_cart", "write_cart", "delete_cart",
+            "initiate_chappa_payment",
             "read_favorite", "write_favorite", "delete_favorite",
             "write_product",
             "read_user_profile", "write_user_profile",
+            "read_product", "read_category",
+            "read_order", "write_order",
+            "read_app_setting", "write_app_setting",
+            "read_address", "write_address", "delete_address","read_product_image", "write_product_image", "delete_product_image"
+          ])
+        ];
+        
+        await userRole.update({ access_rules: updatedPermissions });
+        return userRole;
+      }
+      return null;
+    } catch (error) {
+      throw new InternalServerError(error instanceof Error ? error.message : String(error));
+    }
+  }
+  static updateSuperAdminRoleWithDefaultPermissions = async () => {
+    try {
+      const userRole = await RoleDAL.findOne({
+        where: { name: "Super Admin" }
+      });
+      
+      if (userRole) {
+        // Get current permissions
+        const currentPermissions = userRole.access_rules || [];
+        
+        // Add cart item permissions if they don't exist
+        const cartItemPermissions = [
+          "read_cart_item", "write_cart_item", "delete_cart_item"
+        ];
+        
+        // Combine existing permissions with new ones, avoiding duplicates
+        const updatedPermissions = [
+          ...new Set([
+            ...currentPermissions,
+            ...cartItemPermissions,
+            // Include other basic permissions to ensure they're all there
+            'read_promo_code','write_promo_code','delete_promo_code',
+            "read_cart", "write_cart", "delete_cart",
+            "initiate_chappa_payment",
+            "read_favorite", "write_favorite", "delete_favorite",
+            "write_product",
+            "read_user_profile", "write_user_profile",
+            "read_action_log","write_action_log","delete_action_log",
+            "read_payment_method","manage_payment_methods","delete_payment_method","write_payment_method",
+            "refund_chappa_payment","manage_chappa_payments","verify_chappa_payment","initiate_chappa_payment","read_chappa_payment",
             "read_product", "read_category",
             "read_order", "write_order",
             "read_app_setting", "write_app_setting",

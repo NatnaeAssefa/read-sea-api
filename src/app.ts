@@ -75,6 +75,12 @@ initializeDB().then(() => {
       LogService.LogError(`Failed to update Admin role permissions: ${e}`);
     });
     
+    RoleService.updateSuperAdminRoleWithDefaultPermissions().then(() => {
+      LogService.LogInfo(`Super Admin role permissions updated`);
+    }).catch((e: Error) => {
+      LogService.LogError(`Failed to update Admin role permissions: ${e}`);
+    });
+    
     LogService.LogInfo(`Access rules sync done`);
   });
 });

@@ -1,4 +1,5 @@
 import { DataTypes, Model, type Sequelize } from "sequelize"
+import { OrderStatus } from "../../utilities/constants/Constants";
 
 export class Order extends Model {
   public id!: string
@@ -12,6 +13,7 @@ export class Order extends Model {
   public tax!: number
   public total!: number
   public estimated_delivery!: Date
+  public promo_code_id!: string
 
   public readonly createdAt!: Date
   public readonly updatedAt!: Date
@@ -36,9 +38,9 @@ export default (sequelize: Sequelize) => {
         unique: true,
       },
       status: {
-        type: DataTypes.ENUM("processing", "shipped", "delivered", "cancelled"),
+        type: DataTypes.ENUM(...Object.values(OrderStatus)),
         allowNull: false,
-        defaultValue: "processing",
+        defaultValue: OrderStatus.PROCESSING,
       },
       address_id: {
         type: DataTypes.UUID,
@@ -68,6 +70,10 @@ export default (sequelize: Sequelize) => {
       },
       estimated_delivery: {
         type: DataTypes.DATE,
+        allowNull: true,
+      },
+      promo_code_id: {
+        type: DataTypes.UUID,
         allowNull: true,
       },
     },

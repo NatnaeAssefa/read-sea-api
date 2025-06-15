@@ -12,6 +12,7 @@ import PaymentMethodDAL from "./PaymentMethod.dal";
 import ProductImageDAL from "./ProductImage.dal";
 import SearchHistoryDAL from "./SearchHistory.dal";
 import UserProductViewDAL from "./UserProductView.dal";
+import PromoCodeDAL from "./PromoCode.dal";
 
 export {
     CartDAL,
@@ -27,5 +28,6 @@ export {
     PaymentMethodDAL,
     ProductImageDAL,
     SearchHistoryDAL,
-    UserProductViewDAL
+    UserProductViewDAL,
+    PromoCodeDAL
 };

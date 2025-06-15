@@ -332,6 +332,25 @@ class RoleController {
         );
       });
   }
+  static updateSuperAdminPermissions(request: any, response: Response) {
+    const startTime = new Date();
+    const user: User = request.user;
+  
+    RoleService.updateSuperAdminRoleWithDefaultPermissions()
+      .then((result) => {
+        ServerResponse(request, response, 200, result, "Super Admin permissions updated successfully", startTime);
+      })
+      .catch((error) => {
+        ServerResponse(
+          request,
+          response,
+          error.statusCode || 500,
+          error.payload || error,
+          "Error updating admin permissions",
+          startTime
+        );
+      });
+  }
 
   static addProductImageAccess(request: any, response: Response) {
     const startTime = new Date();

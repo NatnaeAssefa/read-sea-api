@@ -4,6 +4,7 @@ import { User } from "../../models/User";
 import { AddressService } from "../../services/MarketPlace";
 import { ParseQuery } from "../../utilities/pagination/Pagination";
 import ServerResponse from "../../utilities/response/Response";
+import { LatitudeValueRegex, LongtudeValueRegex } from "../../utilities/constants/Constants";
 
 
 const ModelName = "Address"
@@ -66,7 +67,6 @@ class AddressController {
   static create(request: any, response: Response) {
     const startTime = new Date()
     const schema = Joi.object({
-      user_id: Joi.string().guid().required(),
       name: Joi.string().optional().max(100),
       address_line1: Joi.string().required().max(255),
       address_line2: Joi.string().allow(null, '').optional().max(255),
@@ -74,6 +74,8 @@ class AddressController {
       state: Joi.string().required().max(100),
       postal_code: Joi.string().required().max(20),
       country: Joi.string().required().max(100),
+      lat: Joi.string().required(),
+      lng: Joi.string().required(),
       is_default: Joi.boolean().default(false)
     });
 
@@ -105,6 +107,8 @@ class AddressController {
       state: Joi.string().optional().max(100),
       postal_code: Joi.string().optional().max(20),
       country: Joi.string().optional().max(100),
+      lat: Joi.string().optional(),
+      lng: Joi.string().optional(),
       is_default: Joi.boolean().optional()
     }).min(1);  // require at least one field to update
 
@@ -148,6 +152,57 @@ class AddressController {
         })
     } else {
       ServerResponse(request, response, 400, { details: error.details }, "Input validation error", startTime)
+    }
+  }
+
+  static findByCoordinate(request: any, response: Response) {
+    const startTime = new Date();
+    let parsedQuery: any = ParseQuery(request.query);
+
+    const schema = Joi.object({
+      lat: Joi.string()
+        .regex(LatitudeValueRegex)
+        .required(),
+      lng: Joi.string()
+        .regex(LongtudeValueRegex)
+        .required(),
+      radius: Joi.number().min(1000).max(100000000).required(),
+    });
+
+    const { error } = schema.validate(request.body, { abortEarly: false });
+
+    if (!error) {
+      const data: any = request.body;
+      AddressService.findByCoordinate(
+        request.user,
+        parsedQuery.query,
+        data.lat,
+        data.lng,
+        data.radius,
+        parsedQuery.paranoid
+      )
+        .then((result) => {
+          ServerResponse(request, response, 200, result, "", startTime);
+        })
+        .catch((error) => {
+          ServerResponse(
+            request,
+            response,
+            error.statusCode,
+            error.payload,
+            "Error",
+            startTime
+          );
+        });
+    } else {
+      ServerResponse(
+        request,
+        response,
+        400,
+        { details: error.details },
+        "Input validation error",
+        startTime
+      );
     }
   }
 }

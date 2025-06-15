@@ -2010,8 +2010,291 @@
 			"name": "Marketplace",
 			"item": [
 				{
+					"name": "Promo Code",
+					"item": [
+						{
+							"name": "Get All",
+							"id": "28934492-7303f0ab-64fe-4e2e-b14c-ef22a92810ca",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/promo-codes",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-codes"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get One",
+							"id": "28934492-5568864a-258b-4e10-b29f-4fc6bf962cf4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/promo-code/get",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code",
+										"get"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "search%5Bkeys%5D%5B0%5D=name%26search%5Bvalue%5D=bEDRId",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By ID",
+							"id": "28934492-3a871438-87dd-44d0-ab6e-32a3775fca36",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/promo-codes/ae2c3ae1-df76-4b00-95b1-aba48386bf34",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-codes",
+										"ae2c3ae1-df76-4b00-95b1-aba48386bf34"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "include%5B0%5D%5Bmodel%5D=interest&include%5B1%5D%5Bmodel%5D=file&include%5B1%5D%5Balias%5D=profile",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Calculate Amount",
+							"id": "28934492-099d7fc1-13b1-4b59-931c-298c834b7c37",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/promo-codes/ae2c3ae1-df76-4b00-95b1-aba48386bf34/calculate/900",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-codes",
+										"ae2c3ae1-df76-4b00-95b1-aba48386bf34",
+										"calculate",
+										"900"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "include%5B0%5D%5Bmodel%5D=interest&include%5B1%5D%5Bmodel%5D=file&include%5B1%5D%5Balias%5D=profile",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"id": "28934492-f495ce9e-c03c-4a1a-91e0-302c1282497d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"Best-Offer-35\",\r\n    \"discount_percentage\": 35\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/promo-codes",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-codes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"id": "28934492-e72af796-8995-4248-bddc-f7d32a2c794a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"088ea6ea-fc2d-4883-a746-ffd11eb22242\",\r\n    \"status\": \"Inactive\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/promo-code",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"id": "28934492-d1eae970-132e-4f0c-ad67-19a41c8e1b80",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"16e79028-fd2c-41e5-aaf4-6a1867ecb3b6\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/promo-code",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Restore",
+							"id": "28934492-e40931b9-b956-4ee4-a042-e10f76f98ce4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"c92c4350-6420-4c05-810b-56fd125570b7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/promo-code/restore",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"promo-code",
+										"restore"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "28934492-6f9dde8a-dde3-48d4-9cd0-2130236f02bb",
+					"description": "Creating a referral link system and tracking clicks, sign-ins store user info and subscription information in every affiliate registry."
+				},
+				{
 					"name": "Address",
 					"item": [
+						{
+							"name": "Get By Coordinates",
+							"id": "28934492-4067ec44-08cc-4035-b24b-8b73a573c918",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "  {\r\n    \"lat\": \"0.6295586\",\r\n    \"lng\": \"-0.0738851\",\r\n    \"radius\": 1000000\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/addresses/coordinates",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"addresses",
+										"coordinates"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset%3D0%253An%26limit%3D4%253An%26include%255B0%255D%255Bmodel%255D%3Dlisting%253As%26include%255B0%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dlisting-feature%253As%26include%255B0%255D%255Binclude%255D%255B0%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dfeature%253As%26include%255B0%255D%255Binclude%255D%255B1%255D%255Bmodel%255D%3Dcategory%253As%26include%255B0%255D%255Binclude%255D%255B2%255D%255Bmodel%255D%3Dlisting-type%253As%26include%255B0%255D%255Binclude%255D%255B2%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dtype%253As%26include%255B0%255D%255Binclude%255D%255B3%255D%255Bmodel%255D%3Dlisting-media%253As%26include%255B0%255D%255Binclude%255D%255B3%255D%255Binclude%255D%255B0%255D%255Bmodel%255D%3Dfile%253As\n",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Get All",
 							"id": "28934492-487f9a3d-ded9-42ca-bb97-1a119fb3e8a0",
@@ -2108,14 +2391,13 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file",
-											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"42f4b746-a3f5-49a0-ac08-57cbe91cc898\",\r\n    \"name\": \"Home\",\r\n    \"address_line1\": \"123 Admin St\",\r\n    \"address_line2\": null,\r\n    \"city\": \"Addis Abeba\",\r\n    \"state\": \"Koye Feche\",\r\n    \"postal_code\": \"12345\",\r\n    \"country\": \"Ethiopia\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
 									"raw": "{{api_url}}/addresses",
@@ -3827,22 +4109,21 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "file",
-											"type": "file",
-											"src": "/C:/Users/Bedri Bahru/Pictures/1b381afa9fa99dfad302b3e159a507a3.jpg"
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"42f4b746-a3f5-49a0-ac08-57cbe91cc898\",\r\n    \"type\": \"tele_birr\",\r\n    \"provider\": \"ethio tel\",\r\n    \"account_number\": \"5678\",\r\n    \"expiry_date\": \"12/25\",\r\n    \"address_id\": \"93e7d4ee-bb59-47c1-8422-4e512e312e15\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "{{api_url}}/products",
+									"raw": "{{api_url}}/payment-method",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"products"
+										"payment-method"
 									]
 								}
 							},
