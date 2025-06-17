@@ -1,5 +1,14 @@
 import type { Transaction } from "sequelize"
-import { type Order } from "../../models/MarketPlace"
+import { 
+  type Order, 
+  OrderItem, 
+  OrderTracking, 
+  Product, 
+  ProductImage, 
+  Address, 
+  PaymentMethod 
+} from "../../models/MarketPlace"
+import { File } from "../../models/System"
 import async from "async"
 import { createTransaction } from "../../utilities/database/sequelize";
 import {
@@ -11,6 +20,7 @@ import { LogActions } from "../../utilities/constants/Constants";
 import { ActionLogService } from "../User";
 import { User } from "../../models/User";
 import { OrderDAL } from "../../dals/MarketPlace";
+import { Sequelize } from "sequelize";
 
 const ModelName = "Order"
 
@@ -255,6 +265,134 @@ class OrderService {
       )
     })
   }
+
+  static findByUserId = (userId: string, options: any = {}, paranoid: boolean = true): Promise<{ rows: Order[]; count: number }> => {
+    return new Promise((resolve, reject) => {
+      const queryOptions = {
+        ...options,
+        where: {
+          ...(options.where || {}),
+          user_id: userId
+        },
+        order: [["createdAt", "DESC"]], // Most recent orders first
+        include: [
+          ...(options.include || []),
+          {
+            model: OrderItem,
+            include: [
+              {
+                model: Product,
+                include: [
+                  {
+                    model: ProductImage,
+                    include: [
+                      {
+                        model: File,
+                        attributes: ["id", "path"],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            model: OrderTracking,
+            order: [["createdAt", "DESC"]],
+          },
+          {
+            model: Address,
+          },
+          {
+            model: PaymentMethod,
+          }
+        ]
+      };
+
+      OrderDAL.findMany(queryOptions, paranoid)
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((error) => {
+          reject(new InternalServerError(error));
+        });
+    });
+  };
+
+  static findByCoordinates = (
+    latitude: number, 
+    longitude: number, 
+    radiusInKm: number, 
+    options: any = {}, 
+    paranoid: boolean = true
+  ): Promise<{ rows: Order[]; count: number }> => {
+    return new Promise((resolve, reject) => {
+      // Haversine formula updated with correct field names
+      const haversineFormula = `
+        (
+          6371 * acos(
+            cos(radians(${latitude})) 
+            * cos(radians(Address.lat)) 
+            * cos(radians(Address.lng) - radians(${longitude})) 
+            + sin(radians(${latitude})) 
+            * sin(radians(Address.lat))
+          )
+        )
+      `;
+
+      const queryOptions = {
+        ...options,
+        include: [
+          ...(options.include || []),
+          {
+            model: Address,
+            where: Sequelize.literal(`${haversineFormula} <= ${radiusInKm}`),
+            attributes: {
+              include: [
+                [Sequelize.literal(haversineFormula), 'distance']
+              ]
+            }
+          },
+          {
+            model: OrderItem,
+            include: [
+              {
+                model: Product,
+                include: [
+                  {
+                    model: ProductImage,
+                    include: [
+                      {
+                        model: File,
+                        attributes: ["id", "path"],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            model: OrderTracking,
+            order: [["createdAt", "DESC"]],
+          },
+          {
+            model: PaymentMethod,
+          }
+        ],
+        // Use the haversine formula directly in the order
+        order: [[Sequelize.literal(haversineFormula), 'ASC']]
+      };
+
+      OrderDAL.findMany(queryOptions, paranoid)
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((error) => {
+          reject(new InternalServerError(error));
+        });
+    });
+  };
 }
 
 export default OrderService

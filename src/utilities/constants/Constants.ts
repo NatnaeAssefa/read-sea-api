@@ -340,7 +340,7 @@ ModelType.set("address", Address);
 ModelType.set("app_setting", AppSetting);
 ModelType.set("category", Category);
 ModelType.set("favorite", Favorite);
-ModelType.set("order", Order);
+ModelType.set("order", Order as unknown as typeof Model);
 ModelType.set("order_item", OrderItem);
 ModelType.set("order_tracking", OrderTracking);
 ModelType.set("payment_method", PM);

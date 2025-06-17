@@ -48,11 +48,12 @@ export default (sequelize: Sequelize) => {
       },
       payment_method_id: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
       },
       subtotal: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
+        defaultValue: 0.0,
       },
       shipping_fee: {
         type: DataTypes.DECIMAL(10, 2),

@@ -46,7 +46,27 @@ const routes = () => {
 
   /**
    * @swagger
-   * /categories/{id}:
+   * /orders/my:
+   *   get:
+   *     summary: Fetch My Orders
+   *     tags: [Order]
+   *     parameters:
+   *       - in: query
+   *         name: query
+   *         description: query
+   *     responses:
+   *       200:
+   *         description: Success
+   */
+  router.get(
+    "/search/by-coordinates", 
+    AuthenticateUser, 
+    OrderController.findByCoordinates
+  )
+
+  /**
+   * @swagger
+   * /orders/{id}:
    *   get:
    *     summary: Fetch Order by ID
    *     tags: [Order]
@@ -61,12 +81,72 @@ const routes = () => {
    *     responses:
    *       200:
    *         description: Success
-   *       400:
-   *         description: Input Validation Error
    *       404:
    *         description: Order Not Found
    */
-  router.get("/:id", AuthenticateUser, AuthorizeAccess(["write_order"]), OrderController.findById)
+  router.get(
+    "/my", 
+    AuthenticateUser, 
+    OrderController.findMyOrders
+  )
+
+  /**
+   * @swagger
+   * /orders/{id}:
+   *   get:
+   *     summary: Fetch Order by ID
+   *     tags: [Order]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         description: Order ID
+   *       - in: query
+   *         name: query
+   *         description: query
+   *     responses:
+   *       200:
+   *         description: Success
+   *       404:
+   *         description: Order Not Found
+   */
+
+ 
+  router.get(
+    "/:id", 
+    AuthenticateUser, 
+    AuthorizeAccess(["read_order"]), 
+    OrderController.findById
+  )
+
+  /**
+   * @swagger
+   * /orders/user/{userId}:
+   *   get:
+   *     summary: Fetch Orders by User ID
+   *     tags: [Order]
+   *     parameters:
+   *       - in: path
+   *         name: userId
+   *         required: true
+   *         description: User ID
+   *       - in: query
+   *         name: query
+   *         description: query
+   *     responses:
+   *       200:
+   *         description: Success
+   *       403:
+   *         description: Unauthorized
+   *       404:
+   *         description: Orders Not Found
+   */
+  router.get(
+    "/user/:userId", 
+    AuthenticateUser, 
+    AuthorizeAccess(["read_order"]), 
+    OrderController.findByUserId
+  )
 
   /**
    * @swagger

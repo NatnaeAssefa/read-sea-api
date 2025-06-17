@@ -125,6 +125,33 @@ const routes = () => {
     AddressController.findByCoordinate
   );
 
+  /**
+   * @swagger
+   * /addresses/user/{userId}:
+   *   get:
+   *     summary: Fetch Addresses by User ID
+   *     tags: [Address]
+   *     parameters:
+   *       - in: path
+   *         name: userId
+   *         required: true
+   *         description: User ID
+   *       - in: query
+   *         name: query
+   *         description: query
+   *     responses:
+   *       200:
+   *         description: Success
+   *       404:
+   *         description: Addresses Not Found
+   */
+  router.get(
+    "/user/:userId", 
+    AuthenticateUser, 
+    AuthorizeAccess(["read_address"]), 
+    AddressController.findByUserId
+  )
+
   return router
 }
 

@@ -687,6 +687,7 @@ export class RoleService {
             ...cartItemPermissions,
             // Include other basic permissions to ensure they're all there
             'read_promo_code','write_promo_code','delete_promo_code',
+            'read_order_item','write_order_item','delete_order_item',
             "read_cart", "write_cart", "delete_cart",
             "initiate_chappa_payment",
             "read_favorite", "write_favorite", "delete_favorite",

@@ -318,6 +318,27 @@ class AddressService {
         });
     });
   };
+
+  static findByUserId = (userId: string, options?: any, paranoid?: boolean): Promise<{ rows: Address[]; count: number }> => {
+    return new Promise((resolve, reject) => {
+      const queryOptions = {
+        ...options,
+        where: {
+          ...(options?.where || {}),
+          user_id: userId
+        },
+        order: [["name", "ASC"]]
+      }
+
+      AddressDAL.findMany(queryOptions, paranoid)
+        .then((result) => {
+          resolve(result)
+        })
+        .catch((error) => {
+          reject(new InternalServerError(error))
+        })
+    })
+  }
 }
 
 export default AddressService

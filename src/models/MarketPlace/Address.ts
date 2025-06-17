@@ -27,10 +27,6 @@ export default (sequelize: Sequelize) => {
         allowNull: false,
         defaultValue: DataTypes.UUIDV4,
       },
-      location: {
-        type: DataTypes.GEOGRAPHY("POINT"),
-        allowNull: false,
-      },
       user_id: {
         type: DataTypes.UUID,
         allowNull: false,

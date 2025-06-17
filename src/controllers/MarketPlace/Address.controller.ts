@@ -1,4 +1,4 @@
-import type { Request, Response } from "express";
+import type { Request, Response, NextFunction } from "express";
 import Joi from "joi";
 import { User } from "../../models/User";
 import { AddressService } from "../../services/MarketPlace";
@@ -204,6 +204,20 @@ class AddressController {
         startTime
       );
     }
+  }
+
+  static findByUserId(request: Request, response: Response) {
+    const startTime = new Date()
+    const userId = request.params.userId
+    const parsedQuery: any = ParseQuery(request.query)
+
+    AddressService.findByUserId(userId, parsedQuery.query, parsedQuery.paranoid)
+      .then((result) => {
+        ServerResponse(request, response, 200, result, "", startTime)
+      })
+      .catch((error) => {
+        ServerResponse(request, response, error.statusCode, error.payload, "Error", startTime)
+      })
   }
 }
 
