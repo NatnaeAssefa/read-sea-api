@@ -327,7 +327,7 @@ class OrderService {
     paranoid: boolean = true
   ): Promise<{ rows: Order[]; count: number }> => {
     return new Promise((resolve, reject) => {
-      // Haversine formula updated with correct field names
+      // Haversine formula
       const haversineFormula = `
         (
           6371 * acos(
@@ -343,6 +343,7 @@ class OrderService {
       const queryOptions = {
         ...options,
         include: [
+          // Include everything from the original options if any
           ...(options.include || []),
           {
             model: Address,
@@ -380,7 +381,7 @@ class OrderService {
             model: PaymentMethod,
           }
         ],
-        // Use the haversine formula directly in the order
+        // Order results by distance (closest first)
         order: [[Sequelize.literal(haversineFormula), 'ASC']]
       };
 
