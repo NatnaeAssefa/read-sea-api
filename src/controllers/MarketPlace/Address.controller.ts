@@ -70,13 +70,13 @@ class AddressController {
       name: Joi.string().optional().max(100),
       address_line1: Joi.string().required().max(255),
       address_line2: Joi.string().allow(null, '').optional().max(255),
-      city: Joi.string().required().max(100),
-      state: Joi.string().required().max(100),
-      postal_code: Joi.string().required().max(20),
-      country: Joi.string().required().max(100),
+      city: Joi.string().optional().max(100),
+      state: Joi.string().optional().max(100),
+      postal_code: Joi.string().optional().max(20),
+      country: Joi.string().optional().max(100),
       lat: Joi.string().required(),
       lng: Joi.string().required(),
-      is_default: Joi.boolean().default(false)
+      is_default: Joi.boolean().default(false).optional()
     });
 
     const { error } = schema.validate(request.body, { abortEarly: false })
