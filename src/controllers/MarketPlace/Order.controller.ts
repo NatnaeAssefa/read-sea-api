@@ -5,6 +5,7 @@ import { OrderService } from "../../services/MarketPlace";
 import { ParseQuery } from "../../utilities/pagination/Pagination";
 import ServerResponse from "../../utilities/response/Response";
 import { generateRandomCode } from "../../utilities/utilities";
+import { OrderStatus } from "../../utilities/constants/Constants";
 
 const ModelName = "Order"
 
@@ -118,13 +119,14 @@ class OrderController {
 
     const schema = Joi.object({
       id: Joi.string().guid().required(),
-      user_id: Joi.string().guid().required(),
-      address_id: Joi.string().guid().required(),
-      payment_method_id: Joi.string().guid().required(),
-      subtotal: Joi.number().positive().precision(2).required(),
+      user_id: Joi.string().guid().optional(),
+      address_id: Joi.string().guid().optional(),
+      status: Joi.string().valid(...Object.values(OrderStatus)).optional(),
+      payment_method_id: Joi.string().guid().optional(),
+      subtotal: Joi.number().positive().precision(2).optional(),
       shipping_fee: Joi.number().min(0).precision(2).default(0.0),
       tax: Joi.number().min(0).precision(2).default(0.0),
-      total: Joi.number().positive().precision(2).required(),
+      total: Joi.number().positive().precision(2).optional(),
       estimated_delivery: Joi.date().greater('now').allow(null).optional()
     });
 
