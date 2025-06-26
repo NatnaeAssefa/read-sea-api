@@ -2953,7 +2953,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"id\": \"fa040878-f59c-4483-ae83-4871b323fe62\",\r\n        \"title\": \"Summer Sale Buzzinga\"\r\n    }",
+									"raw": "{\r\n    \"id\": \"fa040878-f59c-4483-ae83-4871b323fe62\",\r\n    \"title\": \"Summer Sale Buzzinga\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
