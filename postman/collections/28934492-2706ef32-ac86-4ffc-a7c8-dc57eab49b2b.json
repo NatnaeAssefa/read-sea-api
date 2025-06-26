@@ -2792,7 +2792,7 @@
 							"response": []
 						},
 						{
-							"name": "Get All Copy",
+							"name": "Get By Date Range",
 							"id": "28934492-3d62b840-a752-4d5d-aec8-f3d3e1ca0e4f",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
