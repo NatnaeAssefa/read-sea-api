@@ -2992,12 +2992,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/banner/admin",
+									"raw": "{{api_url}}/banners/admin",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"banner",
+										"banners",
 										"admin"
 									]
 								}
