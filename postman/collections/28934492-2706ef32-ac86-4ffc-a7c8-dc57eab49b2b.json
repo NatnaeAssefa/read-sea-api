@@ -2801,7 +2801,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/banners",
+									"raw": "{{api_url}}/banners?start_date=5/1/2025&end_date=6/26/2025",
 									"host": [
 										"{{api_url}}"
 									],
@@ -2810,9 +2810,13 @@
 									],
 									"query": [
 										{
-											"key": "query",
-											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
-											"disabled": true
+											"key": "start_date",
+											"value": "5/1/2025"
+										},
+										{
+											"key": "end_date",
+											"value": "6/26/2025",
+											"type": "text"
 										}
 									]
 								}
