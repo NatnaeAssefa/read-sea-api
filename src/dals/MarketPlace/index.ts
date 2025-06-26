@@ -13,6 +13,7 @@ import ProductImageDAL from "./ProductImage.dal";
 import SearchHistoryDAL from "./SearchHistory.dal";
 import UserProductViewDAL from "./UserProductView.dal";
 import PromoCodeDAL from "./PromoCode.dal";
+import BannerDAL from "./Banner.dal";
 
 export {
     CartDAL,
@@ -29,5 +30,6 @@ export {
     ProductImageDAL,
     SearchHistoryDAL,
     UserProductViewDAL,
-    PromoCodeDAL
+    PromoCodeDAL,
+    BannerDAL
 };

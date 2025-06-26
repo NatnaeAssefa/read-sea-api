@@ -13,6 +13,7 @@ import ProductImageService from "./ProductImage.service";
 import SearchHistoryService from "./SearchHistory.service";
 import ChappaPaymentService from "./ChappaPayment.service";
 import PromoCodeService from "./PromoCode.service";
+import BannerService from "./Banner.service";
 
 export {
     CartService,
@@ -29,5 +30,6 @@ export {
     ProductImageService,
     SearchHistoryService,
     ChappaPaymentService,
-    PromoCodeService
+    PromoCodeService,
+    BannerService
 };

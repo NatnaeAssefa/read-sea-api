@@ -13,6 +13,7 @@ import paymentMethodRoutes from "./PaymentMethod.routes";
 import productImageRoutes from "./ProductImage.routes";
 import searchHistoryRoutes from "./SearchHistory.routes";
 import promoCodeRoutes from "./PromoCode.routes";
+import bannerRoutes from "./Banner.routes";
 
 
 const routes = () => {
@@ -33,6 +34,7 @@ router.use("/payment-method", paymentMethodRoutes())
 router.use("/product-images", productImageRoutes())
 router.use("/search-histories", searchHistoryRoutes())
 router.use("/promo-codes", promoCodeRoutes())
+router.use("/banners", bannerRoutes())
 
 
   return router;

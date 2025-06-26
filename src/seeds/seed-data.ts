@@ -1,10 +1,10 @@
 import sequelize from "../database/sequelize"
 import ModelSync from "../models/index"
-import { Category, Product } from "../models/MarketPlace"
+import { Category, Product, Banner } from "../models/MarketPlace"
 import { User, Role, UserProfile, AccessRule, ActionLog } from "../models/User";
 import { File, Notification, Config } from "../models/System";
 import { Address, PaymentMethod, ProductImage, Cart, CartItem, Order, OrderItem, OrderTracking, Favorite, SearchHistory, AppSetting, ChappaPayment } from "../models/MarketPlace";
-import { NotificationCategory, NotificationType, UserType } from "../utilities/constants/Constants";
+import { NotificationCategory, NotificationType, UserType, GeneralStatus, BannerTargetAudience } from "../utilities/constants/Constants";
 
 async function seedDatabase() {
   console.log("Initializing models...")
@@ -114,8 +114,8 @@ async function seedDatabase() {
   
   // Seed Role
   const roles = await Role.bulkCreate([
-    { name: "Admin", description: "Administrator role", type: "System", access_rules: [] },
-    { name: "User", description: "Regular user role", type: "User", access_rules: [] }
+    { name: "Admin", description: "Administrator role", type: UserType.ADMIN, access_rules: [] },
+    { name: "User", description: "Regular user role", type: UserType.USER, access_rules: [] }
   ]);
 
   // Seed User
@@ -134,9 +134,9 @@ async function seedDatabase() {
 
   // Seed AccessRule
   await AccessRule.bulkCreate([
-    { name: "create_user", description: "Can create users", group: "user", type: "System" },
-    { name: "edit_user", description: "Can edit users", group: "user", type: "User" },
-    { name: "delete_user", description: "Can delete users", group: "user", type: "System" }
+    { name: "create_user", description: "Can create users", group: "user", type: UserType.ADMIN },
+    { name: "edit_user", description: "Can edit users", group: "user", type: UserType.USER },
+    { name: "delete_user", description: "Can delete users", group: "user", type: UserType.ADMIN }
   ]);
 
   // Seed ActionLog
@@ -165,14 +165,14 @@ async function seedDatabase() {
 
   // Seed Address
   const addresses = await Address.bulkCreate([
-    { user_id: users[0].id, name: "Home", address_line1: "123 Admin St", city: "Admin City", state: "Admin State", postal_code: "12345", country: "Admin Country", is_default: true },
-    { user_id: users[1].id, name: "Home", address_line1: "123 User St", city: "User City", state: "User State", postal_code: "54321", country: "User Country", is_default: true }
+    { user_id: users[0].id, name: "Home", address_line1: "123 Admin St", city: "Admin City", state: "Admin State", postal_code: "12345", country: "Admin Country", is_default: true, location: { type: 'Point', coordinates: [9.0, 38.7] }, lat: 38.7, lng: 9.0 },
+    { user_id: users[1].id, name: "Home", address_line1: "123 User St", city: "User City", state: "User State", postal_code: "54321", country: "User Country", is_default: true, location: { type: 'Point', coordinates: [9.1, 38.8] }, lat: 38.8, lng: 9.1 }
   ]);
 
   // Seed PaymentMethod
   const paymentMethods = await PaymentMethod.bulkCreate([
-    { user_id: users[0].id, type: "credit_card", provider: "Visa", account_number: "1234", expiry_date: "12/25", is_default: true, address_id: addresses[0].id },
-    { user_id: users[1].id, type: "credit_card", provider: "Mastercard", account_number: "5678", expiry_date: "12/25", is_default: true, address_id: addresses[1].id }
+    { user_id: users[0].id, type: "tele_birr", provider: "Telebirr", account_number: "1234", expiry_date: null, is_default: true, address_id: addresses[0].id },
+    { user_id: users[1].id, type: "mpesa", provider: "M-Pesa", account_number: "5678", expiry_date: null, is_default: true, address_id: addresses[1].id }
   ]);
 
   // Seed ProductImage
@@ -227,6 +227,66 @@ async function seedDatabase() {
   await AppSetting.bulkCreate([
     { user_id: users[0].id, language: "en", theme: "light", notifications_enabled: true, email_notifications: true, push_notifications: true },
     { user_id: users[1].id, language: "en", theme: "dark", notifications_enabled: true, email_notifications: true, push_notifications: true }
+  ]);
+
+  // Seed Banner
+  console.log("Seeding banners...")
+  await Banner.bulkCreate([
+    {
+      title: "Summer Sale - Up to 50% Off!",
+      description: "Don't miss our biggest summer sale with amazing discounts on electronics and fashion items.",
+      image_url: "https://example.com/images/summer-sale-banner.jpg",
+      link_url: "https://example.com/summer-sale",
+      start_date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+      end_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
+      status: GeneralStatus.ACTIVE,
+      priority: 100,
+      target_audience: BannerTargetAudience.ALL
+    },
+    {
+      title: "New User Welcome Offer",
+      description: "Welcome to our marketplace! Get 20% off your first purchase.",
+      image_url: "https://example.com/images/welcome-banner.jpg",
+      link_url: "https://example.com/welcome-offer",
+      start_date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // 1 day ago
+      end_date: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000), // 60 days from now
+      status: GeneralStatus.ACTIVE,
+      priority: 80,
+      target_audience: BannerTargetAudience.GUEST
+    },
+    {
+      title: "Premium Member Exclusive",
+      description: "Exclusive deals for our registered members. Join now and save more!",
+      image_url: "https://example.com/images/premium-banner.jpg",
+      link_url: "https://example.com/premium-deals",
+      start_date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
+      end_date: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000), // 45 days from now
+      status: GeneralStatus.ACTIVE,
+      priority: 90,
+      target_audience: BannerTargetAudience.REGISTERED
+    },
+    {
+      title: "Flash Sale - Limited Time",
+      description: "24-hour flash sale on selected items. Hurry up, limited stock available!",
+      image_url: "https://example.com/images/flash-sale-banner.jpg",
+      link_url: "https://example.com/flash-sale",
+      start_date: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), // 1 day from now
+      end_date: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000), // 2 days from now
+      status: GeneralStatus.PENDING,
+      priority: 95,
+      target_audience: BannerTargetAudience.ALL
+    },
+    {
+      title: "Holiday Special Offer",
+      description: "Special holiday discounts on home and kitchen appliances.",
+      image_url: "https://example.com/images/holiday-banner.jpg",
+      link_url: "https://example.com/holiday-special",
+      start_date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000), // 10 days ago
+      end_date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // 1 day ago (expired)
+      status: GeneralStatus.INACTIVE,
+      priority: 70,
+      target_audience: BannerTargetAudience.ALL
+    }
   ]);
 
 }

@@ -17,6 +17,7 @@ import AppSettingsFactory, { AppSetting } from "./AppSetting"
 import ChappaPaymentFactory, { ChappaPayment } from "./ChappaPayment"
 import UserProductViewFactory, { UserProductView } from "./UserProductView";
 import PromoCodeFactory, { PromoCode } from "./PromoCode";
+import BannerFactory, { Banner } from "./Banner";
 
 
 // Import System models
@@ -39,6 +40,7 @@ const MarketPlaceModels = (sequelize: Sequelize) => {
   ChappaPaymentFactory(sequelize)
   UserProductViewFactory(sequelize)
   PromoCodeFactory(sequelize)
+  BannerFactory(sequelize)
 
   // Define associations
   User.hasMany(Address, { foreignKey: "user_id" })
@@ -131,6 +133,7 @@ export {
   AppSetting,
   ChappaPayment,
   UserProductView,
-  PromoCode
+  PromoCode,
+  Banner
 }
 
