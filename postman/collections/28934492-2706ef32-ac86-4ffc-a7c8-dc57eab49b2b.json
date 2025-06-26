@@ -2953,7 +2953,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"5fb3985b-8954-4396-9085-bc6001cd353a\",\r\n    \"user_id\": \"edf50692-1d5f-41b0-90bd-be712243df87\",\r\n    \"language\": \"en\",\r\n    \"theme\": \"light\",\r\n    \"notifications_enabled\": true,\r\n    \"email_notifications\": true,\r\n    \"push_notifications\": true\r\n}",
+									"raw": "{\r\n        \"id\": \"fa040878-f59c-4483-ae83-4871b323fe62\",\r\n        \"title\": \"Summer Sale Buzzinga\"\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
