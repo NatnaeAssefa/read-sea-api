@@ -2531,6 +2531,18 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "getaddressbyuserId",
+							"id": "28934492-ac251275-f442-41ef-8659-a714b4cd63cf",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
 					],
 					"id": "28934492-a169c74c-1603-4382-abfd-a4196c3329bb"
@@ -2747,6 +2759,219 @@
 						}
 					],
 					"id": "28934492-619b1791-48bc-4495-b03c-59c3268852b0"
+				},
+				{
+					"name": "App Setting Copy",
+					"item": [
+						{
+							"name": "Get All",
+							"id": "28934492-a5cf2ab8-2184-45a8-82cd-35371b056ae9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/app-settings",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get One",
+							"id": "28934492-e26066c9-eb2a-40ff-b62d-7f47a4a22908",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/app-settings/get",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings",
+										"get"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "search%5Bkeys%5D%5B0%5D=name%26search%5Bvalue%5D=bEDRId",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By ID",
+							"id": "28934492-997045c6-37a1-462c-bdfe-946ee26e9f89",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/app-settings/akshdkjhaskjdhaksdhkjdhkasd",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings",
+										"akshdkjhaskjdhaksdhkjdhkasd"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "include%5B0%5D%5Bmodel%5D=interest&include%5B1%5D%5Bmodel%5D=file&include%5B1%5D%5Balias%5D=profile",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"id": "28934492-5b6c7ea1-94a9-406d-867c-f213f20e0e50",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": \"edf50692-1d5f-41b0-90bd-be712243df87\",\r\n    \"language\": \"en\",\r\n    \"theme\": \"light\",\r\n    \"notifications_enabled\": true,\r\n    \"email_notifications\": true,\r\n    \"push_notifications\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/app-settings",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"id": "28934492-52c9fa36-81e7-4cdd-acab-a2ea42b19df4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"5fb3985b-8954-4396-9085-bc6001cd353a\",\r\n    \"user_id\": \"edf50692-1d5f-41b0-90bd-be712243df87\",\r\n    \"language\": \"en\",\r\n    \"theme\": \"light\",\r\n    \"notifications_enabled\": true,\r\n    \"email_notifications\": true,\r\n    \"push_notifications\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/app-settings",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"id": "28934492-c8d1f5e0-5aec-4a2d-85d4-8f81956eee41",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\",\r\n    \"force\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/app-settings",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Restore",
+							"id": "28934492-c2b95f3d-a082-47d0-a609-abfdeed29f7f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/app-settings/restore",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings",
+										"restore"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "28934492-82c41b77-ad64-46c5-85f3-2a88ffd85e6b"
 				},
 				{
 					"name": "Cart",
@@ -3782,6 +4007,18 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "getMyorder",
+							"id": "28934492-aaf7c169-666e-463f-a82f-47b8e7c4fd68",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
 					],
 					"id": "28934492-c1f8c1a0-8eda-4913-8f5e-1d00665eaecd"
@@ -3800,7 +4037,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"order_id\": \"orders[1].id\",\r\n    \"product_id\": \"products[1].id\",\r\n    \"quantity\": 1,\r\n    \"price\": 349.99\r\n}",
+									"raw": "{\"order_id\": \"2128611f-9203-4c50-86c4-d1d16a02f320\", \"price\": 89.99, \"product_id\": \"bbbbe6e8-b50e-4cdf-9664-d7fc08c6bb4b\", \"quantity\": 4}",
 									"options": {
 										"raw": {
 											"language": "json"
