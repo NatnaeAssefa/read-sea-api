@@ -2773,12 +2773,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/banners",
+									"raw": "{{api_url}}/banners/admin",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"banners"
+										"banners",
+										"admin"
 									],
 									"query": [
 										{
