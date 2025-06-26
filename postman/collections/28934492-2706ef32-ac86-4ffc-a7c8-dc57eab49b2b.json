@@ -2792,6 +2792,34 @@
 							"response": []
 						},
 						{
+							"name": "Get All Copy",
+							"id": "28934492-8a8051ad-a663-41b7-896d-f0450f471a25",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/banners",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"banners"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get By Date Range",
 							"id": "28934492-3d62b840-a752-4d5d-aec8-f3d3e1ca0e4f",
 							"protocolProfileBehavior": {
