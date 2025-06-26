@@ -2792,7 +2792,7 @@
 							"response": []
 						},
 						{
-							"name": "Get All Copy",
+							"name": "Get Active",
 							"id": "28934492-8a8051ad-a663-41b7-896d-f0450f471a25",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
