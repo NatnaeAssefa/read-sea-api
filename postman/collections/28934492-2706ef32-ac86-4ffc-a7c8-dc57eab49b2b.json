@@ -2833,13 +2833,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/app-settings/get",
+									"raw": "{{api_url}}/banners/admin/search",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"app-settings",
-										"get"
+										"banners",
+										"admin",
+										"search"
 									],
 									"query": [
 										{
