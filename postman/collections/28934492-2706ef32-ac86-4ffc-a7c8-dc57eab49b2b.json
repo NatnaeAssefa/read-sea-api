@@ -2922,7 +2922,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"title\": \"Premium Member Exclusive\",\r\n  \"description\": \"Exclusive deals for our registered members. Join now and save more!\",\r\n  \"image_url\": \"https://example.com/images/premium-banner.jpg\",\r\n  \"link_url\": \"https://example.com/premium-deals\",\r\n  \"start_date\": \"2025-06-23T00:00:00.000Z\",\r\n  \"end_date\": \"2025-08-10T00:00:00.000Z\",\r\n  \"status\": \"ACTIVE\",\r\n  \"priority\": 90,\r\n  \"target_audience\": \"REGISTERED\"\r\n}",
+									"raw": "{\r\n    \"title\": \"Summer Sale Extravaganza\",\r\n    \"description\": \"Save up to 60% on seasonal items! Limited time offer for all shoppers.\",\r\n    \"image_url\": \"https://example.com/banners/summer-sale-2025.jpg\",\r\n    \"link_url\": \"https://example.com/summer-sale\",\r\n    \"start_date\": \"2025-06-15T00:00:00.000Z\",\r\n    \"end_date\": \"2025-07-15T23:59:59.000Z\",\r\n    \"status\": \"Active\",\r\n    \"priority\": 75,\r\n    \"target_audience\": \"ALL\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
