@@ -2961,12 +2961,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/app-settings",
+									"raw": "{{api_url}}/banners/admin",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"app-settings"
+										"banners",
+										"admin"
 									]
 								}
 							},
