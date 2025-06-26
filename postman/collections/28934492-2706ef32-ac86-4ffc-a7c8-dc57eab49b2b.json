@@ -2922,7 +2922,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"user_id\": \"edf50692-1d5f-41b0-90bd-be712243df87\",\r\n    \"language\": \"en\",\r\n    \"theme\": \"light\",\r\n    \"notifications_enabled\": true,\r\n    \"email_notifications\": true,\r\n    \"push_notifications\": true\r\n}",
+									"raw": "{\r\n  \"title\": \"Premium Member Exclusive\",\r\n  \"description\": \"Exclusive deals for our registered members. Join now and save more!\",\r\n  \"image_url\": \"https://example.com/images/premium-banner.jpg\",\r\n  \"link_url\": \"https://example.com/premium-deals\",\r\n  \"start_date\": \"2025-06-23T00:00:00.000Z\",\r\n  \"end_date\": \"2025-08-10T00:00:00.000Z\",\r\n  \"status\": \"ACTIVE\",\r\n  \"priority\": 90,\r\n  \"target_audience\": \"REGISTERED\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
