@@ -13,6 +13,7 @@ import ProductImageController from "./ProductImage.controller";
 import SearchHistoryController from "./SearchHistory.controller";
 import ChappaPaymentController from "./ChappaPayment.controller";
 import PromoCodeController from "./PromoCode.controller";
+import BannerController from "./Banner.controller";
 
 export {
     CartController,
@@ -29,5 +30,6 @@ export {
     ProductImageController,
     SearchHistoryController,
     ChappaPaymentController,
-    PromoCodeController
+    PromoCodeController,
+    BannerController
 };

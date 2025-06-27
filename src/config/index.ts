@@ -303,7 +303,16 @@ export const access_rules: AccessRules[] = [
       { name: "write_promo_code", type: AccessType.ADMIN },
       { name: "delete_promo_code", type: AccessType.ADMIN },
     ],
-  }
+  },
+  {
+    group: "Banner",
+    rules: [
+      { name: "read_banner", type: AccessType.USER },
+      { name: "write_banner", type: AccessType.ADMIN },
+      { name: "delete_banner", type: AccessType.ADMIN },
+      { name: "create_banner", type: AccessType.ADMIN },
+    ],
+  },
 ];
 
 export default { env, constants, access_rules };

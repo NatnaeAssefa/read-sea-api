@@ -698,6 +698,7 @@ export class RoleService {
             "refund_chappa_payment","manage_chappa_payments","verify_chappa_payment","initiate_chappa_payment","read_chappa_payment",
             "read_product", "read_category",
             "read_order", "write_order",
+            "read_banner","write_banner","delete_banner",
             "read_app_setting", "write_app_setting",
             "read_address", "write_address", "delete_address","read_product_image", "write_product_image", "delete_product_image"
           ])

@@ -2,7 +2,7 @@ import { Model } from "sequelize";
 import { AccessRule, ActionLog, Role, User, UserProfile } from "../../models/User";
 
 import { File, Notification } from "../../models/System";
-import { Address, AppSetting, Cart, CartItem, Category, Favorite, Order, OrderItem, OrderTracking, PaymentMethod as PM, Product, ProductImage, PromoCode, SearchHistory } from "../../models/MarketPlace";
+import { Address, AppSetting, Banner, Cart, CartItem, Category, Favorite, Order, OrderItem, OrderTracking, PaymentMethod as PM, Product, ProductImage, PromoCode, SearchHistory } from "../../models/MarketPlace";
 
 // Define the user type for better type safety
 export interface FacebookUserProfile {
@@ -310,6 +310,11 @@ export const PaymentMethod = {
   OTHER: 'other'
 };
 
+export const BannerTargetAudience = {
+  ALL: 'ALL',
+  GUEST: 'GUEST',
+  REGISTERED: 'REGISTERED'
+};
 
 export const PasswordMessage =
   "Password must be at least 8 and at most 16 characters and must contain at least one lower case, one upper case, one special character and one number";
@@ -338,6 +343,7 @@ ModelType.set("cart", Cart);
 ModelType.set("cart_item", CartItem);
 ModelType.set("address", Address);
 ModelType.set("app_setting", AppSetting);
+ModelType.set("banner", Banner);
 ModelType.set("category", Category);
 ModelType.set("favorite", Favorite);
 ModelType.set("order", Order as unknown as typeof Model);
