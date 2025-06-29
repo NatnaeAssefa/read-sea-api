@@ -51,7 +51,8 @@ module.exports = {
         comment: "Higher numbers indicate higher priority for display order",
       },
       target_audience: {
-        type: Sequelize.ENUM('ALL', 'GUEST', 'REGISTERED'),
+        type: Sequelize.ENUM,
+        values: ['ALL', 'GUEST', 'REGISTERED'],
         allowNull: false,
         defaultValue: 'ALL',
         comment: "Target audience for the banner",

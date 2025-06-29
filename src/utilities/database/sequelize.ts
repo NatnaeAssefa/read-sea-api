@@ -34,7 +34,7 @@ export default () => {
     ModelSync(sequelize);
 
     sequelize
-      .sync({ logging: true, alter: true })
+      .sync({ logging: true, force: false, alter: false })
       .then(() => {
         LogService.LogInfo(
           "Database Connection has been established successfully."

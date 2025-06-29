@@ -212,6 +212,63 @@ const routes = () => {
    * @swagger
    * /admin/banners:
    *   put:
+   *     summary: Update Banner (SuperAdmin)
+   *     tags: [Banner]
+   *     security:
+   *       - bearerAuth: []
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             required:
+   *               - id
+   *             properties:
+   *               id:
+   *                 type: string
+   *                 format: uuid
+   *               title:
+   *                 type: string
+   *                 minLength: 1
+   *                 maxLength: 255
+   *               description:
+   *                 type: string
+   *               image_url:
+   *                 type: string
+   *                 format: uri
+   *               link_url:
+   *                 type: string
+   *                 format: uri
+   *               start_date:
+   *                 type: string
+   *                 format: date-time
+   *               end_date:
+   *                 type: string
+   *                 format: date-time
+   *               status:
+   *                 type: string
+   *                 enum: [Active, Inactive, Pending, Blocked, Archived]
+   *               priority:
+   *                 type: integer
+   *                 minimum: 0
+   *                 maximum: 999
+   *     responses:
+   *       200:
+   *         description: Banner updated successfully
+   *       400:
+   *         description: Validation error
+   *       404:
+   *         description: Banner not found
+   */
+ 
+ 
+  router.post("/superAdmin", AuthenticateUser, AuthorizeAccess(["create_banner"]), BannerController.create)
+
+  /**
+   * @swagger
+   * /admin/banners:
+   *   put:
    *     summary: Update Banner (Admin)
    *     tags: [Banner]
    *     security:

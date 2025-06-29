@@ -121,6 +121,12 @@ export const superAdminAccessRules = [
   "read_promo_code",
   "write_promo_code",
   "delete_promo_code",
+  
+  // Banner
+  "read_banner",
+  "write_banner",
+  "delete_banner",
+  "create_banner",
 ];
 
 export default superAdminAccessRules;

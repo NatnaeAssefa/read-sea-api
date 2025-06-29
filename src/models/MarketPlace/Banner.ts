@@ -40,9 +40,9 @@ export default (sequelize: Sequelize) => {
       image_url: {
         type: DataTypes.STRING,
         allowNull: true,
-        validate: {
-          isUrl: true
-        }
+        // validate: {
+        //   isUrl: true
+        // }
       },
       link_url: {
         type: DataTypes.STRING,

@@ -309,8 +309,10 @@ export const access_rules: AccessRules[] = [
     rules: [
       { name: "read_banner", type: AccessType.USER },
       { name: "write_banner", type: AccessType.ADMIN },
+      { name: "write_banner", type: AccessType.SUPER_ADMIN },
       { name: "delete_banner", type: AccessType.ADMIN },
       { name: "create_banner", type: AccessType.ADMIN },
+      { name: "create_banner", type: AccessType.SUPER_ADMIN },
     ],
   },
 ];

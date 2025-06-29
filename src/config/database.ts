@@ -1,7 +1,7 @@
 // Configuration for database connections
 const dbConfig = {
   // Primary connection (Neon DB)
-  url: "postgresql://neondb_owner:npg_5ZeuWBXl3bVQ@ep-spring-dream-a8vkj3al-pooler.eastus2.azure.neon.tech/marketplace?sslmode=require",
+  url: "postgresql://neondb_owner:npg_tmdEzTXeh25K@ep-snowy-hill-a5wjjggn-pooler.us-east-2.aws.neon.tech/marketplace?sslmode=require&channel_binding=require",
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
