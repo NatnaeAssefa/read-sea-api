@@ -2821,7 +2821,7 @@
 							"response": []
 						},
 						{
-							"name": "Get One Copy",
+							"name": "Get Product Ratings",
 							"id": "28934492-8140627c-66f8-40ae-beba-98ef54214cd5",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
