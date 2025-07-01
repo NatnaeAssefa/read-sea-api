@@ -2891,7 +2891,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"product_id\": \"0f60ea4b-3bad-46c8-b6f5-84d5a815ac6d\",\r\n    \"rating\": 4.5,\r\n    \"review_title\": \"Demo Title\",\r\n    \"review_text\": \"Demo Text\"\r\n}",
+									"raw": "{\r\n    \"product_id\": \"0f60ea4b-3bad-46c8-b6f5-84d5a815ac6d\",\r\n    \"rating\": 4,\r\n    \"review_title\": \"Demo Title\",\r\n    \"review_text\": \"Demo Text\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
