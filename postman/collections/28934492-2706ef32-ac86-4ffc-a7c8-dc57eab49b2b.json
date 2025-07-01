@@ -2830,13 +2830,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/app-settings/get",
+									"raw": "{{api_url}}/ratings/products/219512b4-fde1-4faf-87da-d25f2be79bfb/ratings",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"app-settings",
-										"get"
+										"ratings",
+										"products",
+										"219512b4-fde1-4faf-87da-d25f2be79bfb",
+										"ratings"
 									],
 									"query": [
 										{
