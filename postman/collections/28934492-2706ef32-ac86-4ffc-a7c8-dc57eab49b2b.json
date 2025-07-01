@@ -2821,6 +2821,35 @@
 							"response": []
 						},
 						{
+							"name": "Get One Copy",
+							"id": "28934492-8140627c-66f8-40ae-beba-98ef54214cd5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/app-settings/get",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings",
+										"get"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "search%5Bkeys%5D%5B0%5D=name%26search%5Bvalue%5D=bEDRId",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Get By ID",
 							"id": "28934492-f480cadd-0803-4bb6-a1dc-66024c0a9e4a",
 							"protocolProfileBehavior": {
