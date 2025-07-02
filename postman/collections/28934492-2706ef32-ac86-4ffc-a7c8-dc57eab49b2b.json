@@ -5387,7 +5387,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"product\": {\r\n        \"name\": \"Wireless Bluetooth Mouse\",\r\n        \"description\": \"High-quality wireless mouse with smooth experience\",\r\n        \"price\": \"199.99\",\r\n        \"stock\": 50,\r\n        \"featured\": true,\r\n        \"trending\": true,\r\n        \"category_id\": \"392621c2-acf2-4f37-84ca-3796f57fe900\"\r\n    },\r\n    \"files\": [\r\n        \"69e2ed50-2ad5-4637-9deb-eb8684bf8acd\",\r\n        \"491378e2-733e-407c-bb95-b94f7c86f0d4\"\r\n    ]\r\n}",
+									"raw": "{\r\n    \"product\": {\r\n        \"name\": \"Bluetooth Headphone\",\r\n        \"description\": \"High-quality wireless headset\",\r\n        \"price\": \"199.99\",\r\n        \"stock\": 50,\r\n        \"featured\": true,\r\n        \"trending\": true,\r\n        \"category_id\": \"392621c2-acf2-4f37-84ca-3796f57fe900\"\r\n    },\r\n    \"files\": [\r\n        \"69e2ed50-2ad5-4637-9deb-eb8684bf8acd\",\r\n        \"491378e2-733e-407c-bb95-b94f7c86f0d4\"\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
