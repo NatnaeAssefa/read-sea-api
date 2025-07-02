@@ -63,29 +63,7 @@ class AddressController {
       return
     }
   }
-  static findByUserId(request: Request, response: Response) {
-    const startTime = new Date()
-    const schema = Joi.object({
-      userId: Joi.string().guid().required(),
-    })
-
-    const { error } = schema.validate(request.params)
-
-    if (!error) {
-      const userId: string = request.params.userId
-      const parsedQuery: any = ParseQuery(request.query, ["I", "P"])
-      AddressService.findByUserId(userId, parsedQuery.query, parsedQuery.paranoid)
-        .then((result) => {
-          ServerResponse(request, response, 200, result, "", startTime)
-        })
-        .catch((error) => {
-          ServerResponse(request, response, error.statusCode, error.payload, "Error", startTime)
-        })
-    } else {
-      ServerResponse(request, response, 400, { details: error.details }, "Input validation error", startTime)
-      return
-    }
-  }
+ 
   static create(request: any, response: Response) {
     const startTime = new Date()
     const schema = Joi.object({
