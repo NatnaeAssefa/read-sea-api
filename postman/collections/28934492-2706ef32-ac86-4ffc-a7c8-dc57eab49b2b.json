@@ -2861,13 +2861,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/ratings/ec29568b-6ce5-4d5a-b686-2d6f6f21a51f",
+									"raw": "{{api_url}}/ratings/c03678d2-4a71-4987-8ed5-1ad63d5a7c7a",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"ratings",
-										"ec29568b-6ce5-4d5a-b686-2d6f6f21a51f"
+										"c03678d2-4a71-4987-8ed5-1ad63d5a7c7a"
 									],
 									"query": [
 										{
