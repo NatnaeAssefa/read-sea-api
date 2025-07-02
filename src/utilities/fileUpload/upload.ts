@@ -1,9 +1,22 @@
 import multer from "multer";
 import path from "path";
+import fs from "fs";
+
 /**
  * Valid Image Mime Types
  */
 const MimeTypes = ["image/png", "image/jpg", "image/jpeg"];
+
+// Ensure upload directories exist
+const ensureDirectoryExists = (directory: string) => {
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory, { recursive: true });
+  }
+};
+
+// Create necessary directories
+ensureDirectoryExists("uploads/");
+ensureDirectoryExists("profiles/");
 
 const profile_upload = multer({
   fileFilter: (req: any, file: any, callback: Function) => {
