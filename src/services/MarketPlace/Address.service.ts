@@ -112,6 +112,24 @@ class AddressService {
         .catch((error) => reject(new InternalServerError(error)))
     })
   }
+  static findByUserId = (userId: string, options?: any, paranoid?: boolean): Promise<{rows: Address[]; count: number}> => {
+    return new Promise((resolve, reject) => {
+
+      const queryOptions = {
+        ...options,
+        where: {
+          ...(options?.where || {}),
+          user_id: userId
+        }
+      }
+
+      AddressDAL.findMany(queryOptions, paranoid)
+        .then((result) => {
+          resolve(result)
+        })
+        .catch((error) => reject(new InternalServerError(error)))
+    })
+  }
 
   static findOne = (options: any, paranoid?: boolean): Promise<Address | null> => {
     return new Promise((resolve, reject) => {
