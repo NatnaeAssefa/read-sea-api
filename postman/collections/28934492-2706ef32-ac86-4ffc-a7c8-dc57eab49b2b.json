@@ -51,7 +51,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"mikelarteta@arsenal.com\",\r\n    \"password\": \"#Include29\",\r\n    \"first_name\": \"Mikel\",\r\n    \"last_name\": \"Arteta\",\r\n    \"phone_number\": \"+251962886951\",\r\n    \"role_id\": \"e8aa404b-e713-4a27-b8b4-5990c01816c1\"\r\n}",
+							"raw": "{\r\n    \"email\": \"mikelarteta@arsenal.com\",\r\n    \"password\": \"#Include29\",\r\n    \"first_name\": \"Mikel\",\r\n    \"last_name\": \"Arteta\",\r\n    \"phone_number\": \"+251962886951\",\r\n    \"role_id\": \"0f60ea4b-3bad-46c8-b6f5-84d5a815ac6d\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
