@@ -2911,7 +2911,7 @@
 							"response": []
 						},
 						{
-							"name": "Create Copy",
+							"name": "Toggle Helpfulness",
 							"id": "28934492-62241b98-98eb-4796-9333-4af74831c861",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
