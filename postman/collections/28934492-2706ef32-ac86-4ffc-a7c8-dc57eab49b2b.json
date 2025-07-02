@@ -20,7 +20,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"wopejav590@lushosa.com\",\r\n    \"password\": \"#Include29\"\r\n}",
+							"raw": "{\r\n    // \"email\": \"wopejav590@lushosa.com\",\r\n    \"email\": \"mikelarteta@arsenal.com\",\r\n    \"password\": \"#Include29\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -51,7 +51,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"wopejav590@lushosa.com\",\r\n    \"password\": \"#Include29\",\r\n    \"first_name\": \"Mikel\",\r\n    \"last_name\": \"Arteta\",\r\n    \"phone_number\": \"+251962886951\",\r\n    \"role_id\": \"e8aa404b-e713-4a27-b8b4-5990c01816c1\"\r\n}",
+							"raw": "{\r\n    \"email\": \"mikelarteta@arsenal.com\",\r\n    \"password\": \"#Include29\",\r\n    \"first_name\": \"Mikel\",\r\n    \"last_name\": \"Arteta\",\r\n    \"phone_number\": \"+251962886951\",\r\n    \"role_id\": \"0f60ea4b-3bad-46c8-b6f5-84d5a815ac6d\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2761,6 +2761,282 @@
 					"id": "28934492-619b1791-48bc-4495-b03c-59c3268852b0"
 				},
 				{
+					"name": "Rating",
+					"item": [
+						{
+							"name": "Get All",
+							"id": "28934492-b734d556-9179-4d7e-b7a1-53ac01c9b10f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/ratings",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"ratings"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "offset=0%26limit=5%26include%5B0%5D%5Bmodel%5D=user",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get One",
+							"id": "28934492-d11f672d-c0be-415a-a36b-0359e974f60b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/app-settings/get",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings",
+										"get"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "search%5Bkeys%5D%5B0%5D=name%26search%5Bvalue%5D=bEDRId",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product Ratings",
+							"id": "28934492-8140627c-66f8-40ae-beba-98ef54214cd5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/ratings/products/219512b4-fde1-4faf-87da-d25f2be79bfb/ratings",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"ratings",
+										"products",
+										"219512b4-fde1-4faf-87da-d25f2be79bfb",
+										"ratings"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "search%5Bkeys%5D%5B0%5D=name%26search%5Bvalue%5D=bEDRId",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get By ID",
+							"id": "28934492-f480cadd-0803-4bb6-a1dc-66024c0a9e4a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/ratings/ec29568b-6ce5-4d5a-b686-2d6f6f21a51f",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"ratings",
+										"ec29568b-6ce5-4d5a-b686-2d6f6f21a51f"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "include%5B0%5D%5Bmodel%5D=interest&include%5B1%5D%5Bmodel%5D=file&include%5B1%5D%5Balias%5D=profile",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"id": "28934492-2b25aa7c-aaca-4eba-84a7-5bba2e0dcd82",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\": \"ecbee117-de12-4dc6-80f8-61a0835efe51\",\r\n    \"rating\": 3,\r\n    \"review_title\": \"Demo Title 3\",\r\n    \"review_text\": \"Demo Text 3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/ratings",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"ratings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Toggle Helpfulness",
+							"id": "28934492-62241b98-98eb-4796-9333-4af74831c861",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"is_helpful\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/ratings/f6c996f6-5eed-4b75-8868-54429570fd3e/helpfulness",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"ratings",
+										"f6c996f6-5eed-4b75-8868-54429570fd3e",
+										"helpfulness"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"id": "28934492-c9d8c3a5-0c5b-4054-be0a-f2ae018a7efc",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"5fb3985b-8954-4396-9085-bc6001cd353a\",\r\n    \"user_id\": \"edf50692-1d5f-41b0-90bd-be712243df87\",\r\n    \"language\": \"en\",\r\n    \"theme\": \"light\",\r\n    \"notifications_enabled\": true,\r\n    \"email_notifications\": true,\r\n    \"push_notifications\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/app-settings",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"id": "28934492-e598ba8f-23c7-408c-aa30-203d320a7161",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\",\r\n    \"force\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/app-settings",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Restore",
+							"id": "28934492-e993aac5-b6b3-4fd9-9a6d-311553229ff9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"asjkhdkjashkasdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/app-settings/restore",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"app-settings",
+										"restore"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "28934492-7e007c12-a50e-4aeb-8a6e-c3bb3002e70c"
+				},
+				{
 					"name": "Banner",
 					"item": [
 						{
@@ -3399,6 +3675,32 @@
 									],
 									"path": [
 										"cart-items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "remove cart items",
+							"id": "28934492-39cd5356-2fab-4b0d-aef0-547010173338",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":\"54c3916f-6aa0-4766-b74f-3a840e652518\"\r\n}"
+								},
+								"url": {
+									"raw": "{{api_url}}/cart-items/",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"cart-items",
+										""
 									]
 								}
 							},
@@ -4966,13 +5268,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/akshdkjhaskjdhaksdhkjdhkasd",
+									"raw": "{{api_url}}/products/ecbee117-de12-4dc6-80f8-61a0835efe51",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"products",
-										"akshdkjhaskjdhaksdhkjdhkasd"
+										"ecbee117-de12-4dc6-80f8-61a0835efe51"
 									],
 									"query": [
 										{
