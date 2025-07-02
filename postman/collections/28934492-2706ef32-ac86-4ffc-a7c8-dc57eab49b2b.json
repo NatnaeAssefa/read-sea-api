@@ -2921,7 +2921,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"is_helpful\": true\r\n}",
+									"raw": "{\r\n    \"is_helpful\": false\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2929,13 +2929,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/ratings/f6c996f6-5eed-4b75-8868-54429570fd3e/helpfulness",
+									"raw": "{{api_url}}/ratings/c03678d2-4a71-4987-8ed5-1ad63d5a7c7a/helpfulness",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"ratings",
-										"f6c996f6-5eed-4b75-8868-54429570fd3e",
+										"c03678d2-4a71-4987-8ed5-1ad63d5a7c7a",
 										"helpfulness"
 									]
 								}
