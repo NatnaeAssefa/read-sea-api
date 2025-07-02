@@ -2911,6 +2911,36 @@
 							"response": []
 						},
 						{
+							"name": "Create Copy",
+							"id": "28934492-62241b98-98eb-4796-9333-4af74831c861",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\": \"ecbee117-de12-4dc6-80f8-61a0835efe51\",\r\n    \"rating\": 3,\r\n    \"review_title\": \"Demo Title 3\",\r\n    \"review_text\": \"Demo Text 3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/ratings",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"ratings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Update",
 							"id": "28934492-c9d8c3a5-0c5b-4054-be0a-f2ae018a7efc",
 							"protocolProfileBehavior": {
