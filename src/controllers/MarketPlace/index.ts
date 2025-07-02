@@ -14,6 +14,7 @@ import SearchHistoryController from "./SearchHistory.controller";
 import ChappaPaymentController from "./ChappaPayment.controller";
 import PromoCodeController from "./PromoCode.controller";
 import BannerController from "./Banner.controller";
+import ProductRatingController from "./ProductRating.controller";
 
 export {
     CartController,
@@ -31,5 +32,6 @@ export {
     SearchHistoryController,
     ChappaPaymentController,
     PromoCodeController,
-    BannerController
+    BannerController,
+    ProductRatingController
 };
