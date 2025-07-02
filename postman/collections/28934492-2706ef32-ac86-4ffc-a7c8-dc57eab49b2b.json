@@ -2921,7 +2921,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"product_id\": \"ecbee117-de12-4dc6-80f8-61a0835efe51\",\r\n    \"rating\": 3,\r\n    \"review_title\": \"Demo Title 3\",\r\n    \"review_text\": \"Demo Text 3\"\r\n}",
+									"raw": "{\r\n    \"is_helpful\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2929,12 +2929,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/ratings",
+									"raw": "{{api_url}}/ratings/ec29568b-6ce5-4d5a-b686-2d6f6f21a51f/helpfulness",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"ratings"
+										"ratings",
+										"ec29568b-6ce5-4d5a-b686-2d6f6f21a51f",
+										"helpfulness"
 									]
 								}
 							},
