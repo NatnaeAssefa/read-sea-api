@@ -2929,13 +2929,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{api_url}}/ratings/ec29568b-6ce5-4d5a-b686-2d6f6f21a51f/helpfulness",
+									"raw": "{{api_url}}/ratings/f6c996f6-5eed-4b75-8868-54429570fd3e/helpfulness",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"ratings",
-										"ec29568b-6ce5-4d5a-b686-2d6f6f21a51f",
+										"f6c996f6-5eed-4b75-8868-54429570fd3e",
 										"helpfulness"
 									]
 								}
