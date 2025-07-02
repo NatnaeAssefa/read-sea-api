@@ -5236,13 +5236,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/akshdkjhaskjdhaksdhkjdhkasd",
+									"raw": "{{api_url}}/products/ecbee117-de12-4dc6-80f8-61a0835efe51",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"products",
-										"akshdkjhaskjdhaksdhkjdhkasd"
+										"ecbee117-de12-4dc6-80f8-61a0835efe51"
 									],
 									"query": [
 										{
