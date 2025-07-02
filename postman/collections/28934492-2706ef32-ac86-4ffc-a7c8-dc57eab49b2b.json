@@ -2891,7 +2891,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"product_id\": \"ecbee117-de12-4dc6-80f8-61a0835efe51\",\r\n    \"rating\": 5,\r\n    \"review_title\": \"Demo Title 1\",\r\n    \"review_text\": \"Demo Text 1\"\r\n}",
+									"raw": "{\r\n    \"product_id\": \"ecbee117-de12-4dc6-80f8-61a0835efe51\",\r\n    \"rating\": 3,\r\n    \"review_title\": \"Demo Title 3\",\r\n    \"review_text\": \"Demo Text 3\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
