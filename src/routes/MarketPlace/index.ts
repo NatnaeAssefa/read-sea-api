@@ -14,6 +14,7 @@ import productImageRoutes from "./ProductImage.routes";
 import searchHistoryRoutes from "./SearchHistory.routes";
 import promoCodeRoutes from "./PromoCode.routes";
 import bannerRoutes from "./Banner.routes";
+import productRatingRoutes from "./ProductRating.route";
 
 
 const routes = () => {
@@ -35,6 +36,7 @@ router.use("/product-images", productImageRoutes())
 router.use("/search-histories", searchHistoryRoutes())
 router.use("/promo-codes", promoCodeRoutes())
 router.use("/banners", bannerRoutes())
+router.use("/ratings", productRatingRoutes())
 
 
   return router;

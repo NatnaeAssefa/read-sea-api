@@ -14,6 +14,7 @@ import SearchHistoryService from "./SearchHistory.service";
 import ChappaPaymentService from "./ChappaPayment.service";
 import PromoCodeService from "./PromoCode.service";
 import BannerService from "./Banner.service";
+import ProductRatingService from "./ProductRating.service";
 
 export {
     CartService,
@@ -31,5 +32,6 @@ export {
     SearchHistoryService,
     ChappaPaymentService,
     PromoCodeService,
-    BannerService
+    BannerService,
+    ProductRatingService
 };

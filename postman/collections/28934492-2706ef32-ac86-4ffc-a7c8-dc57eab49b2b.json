@@ -20,7 +20,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"wopejav590@lushosa.com\",\r\n    \"password\": \"#Include29\"\r\n}",
+							"raw": "{\r\n    // \"email\": \"wopejav590@lushosa.com\",\r\n    \"email\": \"mikelarteta@arsenal.com\",\r\n    \"password\": \"#Include29\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -51,7 +51,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"wopejav590@lushosa.com\",\r\n    \"password\": \"#Include29\",\r\n    \"first_name\": \"Mikel\",\r\n    \"last_name\": \"Arteta\",\r\n    \"phone_number\": \"+251962886951\",\r\n    \"role_id\": \"e8aa404b-e713-4a27-b8b4-5990c01816c1\"\r\n}",
+							"raw": "{\r\n    \"email\": \"mikelarteta@arsenal.com\",\r\n    \"password\": \"#Include29\",\r\n    \"first_name\": \"Mikel\",\r\n    \"last_name\": \"Arteta\",\r\n    \"phone_number\": \"+251962886951\",\r\n    \"role_id\": \"0f60ea4b-3bad-46c8-b6f5-84d5a815ac6d\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2861,13 +2861,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/app-settings/akshdkjhaskjdhaksdhkjdhkasd",
+									"raw": "{{api_url}}/ratings/c03678d2-4a71-4987-8ed5-1ad63d5a7c7a",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
-										"app-settings",
-										"akshdkjhaskjdhaksdhkjdhkasd"
+										"ratings",
+										"c03678d2-4a71-4987-8ed5-1ad63d5a7c7a"
 									],
 									"query": [
 										{
@@ -2891,7 +2891,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"product_id\": \"219512b4-fde1-4faf-87da-d25f2be79bfb\",\r\n    \"rating\": 4,\r\n    \"review_title\": \"Demo Title\",\r\n    \"review_text\": \"Demo Text\"\r\n}",
+									"raw": "{\r\n    \"product_id\": \"ecbee117-de12-4dc6-80f8-61a0835efe51\",\r\n    \"rating\": 3,\r\n    \"review_title\": \"Demo Title 3\",\r\n    \"review_text\": \"Demo Text 3\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2905,6 +2905,38 @@
 									],
 									"path": [
 										"ratings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Toggle Helpfulness",
+							"id": "28934492-62241b98-98eb-4796-9333-4af74831c861",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"is_helpful\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/ratings/c03678d2-4a71-4987-8ed5-1ad63d5a7c7a/helpfulness",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"ratings",
+										"c03678d2-4a71-4987-8ed5-1ad63d5a7c7a",
+										"helpfulness"
 									]
 								}
 							},
@@ -5236,13 +5268,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api_url}}/products/akshdkjhaskjdhaksdhkjdhkasd",
+									"raw": "{{api_url}}/products/ecbee117-de12-4dc6-80f8-61a0835efe51",
 									"host": [
 										"{{api_url}}"
 									],
 									"path": [
 										"products",
-										"akshdkjhaskjdhaksdhkjdhkasd"
+										"ecbee117-de12-4dc6-80f8-61a0835efe51"
 									],
 									"query": [
 										{
@@ -5355,7 +5387,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"product\": {\r\n        \"name\": \"Wireless Bluetooth Mouse\",\r\n        \"description\": \"High-quality wireless mouse with smooth experience\",\r\n        \"price\": \"199.99\",\r\n        \"stock\": 50,\r\n        \"featured\": true,\r\n        \"trending\": true,\r\n        \"category_id\": \"392621c2-acf2-4f37-84ca-3796f57fe900\"\r\n    },\r\n    \"files\": [\r\n        \"69e2ed50-2ad5-4637-9deb-eb8684bf8acd\",\r\n        \"491378e2-733e-407c-bb95-b94f7c86f0d4\"\r\n    ]\r\n}",
+									"raw": "{\r\n    \"product\": {\r\n        \"name\": \"Bluetooth Headphone\",\r\n        \"description\": \"High-quality wireless headset\",\r\n        \"price\": \"199.99\",\r\n        \"stock\": 50,\r\n        \"featured\": true,\r\n        \"trending\": true,\r\n        \"category_id\": \"392621c2-acf2-4f37-84ca-3796f57fe900\"\r\n    },\r\n    \"files\": [\r\n        \"69e2ed50-2ad5-4637-9deb-eb8684bf8acd\",\r\n        \"491378e2-733e-407c-bb95-b94f7c86f0d4\"\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

@@ -82,7 +82,7 @@ export const constants: any = {
   BASE_LAST_NAME: "Bahru",
   BASE_PHONE_NUMBER: "251930538714",
   BASE_ROLE: "Super Admin",
-  BASE_ROLE_ID: "e48f7ed1-db16-4511-be6a-87ef32aab99d",
+  BASE_ROLE_ID: "0f60ea4b-3bad-46c8-b6f5-84d5a815ac6d",
   BASE_TYPE: UserType.SUPER_ADMIN,
   BASE_EMAIL: "bahrubedri@gmail.com",
   BASE_PASSWORD: "1q2w3e4r5t6y7u8i9o0p",

@@ -17,7 +17,9 @@ import AppSettingsFactory, { AppSetting } from "./AppSetting"
 import ChappaPaymentFactory, { ChappaPayment } from "./ChappaPayment"
 import UserProductViewFactory, { UserProductView } from "./UserProductView";
 import PromoCodeFactory, { PromoCode } from "./PromoCode";
-import BannerFactory, { Banner } from "./Banner";
+import BannerFactory, { Banner } from "./Banner"
+import ProductRatingFactory, { ProductRating } from "./ProductRating"
+import RatingHelpfulnessFactory, { RatingHelpfulness } from "./RatingHelpfulness";
 
 
 // Import System models
@@ -41,6 +43,8 @@ const MarketPlaceModels = (sequelize: Sequelize) => {
   UserProductViewFactory(sequelize)
   PromoCodeFactory(sequelize)
   BannerFactory(sequelize)
+  ProductRatingFactory(sequelize)
+  RatingHelpfulnessFactory(sequelize)
 
   // Define associations
   User.hasMany(Address, { foreignKey: "user_id" })
@@ -107,6 +111,20 @@ const MarketPlaceModels = (sequelize: Sequelize) => {
 
   Order.belongsTo(PromoCode, { foreignKey: "promo_code_id" })
   PromoCode.hasMany(Order, { foreignKey: "promo_code_id" })
+
+  // Product Rating relationships
+  User.hasMany(ProductRating, { foreignKey: "user_id" })
+  ProductRating.belongsTo(User, { foreignKey: "user_id" })
+
+  Product.hasMany(ProductRating, { foreignKey: "product_id" })
+  ProductRating.belongsTo(Product, { foreignKey: "product_id" })
+
+  // Rating Helpfulness relationships
+  User.hasMany(RatingHelpfulness, { foreignKey: "user_id" })
+  RatingHelpfulness.belongsTo(User, { foreignKey: "user_id" })
+
+  ProductRating.hasMany(RatingHelpfulness, { foreignKey: "product_rating_id" })
+  RatingHelpfulness.belongsTo(ProductRating, { foreignKey: "product_rating_id" })
 }
 
 export default (sequelize: Sequelize) => {
@@ -134,6 +152,8 @@ export {
   ChappaPayment,
   UserProductView,
   PromoCode,
-  Banner
+  Banner,
+  ProductRating,
+  RatingHelpfulness
 }
 

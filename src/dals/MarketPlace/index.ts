@@ -14,6 +14,8 @@ import SearchHistoryDAL from "./SearchHistory.dal";
 import UserProductViewDAL from "./UserProductView.dal";
 import PromoCodeDAL from "./PromoCode.dal";
 import BannerDAL from "./Banner.dal";
+import ProductRatingDAL from "./ProductRating.dal";
+import RatingHelpfulnessDAL from "./RatingHelpfulness.dal";
 
 export {
     CartDAL,
@@ -31,5 +33,7 @@ export {
     SearchHistoryDAL,
     UserProductViewDAL,
     PromoCodeDAL,
-    BannerDAL
+    BannerDAL,
+    ProductRatingDAL,
+    RatingHelpfulnessDAL
 };
