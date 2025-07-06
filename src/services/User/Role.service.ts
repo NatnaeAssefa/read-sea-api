@@ -604,6 +604,8 @@ export class RoleService {
             "read_favorite", "write_favorite", "delete_favorite",
             "read_user_profile", "write_user_profile",
             "read_product", "read_category",
+            'create_product_rating',
+            'read_product_rating','write_product_rating','delete_product_rating',
             "read_order", "write_order",
             "read_app_setting", "write_app_setting",
             "read_address", "write_address", "delete_address"
@@ -645,6 +647,8 @@ export class RoleService {
             ...cartItemPermissions,
             // Include other basic permissions to ensure they're all there
             'read_promo_code','write_promo_code','delete_promo_code',
+            'create_product_rating',
+            'read_product_rating','write_product_rating','delete_product_rating',
             "read_cart", "write_cart", "delete_cart",
             "initiate_chappa_payment",
             "read_favorite", "write_favorite", "delete_favorite",
@@ -691,7 +695,7 @@ export class RoleService {
             "read_cart", "write_cart", "delete_cart",
             "initiate_chappa_payment",
             "read_favorite", "write_favorite", "delete_favorite",
-            "write_product",
+            "write_product",'create_product_rating','read_product_rating','write_product_rating','delete_product_rating',
             "read_user_profile", "write_user_profile",
             "read_action_log","write_action_log","delete_action_log",
             "read_payment_method","manage_payment_methods","delete_payment_method","write_payment_method",
