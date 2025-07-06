@@ -2,5 +2,6 @@ import ConfigService from "./Config.service";
 import FileService from "./File.service";
 import SystemService from "./System.service";
 import NotificationService from "./Notification.service";
+import DashboardService from "./Dashboard.service";
 
-export { ConfigService, FileService, SystemService, NotificationService };
+export { ConfigService, FileService, SystemService, NotificationService, DashboardService };
