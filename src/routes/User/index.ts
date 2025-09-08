@@ -4,6 +4,7 @@ import actionLogRoutes from "./ActionLog.routes";
 import roleRoutes from "./Role.routes";
 import userRoutes from "./User.routes";
 import userProfileRoutes from "./UserProfile.routes"
+import smsVerification from "./SmsVerification.routes"
 
 const routes = () => {
   const router = express.Router();
@@ -13,7 +14,7 @@ const routes = () => {
   router.use("/roles", roleRoutes());
   router.use("/users", userRoutes());
   router.use("/user_profiles", userProfileRoutes());
-
+  router.use("/user_verification", smsVerification());
   return router;
 };
 
